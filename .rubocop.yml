@@ -10,5 +10,6 @@ AllCops:
     - 'Gemfile'
     - 'Gemfile.lock'
     - 'Rakefile'
+    - 'node_modules/**/*'
 Documentation: # Disabling documentation cop
   Enabled: false
