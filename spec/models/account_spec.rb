@@ -28,11 +28,6 @@ RSpec.describe Account, type: :model do
     expect { account.save }.to raise_error(ActiveRecord::NotNullViolation)
   end
 
-  it 'is invalid without email' do
-    account = Account.new(name: 'Simon', surname: 'Simeone')
-    expect { account.save }.to raise_error(ActiveRecord::NotNullViolation)
-  end
-
   it 'is invalid when create new account with not unique email' do
     account = Account.new(name: 'Simon',
                           surname: 'Simeone',
