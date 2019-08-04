@@ -32,6 +32,7 @@ gem 'bulma', '~> 0.1.0'
 
 gem 'rspec', '~> 3.8'
 gem 'rspec_junit_formatter', '~> 0.2.3'
+gem 'rubocop', '~> 0.74.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
