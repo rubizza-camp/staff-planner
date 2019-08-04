@@ -30,6 +30,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # A ruby gem for bulma Modern CSS framework based on Flexbox
 gem 'bulma', '~> 0.1.0'
 
+gem 'rspec', '~> 3.8'
+gem 'rspec_junit_formatter', '~> 0.2.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
