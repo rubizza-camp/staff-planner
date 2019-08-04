@@ -139,6 +139,22 @@ GEM
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
+    rspec-core (3.8.2)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
     rspec_junit_formatter (0.2.3)
       builder (< 4)
@@ -205,6 +221,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rspec (~> 3.8)
+  rspec-rails (~> 3.8)
   rspec_junit_formatter (~> 0.2.3)
   rubocop (~> 0.74.0)
   selenium-webdriver
@@ -217,3 +234,4 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 2.6.3p62
+
