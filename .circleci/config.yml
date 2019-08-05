@@ -76,8 +76,6 @@ jobs:
           command: yarn install --cache-folder ~/.cache/yarn
 
       # Database setup
-      - run: bundle exec rake db:migrate
-      - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
       # run tests!
