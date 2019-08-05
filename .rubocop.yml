@@ -13,3 +13,5 @@ AllCops:
     - 'node_modules/**/*'
 Documentation: # Disabling documentation cop
   Enabled: false
+Metrics/LineLength:
+  Max: 120
