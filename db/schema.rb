@@ -29,4 +29,5 @@ ActiveRecord::Schema.define(version: 2019_08_04_153406) do
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
+
 end
