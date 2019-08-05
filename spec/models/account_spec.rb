@@ -25,5 +25,6 @@ RSpec.describe Account, type: :model do
   it 'is invalid without surname' do
     account = Account.new(name: 'Simon', date_of_birth: '2019-04-08')
     expect(account).to be_invalid
+    expect(account.errors.messages).to include(:surname)
   end
 end
