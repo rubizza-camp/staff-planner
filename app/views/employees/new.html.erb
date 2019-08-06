@@ -1,5 +1,21 @@
 <h1>New Employee</h1>
 
-<%= render 'form', employee: @employee %>
+<%= form_with model: @employee, local: true do |form| %>
+  <%= render "devise/shared/error_messages", resource: @account %>
 
-<%= link_to 'Back', employees_path %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :account_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname, id: :account_surname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', company_employees_path %>
