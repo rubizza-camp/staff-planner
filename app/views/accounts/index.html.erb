@@ -17,7 +17,7 @@
         <td>Email: <%= account.email %> </td>
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= button_to "Delete Page", account, :method => :delete %><td>
+        <td><%= button_to "Delete Page", account, method: :delete %><td>
       </tr>
     <% end %>
   </tbody>

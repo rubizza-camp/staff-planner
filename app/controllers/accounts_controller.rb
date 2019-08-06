@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
       redirect_to account_path,
                   notice: 'Account was successfully updated.'
     else
-      redirect_to edit_account_path(@account),
+      redirect_to :edit,
                   notice: 'Please check parameters'
     end
   end
@@ -34,14 +34,12 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    permitted = params.require(:account)
-                      .permit(:name,
-                              :surname,
-                              :email,
-                              :password,
-                              :date_of_birth)
-    attributes = permitted.to_h || {}
-    attributes.symbolize_keys
+    params.require(:account)
+          .permit(:name,
+                  :surname,
+                  :email,
+                  :password,
+                  :date_of_birth)
   end
 
   def set_account
