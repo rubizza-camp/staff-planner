@@ -2,7 +2,6 @@
 
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update destroy]
-  helper_method :resource_name, :resource, :devise_mapping
 
   def index
     @accounts = Account.all
@@ -27,7 +26,7 @@ class AccountsController < ApplicationController
       redirect_to accounts_path,
                   notice: 'You have successfully cancelled your account.'
     else
-      redirect_to :back
+      redirect_to accounts_path
     end
   end
 
