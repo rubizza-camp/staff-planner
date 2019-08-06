@@ -60,11 +60,12 @@ RSpec.describe Employee, type: :model do
   	company = Company.new(name: 'Company')
   	expect(company.save).to be_truthy
   	
-    employee = Employee.new(position: 'Boss',
+    employee = Employee.new(start_day: '2019-04-08',
+                          position: 'Boss',
                           is_enabled: true,
                           company_id: company.id )
     expect(employee).to be_invalid
-    expect(employee.errors.messages).to include(:account_id)
+    expect(employee.errors.messages).to include(:account)
   end
 
   it 'is invalid without company_id' do
@@ -76,10 +77,11 @@ RSpec.describe Employee, type: :model do
   	expect(account.save).to be_truthy
 
   	
-    employee = Employee.new(position: 'Boss',
+    employee = Employee.new(start_day: '2019-04-08',
+                          position: 'Boss',
                           is_enabled: true,
                           account_id: account.id)
     expect(employee).to be_invalid
-    expect(employee.errors.messages).to include(:company_id)
+    expect(employee.errors.messages).to include(:company)
   end
 end
