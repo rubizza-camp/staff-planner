@@ -82,21 +82,4 @@ RSpec.describe Employee, type: :model do
     expect(employee).to be_invalid
     expect(employee.errors.messages).to include(:company_id)
   end
-
-  it 'is invalid without is_enabled param' do
-  	company = Company.new(name: 'Company')
-  	account = Account.new(name: 'Simone',
-                          surname: 'Simeone',
-                          date_of_birth: '2019-04-08',
-                          email: 'sim23@rspec.com',
-                          password: '123456')
-  	expect(company.save).to be_truthy
-  	expect(account.save).to be_truthy
-  	
-    employee = Employee.new(start_day: '2019-04-08',
-    	                    position: 'Boss',
-                          account_id: account.id,
-                          company_id: company.id )
-    expect(employee).to be_invalid
-  end
 end
