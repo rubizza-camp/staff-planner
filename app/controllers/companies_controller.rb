@@ -40,8 +40,12 @@ class CompaniesController < ApplicationController
 
   # DELETE /companies/1
   def destroy
-    @company.destroy
-    redirect_to companies_url, notice: 'Company was successfully destroyed.'
+    if @company.destroy
+      flash[:notice] = 'You have successfully delete company.'
+    else
+      flash[:error] = "Company can't be deleted"
+    end
+    redirect_to companies_url
   end
 
   private

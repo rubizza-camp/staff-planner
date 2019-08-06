@@ -23,12 +23,12 @@
 
   <div class="field">
     <%= form.label :alowance_days %>
-    <%= form.text_field :alowance_days %>
+    <%= form.number_field :alowance_days %>
   </div>
 
   <div class="field">
     <%= form.label :period %>
-    <%= form.text_field :period %>
+    <%= select(:rule, :period, [['year', 'year'],['month', 'month'],['week', 'week']]) %>
   </div>
 
   <div class="field">

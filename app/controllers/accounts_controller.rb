@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
     if @account.destroy
       flash[:notice] = 'You have successfully cancelled your account.'
     else
-      flash[:error] = 'You have successfully cancelled your account.'
+      flash[:error] = "Account can't be deleted"
     end
     redirect_to accounts_path
   end

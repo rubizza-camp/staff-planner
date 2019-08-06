@@ -40,8 +40,12 @@ class RulesController < ApplicationController
 
   # DELETE /rules/1
   def destroy
-    @rule.destroy
-    redirect_to rules_url, notice: 'Rule was successfully destroyed.'
+    if @rule.destroy
+      flash[:notice] = 'You have successfully delete your rule.'
+    else
+      flash[:error] = "Rule can't be deleted"
+    end
+    redirect_to rules_url
   end
 
   private

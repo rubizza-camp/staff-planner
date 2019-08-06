@@ -24,7 +24,7 @@
         <td><%= rule.is_enabled %></td>
         <td><%= link_to 'Show', rule %></td>
         <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
-        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', rule, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
