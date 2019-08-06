@@ -94,7 +94,7 @@ RSpec.describe Employee, type: :model do
   	expect(account.save).to be_truthy
   	
     employee = Employee.new(start_day: '2019-04-08',
-    	                  position: 'Boss',
+    	                    position: 'Boss',
                           account_id: account.id,
                           company_id: company.id )
     expect(employee).to be_invalid
