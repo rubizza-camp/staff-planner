@@ -16,3 +16,4 @@
 // const imagePath = (name) => images(name, true)
 
 @import '~bulma'
+import 'app/assets/stylesheets/main.css'
