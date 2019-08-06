@@ -22,33 +22,26 @@ class CompaniesController < ApplicationController
   # POST /companies
   def create
     @company = Company.new(company_params)
-
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @company.save
+      redirect_to @company, notice: 'Company was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /companies/1
   def update
-    respond_to do |format|
-      if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @company.update(company_params)
+      redirect_to @company, notice: 'Company was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /companies/1
   def destroy
     @company.destroy
-    respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
-    end
+    redirect_to companies_url, notice: 'Company was successfully destroyed.'
   end
 
   private

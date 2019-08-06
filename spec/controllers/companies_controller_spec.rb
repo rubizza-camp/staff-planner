@@ -39,12 +39,12 @@ RSpec.describe CompaniesController do
 
   describe "POST create" do
     it "creates company" do
-      post :create, params: { company: { :name => "Any Name" } }
+      post :create, params: { company: { name: "Any Name" } }
       expect(response).to redirect_to(Company.last)
     end
 
     it "can not creates company" do
-      post :create, params: { company: { :name => nil } }
+      post :create, params: { company: { name: nil } }
       expect(response.status).to eq(200)
     end
   end
@@ -53,13 +53,13 @@ RSpec.describe CompaniesController do
     let(:company){ create(:company) }
 
     it "updates company" do
-      put :update, params: { company: { :name => "Any Name" }, id: company.id }
+      put :update, params: { company: { name: "Any Name" }, id: company.id }
       expect(company.reload.name).to eq('Any Name')
       expect(response).to redirect_to(Company.last)
     end
 
     it "can not updates company" do
-      put :update, params: { company: { :name => nil }, id: company.id }
+      put :update, params: { company: { name: nil }, id: company.id }
       expect(response.status).to eq(200)
     end
   end
@@ -70,6 +70,7 @@ RSpec.describe CompaniesController do
     it "deletes company" do
       delete :destroy, params: { id: company.id }
       expect(response).to redirect_to(companies_url)
+      expect(Company.count).to eq(0)
     end
   end
 end
