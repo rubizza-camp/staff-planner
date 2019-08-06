@@ -1,7 +1,6 @@
 <h1>New Employee</h1>
 
 <%= form_with model: @employee, local: true do |form| %>
-  <%= render "devise/shared/error_messages", resource: @account %>
 
   <div class="field">
     <%= form.label :name %>

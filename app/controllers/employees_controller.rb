@@ -4,15 +4,12 @@ class EmployeesController < ApplicationController
   before_action :set_employee, :set_company, only: %i[show edit update destroy]
 
   def index
-    @company = Company.find(params[:company_id])
-    @employees = Employee.all
+    @employees = Employee.where("company_id=?",params[:company_id])
   end
 
   def show; end
 
-  def new
-    @employee = @company.employee.new
-  end
+  def new; end
 
   def edit; end
 
