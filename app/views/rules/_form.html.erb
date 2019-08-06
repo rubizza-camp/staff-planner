@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :period %>
-    <%= select(:rule, :period, [['year', 'year'],['month', 'month'],['week', 'week']]) %>
+    <%= select(:rule, :period, PERIOD_LIST) %>
   </div>
 
   <div class="field">
