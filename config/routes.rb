@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   devise_scope :account do
     root to: "devise/sessions#new"
   end
+
+  resources :accounts, except: [:new, :create]
 end

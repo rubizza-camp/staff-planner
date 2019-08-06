@@ -9,7 +9,7 @@ RSpec.describe Company, type: :model do
   end
 
   it 'is invalid without name' do
-    company = Company.new()
+    company = Company.new
     expect(company).to be_invalid
     expect(company.errors.messages).to include(:name)
   end
