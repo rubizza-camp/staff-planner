@@ -16,18 +16,18 @@ class AccountsController < ApplicationController
       redirect_to account_path,
                   notice: 'Account was successfully updated.'
     else
-      redirect_to :edit,
-                  notice: 'Please check parameters'
+      render :edit,
+             notice: 'Please check parameters'
     end
   end
 
   def destroy
     if @account.destroy
-      redirect_to accounts_path,
-                  notice: 'You have successfully cancelled your account.'
+      flash[:notice] = 'You have successfully cancelled your account.'
     else
-      redirect_to accounts_path
+      flash[:error] = 'You have successfully cancelled your account.'
     end
+    redirect_to accounts_path
   end
 
   private
