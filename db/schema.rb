@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_08_06_063030) do
   create_table "employees", force: :cascade do |t|
     t.date "start_day", null: false
     t.string "position"
-    t.boolean "is_enabled"
+    t.boolean "is_enabled", default: true, null: false
     t.bigint "account_id", null: false
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
@@ -48,4 +48,6 @@ ActiveRecord::Schema.define(version: 2019_08_06_063030) do
     t.index ["company_id"], name: "index_employees_on_company_id"
   end
 
+  add_foreign_key "employees", "accounts"
+  add_foreign_key "employees", "companies"
 end
