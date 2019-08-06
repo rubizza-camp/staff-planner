@@ -47,8 +47,4 @@ class AccountsController < ApplicationController
   def set_account
     @account = Account.find(params[:id])
   end
-
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
 end
