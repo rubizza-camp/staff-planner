@@ -51,18 +51,18 @@ class EmployeesController < ApplicationController
   end
 
   def set_employee
-    @employee = @company.employees.find_by(id:params[:id])
+    @employee = @company.employees.find_by(id: params[:id])
   end
 
   def employee_params
     if params[:email]
-       params[:account_id] =  Account.find_by(email: params[:email]).id
-       params.permit(:position,
-                     :start_day,
-                     :account_id)
+      params[:account_id] = Account.find_by(email: params[:email]).id
+      params.permit(:position,
+                    :start_day,
+                    :account_id)
     else
-       params.permit(:position,
-                     :start_day)
+      params.permit(:position,
+                    :start_day)
     end
   end
 end
