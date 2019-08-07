@@ -29,7 +29,6 @@ class EmployeesController < ApplicationController
     if @employee.update(employee_params)
       redirect_to company_employee_path, notice: 'Employee was successfully updated.'
     else
-      flash[:error] = "Employee account wasn't updated"
       render :edit
     end
   end
