@@ -67,13 +67,13 @@ RSpec.describe EmployeesController do
     let(:employee) { create(:employee)}
 
     it 'updates employee' do
-      put :update, params: { company_id: employee.company_id, id: employee.id, is_enabled: false }
-      expect(response.status).to eq(200)
+      put :update, params: {  company_id: employee.company_id, id: employee.id, start_day: '2019-02-02', position: 'boss' }
+      expect(response.status).to eq(302)
     end
 
     it 'can not updates employee' do
       put :update, params: { company_id: employee.company_id, id: employee.id, is_enabled: nil }
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(302)
     end
   end
 
