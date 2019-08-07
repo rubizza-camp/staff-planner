@@ -42,7 +42,7 @@ RSpec.describe RulesController do
       company_id = Company.create(name: 'MyCompany').id
       post :create, params: { rule: { name: "Any",
                                       company_id: company_id,
-                                      alowance_days: 1,
+                                      allowance_days: 1,
                                       period: 'year' } }
       expect(response).to redirect_to(Rule.last)
     end
