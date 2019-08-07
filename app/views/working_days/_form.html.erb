@@ -1,0 +1,27 @@
+<%= form_with(model: working_day, local: true) do |form| %>
+  <% if working_day.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(working_day.errors.count, "error") %> prohibited this working_day from being saved:</h2>
+
+      <ul>
+      <% working_day.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_of_week %>
+    <%= form.number_field :day_of_week %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

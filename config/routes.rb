@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :working_days
   resources :rules
   resources :companies
   devise_for :accounts

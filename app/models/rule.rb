@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-PERIOD_LIST = %w[year month week].freeze
-
 class Rule < ApplicationRecord
+  PERIOD_LIST = %w[year month week].freeze
+
   validates :name, presence: true, uniqueness: { scope: :company_id }
   validates :period, presence: true, inclusion: { in: PERIOD_LIST }
   validates :alowance_days, numericality: { only_integer: true,

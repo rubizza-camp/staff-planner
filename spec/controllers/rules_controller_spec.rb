@@ -57,13 +57,13 @@ RSpec.describe RulesController do
     let(:rule){ create(:rule) }
 
     it "updates rule" do
-      put :update, params: { rule: { :name => "Other Name" }, id: rule.id }
+      put :update, params: { rule: { name: "Other Name" }, id: rule.id }
       expect(rule.reload.name).to eq('Other Name')
       expect(response).to redirect_to(Rule.last)
     end
 
     it "can not updates rule" do
-      put :update, params: { rule: { :name => nil }, id: rule.id }
+      put :update, params: { rule: { name: nil }, id: rule.id }
       expect(response.status).to eq(200)
     end
   end
