@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "employees/index", type: :view do
+RSpec.describe 'employees/index', type: :view do
   before(:each) do
     assign(:employees, [
-      Employee.create!(),
-      Employee.create!()
-    ])
+             Employee.create!,
+             Employee.create!
+           ])
   end
 
-  it "renders a list of employees" do
+  it 'renders a list of employees' do
     render
   end
 end
