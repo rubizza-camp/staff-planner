@@ -1,6 +1,21 @@
 <h1>Editing Employee</h1>
 
-<%= render 'form', employee: @employee %>
+<%= form_with url: company_employee_path, method: 'patch', local: true do |form| %>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position, id: :employee_position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_day %>
+    <%= form.text_field :start_day, id: :employee_start_day %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', company_employee_path %> |
 <%= link_to 'Back', company_employees_path %>

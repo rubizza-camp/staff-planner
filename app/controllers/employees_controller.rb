@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[show edit update destroy]
   before_action :set_company
+  before_action :set_employee, only: %i[show edit update destroy]
 
   def index
-    @employees = Employee.where(company_id: @company.id)
+    @company.employees
   end
 
   def show; end
 
-  def new; end
+  def new
+    @employee = @company.employees.build
+  end
 
   def edit; end
 
   def create
-    @employee = Employee.new(employee_params)
-    if @employee.save
+    employee = @company.employees.build(employee_params)
+    if employee.save
       redirect_to company_employees_path
     else
       render :new
@@ -44,18 +46,23 @@ class EmployeesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_employee
-    @employee = Employee.find(params[:id])
-  end
-
   def set_company
     @company = Company.find(params[:company_id])
   end
 
+  def set_employee
+    @employee = @company.employees.find_by(id:params[:id])
+  end
+
   def employee_params
-    params.permit(:position,
-                  :is_enabled,
-                  :start_day,
-                  :company_id)
+    if params[:email]
+       params[:account_id] =  Account.find_by(email: params[:email]).id
+       params.permit(:position,
+                     :start_day,
+                     :account_id)
+    else
+       params.permit(:position,
+                     :start_day)
+    end
   end
 end
