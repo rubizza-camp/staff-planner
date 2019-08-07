@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_075223) do
   create_table "rules", force: :cascade do |t|
     t.string "name", null: false
     t.integer "company_id", null: false
-    t.integer "alowance_days", null: false
+    t.integer "allowance_days", null: false
     t.string "period", null: false
     t.boolean "is_enabled"
     t.datetime "created_at", null: false
