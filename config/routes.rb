@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :accounts, except: [:new, :create]
   resources :companies do
-  	resources :employees
+    resources :employees
   end
   resources :rules
 end

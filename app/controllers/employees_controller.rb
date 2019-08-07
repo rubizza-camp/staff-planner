@@ -19,7 +19,6 @@ class EmployeesController < ApplicationController
     if @employee.save
       redirect_to company_employees_path
     else
-      flash[:error] = 'Please try again. Your input information not valid'
       render :new
     end
   end
