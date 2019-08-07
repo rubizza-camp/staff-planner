@@ -49,6 +49,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            gem install bundle
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
@@ -80,8 +81,8 @@ jobs:
 
       # run tests!
       - run:
-          name: run rubocop 
-          command: bundle exec rubocop 
+          name: run rubocop
+          command: bundle exec rubocop
       - run:
           name: run tests
           command: |

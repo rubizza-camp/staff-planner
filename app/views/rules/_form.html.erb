@@ -1,0 +1,42 @@
+<%= form_with(model: rule, local: true) do |form| %>
+  <% if rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+      <ul>
+      <% rule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :allowance_days %>
+    <%= form.number_field :allowance_days %>
+  </div>
+
+  <div class="field">
+    <%= form.label :period %>
+    <%= select(:rule, :period, Rule::PERIOD_LIST) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_enabled %>
+    <%= form.check_box :is_enabled %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
