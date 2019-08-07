@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Rule, type: :model do
@@ -25,7 +27,7 @@ RSpec.describe Rule, type: :model do
                     period: 'year',
                     allowance_days: 1)
     expect(rule).to be_invalid
-    expect(rule.errors.messages).to include(company: ["must exist"])
+    expect(rule.errors.messages).to include(company: ['must exist'])
   end
 
   it 'is invalid without period' do
