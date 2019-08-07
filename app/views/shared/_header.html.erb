@@ -16,16 +16,12 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <a class="navbar-item" href="/companies">
-            Companies
-          </a>
-      </div>
-      <div class="navbar-item">
-        <a class="navbar-item" href="">
-            Settings
-          </a>
-      </div>
+       <div class="navbar-item">
+          <div class="field is-grouped">
+            <a class="navbar-item"><%= link_to 'Companies', companies_path %></a> 
+            <a class="navbar-item"><%= link_to 'Settings', root_path %></a>
+          </div>
+        </div>
       <div class="navbar-item">
         <div class="field is-grouped">
           <p class="control">
