@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WorkingDaysController < ApplicationController
-  before_action :set_working_day, only: [:show, :edit, :update, :destroy]
+  before_action :set_working_day, only: %i[show edit update destroy]
 
   # GET /working_days
   def index
@@ -7,8 +9,7 @@ class WorkingDaysController < ApplicationController
   end
 
   # GET /working_days/1
-  def show
-  end
+  def show; end
 
   # GET /working_days/new
   def new
@@ -16,8 +17,7 @@ class WorkingDaysController < ApplicationController
   end
 
   # GET /working_days/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /working_days
   def create
