@@ -2,13 +2,13 @@
 
 <p>
   <strong>Company:</strong>
-  <%= @working_day.company_id %>
+  <%= @company.name %>
 </p>
 
 <p>
   <strong>Day of week:</strong>
-  <%= @working_day.day_of_week %>
+  <%= Date::DAYNAMES[@working_day.day_of_week] %>
 </p>
 
-<%= link_to 'Edit', edit_company_working_day_path(@working_day) %> |
+<%= link_to 'Edit', edit_company_working_day_path(id: @working_day.id) %> |
 <%= link_to 'Back', company_working_days_path %>

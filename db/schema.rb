@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_075223) do
   end
 
   create_table "working_days", force: :cascade do |t|
-    t.integer "company_id", null: false
+    t.bigint "company_id", null: false
     t.integer "day_of_week", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,4 +69,5 @@ ActiveRecord::Schema.define(version: 2019_08_07_075223) do
 
   add_foreign_key "employees", "accounts"
   add_foreign_key "employees", "companies"
+  add_foreign_key "working_days", "companies"
 end

@@ -1,15 +1,5 @@
 <h1>New Working Day</h1>
 
-<%= form_with url: company_working_days_path, method: 'post', local: true do |form| %>
-
-   <div class="field">
-    <%= form.label :day_of_week %>
-    <%= select_tag(:day_of_week, options_for_select(Date::DAYNAMES.map.with_index { |day, i | [day, i] })) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render 'form', working_day: @working_day %>
 
 <%= link_to 'Back', company_working_days_path %>

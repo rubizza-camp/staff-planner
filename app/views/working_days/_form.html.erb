@@ -1,0 +1,12 @@
+<%= form_with(model: [@company, working_day], local: true) do |form| %>
+  <%= render 'shared/error', object: working_day %>
+
+  <div class="field">
+    <%= form.label :day_of_week %>
+    <%= form.select(:day_of_week, options_for_select(Date::DAYNAMES.map.with_index.to_a)) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
