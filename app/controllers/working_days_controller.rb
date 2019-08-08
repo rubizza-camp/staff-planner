@@ -2,35 +2,29 @@
 
 class WorkingDaysController < ApplicationController
   before_action :set_working_day, only: %i[show edit update destroy]
+  before_action :set_company
 
-  # GET /working_days
   def index
-    @working_days = WorkingDay.all
+    @working_days = WorkingDay.where(company_id: @company.id)
   end
 
-  # GET /working_days/1
   def show; end
 
-  # GET /working_days/new
-  def new
-    @working_day = WorkingDay.new
+  def new; end
+
+  def edit
   end
 
-  # GET /working_days/1/edit
-  def edit; end
-
-  # POST /working_days
   def create
     @working_day = WorkingDay.new(working_day_params)
 
     if @working_day.save
-      redirect_to @working_day, notice: 'Working day was successfully created.'
+      redirect_to company_working_days_path, notice: 'Working day was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /working_days/1
   def update
     if @working_day.update(working_day_params)
       redirect_to @working_day, notice: 'Working day was successfully updated.'
@@ -39,7 +33,6 @@ class WorkingDaysController < ApplicationController
     end
   end
 
-  # DELETE /working_days/1
   def destroy
     if @working_day.destroy
       flash[:notice] = 'You have successfully delete workng day.'
@@ -58,6 +51,17 @@ class WorkingDaysController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def working_day_params
-    params.require(:working_day).permit(:company_id, :day_of_week)
+    result = params.permit(:company_id, :day_of_week)
+  end
+
+  def employee_params
+    params.permit(:position,
+                  :is_enabled,
+                  :start_day,
+                  :company_id)
+  end
+
+  def set_company
+    @company = Company.find(params[:company_id])
   end
 end
