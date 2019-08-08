@@ -7,7 +7,5 @@ FactoryBot.define do
     start_day { '2014-09-09' }
     position { 'Boss' }
     is_enabled { true }
-    company_id { company.id }
-    account_id { account.id }
   end
 end
