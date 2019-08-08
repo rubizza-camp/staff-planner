@@ -2,10 +2,12 @@
 
 FactoryBot.define do
   factory :employee do
+  	association :company
+  	association :account
     start_day { '2014-09-09' }
     position { 'Boss' }
     is_enabled { true }
-    company_id { Company.create!(name: 'Company').id }
-    account_id { Account.create!(name: 'Ars', surname: 'Arsen', email: 'Arsen@gmail.com', password: '123456').id }
+    company_id { company.id }
+    account_id { account.id }
   end
 end
