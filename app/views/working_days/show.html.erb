@@ -7,7 +7,7 @@
 
 <p>
   <strong>Day of week:</strong>
-  <%= Date::DAYNAMES[@working_day.day_of_week] %>
+  <%= @working_day.display_day_of_week %>
 </p>
 
 <%= link_to 'Edit', edit_company_working_day_path(id: @working_day.id) %> |

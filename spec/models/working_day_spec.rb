@@ -1,25 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe WorkingDay do
-  let(:company){ create(:company) }
+  context 'with valid attributess' do
+    let(:working_day){ create(:working_day) }
 
-  it 'is valid with valid attributes' do
-    working_day = WorkingDay.new( company_id: company.id,
-                                  day_of_week: 1)
-    expect(working_day).to be_valid
+    it 'is valid' do
+      expect(working_day).to be_valid
+    end
   end
 
-  it 'is invalid with wrong company_id' do
-    working_day = WorkingDay.new( company_id: 'wrong_id',
-                                  day_of_week: 1)
-    expect(working_day).to be_invalid
-    expect(working_day.errors.messages).to include(company: ['must exist'])
+  context 'with wrong company_id' do
+    let(:working_day){ build(:working_day, company_id: 'wrong_id') }
+
+    it 'is invalid' do
+      expect(working_day).to be_invalid
+      expect(working_day.errors.messages).to include(company: ['must exist'])
+    end
   end
 
-  it 'is invalid with wrong day_of_week' do
-    working_day = WorkingDay.new( company_id: company.id,
-                                  day_of_week: -1)
-    expect(working_day).to be_invalid
-    expect(working_day.errors.messages).to include(day_of_week: ['is not included in the list'])
+  context 'with wrong day_of_week' do
+    let(:working_day){ build(:working_day, day_of_week: -1) }
+
+    it 'is invalid' do
+      expect(working_day).to be_invalid
+      expect(working_day.errors.messages).to include(day_of_week: ['is not included in the list'])
+    end
   end
 end

@@ -13,7 +13,7 @@
   <tbody>
     <% @working_days.each do |working_day| %>
       <tr>
-        <td><%= Date::DAYNAMES[working_day.day_of_week] %></td>
+        <td><%= working_day.display_day_of_week %></td>
         <td><%= link_to 'Show', company_working_day_path(id: working_day.id) %></td>
         <td><%= link_to 'Edit', edit_company_working_day_path(id: working_day.id) %></td>
         <td><%= button_to 'Destroy', [@company, working_day], method: :delete %></td>
