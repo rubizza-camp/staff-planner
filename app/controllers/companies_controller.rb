@@ -2,7 +2,6 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
-  before_action :set_company_for_calendar, only: :calendar
 
   # GET /companies
   def index
@@ -50,9 +49,8 @@ class CompaniesController < ApplicationController
   end
 
   def calendar
-    @number_of_days = Time.days_in_month(Date.today.month, Date.today.year)
-    @days = Array.new(@number_of_days) { |i| i + 1 }
-    @company.employees
+    set_company_for_calendar
+    @calendar = Companies::CalendarPresenter.new
   end
 
   private

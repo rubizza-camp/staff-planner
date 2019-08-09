@@ -5,20 +5,20 @@
 <table style="background-color:whitesmoke !important;" class="table">
     <thead>
         <th>Employee</th>
-        <% @days.map do |day| %>
+        <% @calendar.days.each do |day| %>
         <th style="padding: 0.5em 0.75em 0 0;">
-            <%= (Date.today.year.to_s + '-' + Date.today.month.to_s + '-' + day.to_s).to_date.strftime('%A')[0..1] %>
+            <%= day.strftime('%a')[0..1] %>
         </th>
         <% end %>
     </thead>
-    <% @company.employees.each do |employee| %>
+    <% @calendar.employees(@company).each do |employee| %>
     <tbody>
         <td>
             <%= employee.account.name %>
         </td>
-        <% @days.map do |day| %>
+        <% @calendar.days.map do |day| %>
         <td style='padding: 0.5em 0.75em 0 0;'>
-            <%= day %>
+            <%= day.strftime('%d') %>
         </td>
         <% end %>
     </tbody>
