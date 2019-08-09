@@ -1,9 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<h1>
+  Название компании : <%= @company.name %>
+</h1>
+<table style="background-color:whitesmoke !important;" class="table">
+  <thead>
+  	<th> Имя сотрудника </th>
+  	<th> Позиция сотрудника </th>
+  	<th> Первый день в компании </th>
+  </thead>
+  <% @company.employees.each do |employee| %>
+  <tbody>	
+  <td> <%= employee.account.name %></td>
+  <td> <%= employee.position %> </td>
+  <td> <%= employee.start_day %></td>
+  	<% end %>
+  </tbody>	
+ </table>
+  
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Back to Companies List', companies_path %>

@@ -1,32 +1,19 @@
 <p id="notice">
     <%= notice %>
 </p>
-<h1>Companies</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @companies.each do |company| %>
-        <tr>
-            <td>
-                <%= company.name %>
-            </td>
-            <td>
-                <%= link_to 'Show', company %>
-            </td>
-            <td>
-                <%= link_to 'Edit', edit_company_path(company) %>
-            </td>
-            <td>
-                <%= button_to 'Destroy', company, method: :delete %>
-            </td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<table style="background-color:whitesmoke !important;" class="table">
+  <thead>
+    <th> Название компании </th>
+    <th> Дата создания </th>
+    <th> Кол-во сотрудников </th>
+  </thead>
+  <% @companies.each do |company| %>
+  <tbody>   
+  <td><%= link_to company.name, edit_company_path(company) %></td>
+  <td> <%= company.created_at %></td>
+  <td> <%= link_to company.employees.count, company_employees_path(company) %></td>
+    <% end %>
+  </tbody>  
+ </table>
 <br>
 <%= link_to 'New Company', new_company_path %>

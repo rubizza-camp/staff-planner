@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :accounts, except: [:new, :create]
   resources :companies do
     resources :employees
-      get :calendar
+    get :calendar
   end
   resources :rules
 end
