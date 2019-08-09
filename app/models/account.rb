@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
+  has_many :employees, dependent: :destroy
+
   validates :name, presence: true
   validates :surname, presence: true
   validates :email, presence: true, uniqueness: true
@@ -8,6 +10,4 @@ class Account < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  has_many :employees, dependent: :destroy
 end
