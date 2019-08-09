@@ -50,7 +50,7 @@ class EmployeesController < ApplicationController
   end
 
   def set_employee
-    @employee = @company.employees.find_by(id: params[:id])
+    @employee = @company.employees.find_by!(id: params[:id])
   end
 
   def employee_params
