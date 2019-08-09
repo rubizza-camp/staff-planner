@@ -10,13 +10,13 @@
   	<th> Первый день в компании </th>
   </thead>
   <% @company.employees.each do |employee| %>
-  <tbody>	
-  <td> <%= employee.account.name %></td>
-  <td> <%= employee.position %> </td>
-  <td> <%= employee.start_day %></td>
-  	<% end %>
-  </tbody>	
- </table>
+    <tbody>	
+      <td><%= employee.account.name %></td>
+      <td><%= employee.position %> </td>
+      <td><%= employee.start_day %></td>
+    </tbody>	
+  <% end %>
+</table>
   
 
 <%= link_to 'Back to Companies List', companies_path %>

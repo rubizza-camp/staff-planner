@@ -6,26 +6,26 @@
   <thead>
     <th>Employee</th>
     <th>Position</th>
-    <% @calendar.days.each do |day| %>
-    <th style="padding: 0.5em 0.75em 0 0;">
-      <%= day.strftime('%a')[0..1] %>
-    </th>
-    <% end %>
+      <% @calendar.days.each do |day| %>
+        <th style="padding: 0.5em 0.75em 0 0;">
+          <%= day.strftime('%a')[0..1] %>
+        </th>
+      <% end %>
   </thead>
   <% @calendar.employees.each do |employee| %>
-  <tbody>
-    <td>
-      <%= employee.account.name %>
-    </td>
-    <td>
-      <%= employee.position %>
-    </td>
-    <% @calendar.days.each do |day| %>
-    <td style='padding: 0.5em 0.75em 0 0;'>
-      <%= day.strftime('%d') %>
-    </td>
-    <% end %>
-  </tbody>
+    <tbody>
+      <td>
+        <%= employee.account.name %>
+      </td>
+      <td>
+        <%= employee.position %>
+      </td>
+      <% @calendar.days.each do |day| %>
+        <td style='padding: 0.5em 0.75em 0 0;'>
+          <%= day.strftime('%d') %>
+        </td>
+      <% end %>
+    </tbody>
   <% end %>
 </table>
 <%= link_to 'New Employee', new_company_employee_path %>
