@@ -2,6 +2,7 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
+  before_action :set_company_for_calendar, only: :calendar
 
   # GET /companies
   def index
@@ -48,11 +49,21 @@ class CompaniesController < ApplicationController
     redirect_to companies_url
   end
 
+  def calendar
+    @number_of_days = Time.days_in_month(Date.today.month, Date.today.year)
+    @days = Array.new(@number_of_days) { |i| i + 1 }
+    @company.employees
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_company
     @company = Company.find(params[:id])
+  end
+
+  def set_company_for_calendar
+    @company = Company.find(params[:company_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

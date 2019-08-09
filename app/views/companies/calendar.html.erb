@@ -1,0 +1,27 @@
+<p id="notice">
+    <%= notice %>
+</p>
+<h1>Company Name: <%= @company.name %></h1>
+<table style="background-color:whitesmoke !important;" class="table">
+    <thead>
+        <th>Employee</th>
+        <% @days.map do |day| %>
+        <th style="padding: 0.5em 0.75em 0 0;">
+            <%= (Date.today.year.to_s + '-' + Date.today.month.to_s + '-' + day.to_s).to_date.strftime('%A')[0..1] %>
+        </th>
+        <% end %>
+    </thead>
+    <% @company.employees.each do |employee| %>
+    <tbody>
+        <td>
+            <%= employee.account.name %>
+        </td>
+        <% @days.map do |day| %>
+        <td style='padding: 0.5em 0.75em 0 0;'>
+            <%= day %>
+        </td>
+        <% end %>
+    </tbody>
+    <% end %>
+</table>
+<%= link_to 'New Employee', new_company_employee_path %>
