@@ -1,9 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-        <p>Name: <%= @account.name %></p>
-        <p>Surname: <%= @account.surname %></p>
-        <p>Email: <%= @account.email %></p>
-
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<table style="background-color:whitesmoke !important;" class="table">
+  <thead>
+    <th> Имя </th>
+    <th> Фамилия </th>
+    <th> E-mail </th>
+    <th> Компания </th>
+  </thead>
+  <tbody>   
+    <td><%= @account.name %></td>
+    <td><%= @account.surname %></td>
+    <td><%= @account.email %></td>
+    <td>
+      <% if @company_name.blank? %>
+      	Нет привязанных компаний.
+      <% else %>
+    	<%= link_to @company_name, company_calendar_path(@company_id) %>
+      <% end %>
+	</td>
+  </tbody>  
+</table>
+	<a class="button is-small is-success" href='<%= new_company_path %>'>Create new company</a>
+    <a class="button is-small is-info" href='<%= edit_account_path(@account) %>'>Edit account</a>
+    <a class="button is-small is-danger" href='<%= accounts_path %>'>Back to accounts</a>

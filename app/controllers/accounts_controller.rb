@@ -7,7 +7,11 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
-  def show; end
+  def show
+    @companies = Company.all
+    @company_name = @account.company.collect(&:name).join('')
+    @company_id = @account.company.collect(&:id).join('')
+  end
 
   def edit; end
 

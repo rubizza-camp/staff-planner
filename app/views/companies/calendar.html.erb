@@ -7,7 +7,7 @@
     <th>Employee</th>
     <th>Position</th>
       <% @calendar.days.each do |day| %>
-        <th style="padding: 0.5em 0.75em 0 0;">
+        <th style="padding-bottom:0.5em;">
           <%= day.strftime('%a')[0..1] %>
         </th>
       <% end %>
@@ -21,9 +21,13 @@
         <%= employee.position %>
       </td>
       <% @calendar.days.each do |day| %>
-        <td style='padding: 0.5em 0.75em 0 0;'>
-          <%= day.strftime('%d') %>
-        </td>
+        <% if @calendar.working_day?(day) %>
+          <td style='padding-bottom:0.5em;'>
+        <% else %>
+          <td style='padding-bottom:0.5em;background-color:lightgray'>
+        <% end %>
+        <%= day.strftime('%d') %>
+          </td>
       <% end %>
     </tbody>
   <% end %>

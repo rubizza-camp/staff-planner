@@ -30,8 +30,7 @@
             </a>
           </p>
           <p class="control">
-            <a class="button is-success is-outlined" href="accounts/sign_out">
-              <span>Logout</span>
+            <%= link_to('Logout', destroy_account_session_path, method: :delete) %> 
             </a>
           </p>
         </div>

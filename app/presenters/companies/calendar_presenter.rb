@@ -19,5 +19,13 @@ module Companies
     def company_name
       company.name
     end
+
+    def working_days
+      ((Date.today)..(Date.today + 30)).to_a
+    end
+
+    def working_day?(day)
+      company.working_days.ids.include?(day.strftime('%u').to_i)
+    end
   end
 end
