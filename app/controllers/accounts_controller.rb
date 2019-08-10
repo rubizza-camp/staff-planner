@@ -8,9 +8,9 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @companies = Company.all
-    @company_name = @account.company.collect(&:name).join('')
-    @company_id = @account.company.collect(&:id).join('')
+    @companies = @account.company
+    @company_names = @account.company.collect(&:name).pluck
+    @company_ids = @account.company.collect(&:id).pluck
   end
 
   def edit; end
