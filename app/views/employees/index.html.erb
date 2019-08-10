@@ -9,12 +9,12 @@
     <th> Кол-во сотрудников </th>
   </thead>
   <% @company.employees.each do |employee| %>
-  <tbody>   
+  <tbody>
     <td><%= link_to employee.position, company_employee_path(id: employee.id) %></td>
     <td><%= employee.position %></td>
     <td><%= employee.is_enabled %></td>
   <% end %>
-  </tbody>  
+  </tbody>
 </table>
 <table>
   <tbody>

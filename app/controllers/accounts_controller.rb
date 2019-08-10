@@ -8,9 +8,10 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @companies = @account.company
-    @company_names = @account.company.collect(&:name).pluck
-    @company_ids = @account.company.collect(&:id).pluck
+    @companies = {}
+    @account.companies.map do |company|
+      @companies[company.id] = company.name
+    end
   end
 
   def edit; end
