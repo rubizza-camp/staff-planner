@@ -9,25 +9,25 @@
     <th> Кол-во сотрудников </th>
   </thead>
   <% @company.employees.each do |employee| %>
-  <tbody>   
-    <td><%= link_to employee.position, company_employee_path(id: employee.id) %></td>
-    <td> <%= employee.position %></td>
-    <td> <%= employee.is_enabled %></td>
+    <tbody>
+      <td><%= link_to employee.position, company_employee_path(id: employee.id) %></td>
+      <td><%= employee.position %></td>
+      <td><%= employee.is_enabled %></td>
+    </tbody> 
   <% end %>
-  </tbody>  
 </table>
 <table>
   <tbody>
   <% @company.employees.each do |employee| %>
-  <tr>
-    <td><%= link_to 'Show', company_employee_path(id: employee.id) %></td>
-    <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id) %></td>
-    <td><%= link_to 'Destroy', company_employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <tr>
+      <td><%= link_to 'Show', company_employee_path(id: employee.id) %></td>
+      <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id) %></td>
+      <td><%= link_to 'Destroy', company_employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Employee', new_company_employee_path %>

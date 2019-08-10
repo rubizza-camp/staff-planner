@@ -7,13 +7,13 @@
     <th> Дата создания </th>
     <th> Кол-во сотрудников </th>
   </thead>
-  <% @companies.each do |company| %> 
+  <% @companies.each do |company| %>
     <tbody>
       <td><%= link_to company.name, edit_company_path(company) %></td>
-      <td> <%= company.created_at %></td>
-      <td> <%= link_to company.employees.count, company_employees_path(company) %></td>
-    </tbody> 
+      <td><%= company.created_at %></td>
+      <td><%= link_to company.employees.count, company_employees_path(company) %></td>
+    </tbody>
   <% end %>
 </table>
-<br>
+<br />
 <%= link_to 'New Company', new_company_path %>
