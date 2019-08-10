@@ -20,16 +20,20 @@ module Companies
       company.name
     end
 
-    def working_days
-      working_days = company.working_days.pluck(:day_of_week)
-      working_days.map do |day|
-        working_days << (day + 1)
+    def prepare_working_days
+      @working_days = []
+      company.working_days.pluck(:day_of_week).map do |day|
+        if day.zero?
+          @working_days.push(7)
+        else
+          @working_days.push(day)
+        end
       end
-      working_days
     end
 
     def working_day?(day)
-      working_days.include?(day.strftime('%u').to_i)
+      prepare_working_days
+      @working_days.include?(day.strftime('%u').to_i)
     end
   end
 end

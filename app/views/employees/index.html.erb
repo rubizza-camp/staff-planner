@@ -18,13 +18,11 @@
 </table>
 <table>
   <tbody>
-  <% @company.employees.each do |employee| %>
   <tr>
     <td><%= link_to 'Show', company_employee_path(id: employee.id) %></td>
     <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id) %></td>
     <td><%= link_to 'Destroy', company_employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-  <% end %>
   </tbody>
 </table>
 
