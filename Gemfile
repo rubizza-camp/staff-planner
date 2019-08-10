@@ -32,10 +32,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # A ruby gem for bulma Modern CSS framework based on Flexbox
 gem 'bulma', '~> 0.1.0'
 
+gem 'erb_lint', require: false
 gem 'rspec', '~> 3.8'
 gem 'rspec_junit_formatter', '~> 0.2.3'
 gem 'rubocop', '~> 0.74.0'
-gem 'erb_lint', require: false
 # Authentification
 gem 'devise'
 
