@@ -1,18 +1,5 @@
-<%= form_with(model: account, local: true) do |form| %>
-  <% if account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
-      <ul>
-      <% account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
  <%= form_with model: @account, local: true do |form| %>
-  <%= render "devise/shared/error_messages", resource: @account %>
+  <%= render 'devise/shared/error_messages', resource: @account %>
 
   <div class="field">
     <%= form.label :name %>
@@ -27,5 +14,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
 <% end %>
