@@ -1,0 +1,17 @@
+ <%= form_with model: @account, local: true do |form| %>
+  <%= render 'devise/shared/error_messages', resource: @account %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :account_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname, id: :account_surname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

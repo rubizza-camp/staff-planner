@@ -1,0 +1,13 @@
+<%= form_with(model: company, local: true) do |form| %>
+
+  <%= render 'shared/error', object: company %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

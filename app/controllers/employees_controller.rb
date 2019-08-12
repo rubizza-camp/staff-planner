@@ -4,14 +4,7 @@ class EmployeesController < ApplicationController
   before_action :set_params
   before_action :set_employee, only: %i[show edit update destroy]
 
-  def show
-    @account_params = {
-      id: @employee.account.id,
-      email: @employee.account.email,
-      name: @employee.account.name,
-      surname: @employee.account.created_at
-    }
-  end
+  def show; end
 
   def new
     @employee = @company.employees.build

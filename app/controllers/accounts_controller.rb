@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
 
   def show
     @companies = {}
-    @account.companies.map do |company|
+    @account.companies.each do |company|
       @companies[company.id] = company.name
     end
   end

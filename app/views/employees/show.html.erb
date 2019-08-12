@@ -13,11 +13,11 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= link_to @account_params[:name], account_path(@account_params[:id]) %></td>
-      <td><%= @account_params[:surname] %></td>
+      <td><%= link_to @employee.account.name, account_path(@employee.account.id) %></td>
+      <td><%= @employee.account.surname %></td>
       <td><%= @employee.position %></td>
       <td><%= @employee.start_day %></td>
-      <td><%= @account_params[:email] %></td>
+      <td><%= @employee.account.email %></td>
       <td><%= @employee.created_at %></td>
       <td><%= @employee.is_enabled %></td>
       <td><%= link_to 'Edit', edit_company_employee_path(id: @employee.id, company_id: @company.id), class: :"button is-small is-info" %></td>

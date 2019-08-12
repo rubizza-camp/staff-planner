@@ -2,14 +2,14 @@
   <thead>
     <th> Company name </th>
     <th> Created at </th>
-    <th> Quatity of staff </th>
+    <th> Quantity of staff </th>
     <th> Actions </th>
   </thead>
   <% @companies.each do |company| %>
     <tbody>
       <td><%= link_to company.name, company_calendar_url(company) %></td>
       <td><%= company.created_at %></td>
-      <td><%= link_to company.employees.count, company_path(company) %></td>
+      <td><%= link_to @employees[company.id].count, company_path(company) %></td>
       <td><%= link_to 'Show', company_calendar_url(company), class: :"button is-small is-info" %></td>
       <td><%= link_to 'Edit', edit_company_path(company), class: :"button is-small is-info" %></td>
       <td><%= button_to 'Destroy', company_path(company), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
@@ -18,3 +18,4 @@
 </table>
 <br>
 <%= link_to 'New Company', new_company_path, class: :"button is-small is-success" %>
+

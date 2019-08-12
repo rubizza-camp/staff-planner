@@ -4,9 +4,7 @@
 <p style="margin-top:20px"> Companies: </p>
 
 <% if @companies.present? %>
-  <% @companies.each do |key, value| %>
-    <p><%= link_to value, company_calendar_path(key) %></p>
-  <% end %>
+    <p><%= link_to value, company_calendar_path(company) %></p>
 <% else %>
   <p>Нет привязанных компаний.</p>
 <% end %>
@@ -19,3 +17,4 @@
       action: :'destroy'}, class: :"button is-small is-danger", method: :delete %></td>
   </tr>
 </table>
+
