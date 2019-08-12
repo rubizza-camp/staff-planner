@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  before_action :set_account, only: %i[show edit update destroy]
+  before_action :set_account
+  before_action :find_account_company, only: %i[show index]
 
   def index
     @accounts = Account.all
   end
 
-  def show
-    @companies = {}
-    @account.companies.each do |company|
-      @companies[company.id] = company.name
-    end
-  end
+  def show; end
 
   def edit; end
 
@@ -48,5 +44,12 @@ class AccountsController < ApplicationController
 
   def set_account
     @account = Account.find(params[:id])
+  end
+
+  def find_account_company
+    @companies = {}
+    @account.companies.each do |company|
+      @companies[company.id] = company.name
+    end
   end
 end

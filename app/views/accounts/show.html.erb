@@ -4,7 +4,9 @@
 <p style="margin-top:20px"> Companies: </p>
 
 <% if @companies.present? %>
-    <p><%= link_to value, company_calendar_path(company) %></p>
+ 	<% @companies.each do |key, value| %>
+    <p><%= link_to value, company_calendar_path(key) %></p>
+  <% end %>
 <% else %>
   <p>Нет привязанных компаний.</p>
 <% end %>
