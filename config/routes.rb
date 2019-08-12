@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   resources :accounts, except: [:new, :create]
   resources :companies do
-    resources :employees, :except => :index
+    resources :employees, except: :index
     get :calendar
     resources :working_days
   end
