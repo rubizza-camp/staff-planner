@@ -4,6 +4,7 @@ class Rule < ApplicationRecord
   PERIOD_LIST = %w[year month week].freeze
 
   belongs_to :company
+  has_many :events
 
   validates :name, presence: true, uniqueness: { scope: :company_id }
   validates :period, presence: true, inclusion: { in: PERIOD_LIST }
