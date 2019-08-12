@@ -2,10 +2,12 @@
 
 module Companies
   class CalendarPresenter
-    attr_reader :company
+    attr_reader :company, :name, :id
 
     def initialize(params)
       @company = Company.find(params[:company_id])
+      @name = company.name
+      @id = company.id
     end
 
     def days
@@ -14,10 +16,6 @@ module Companies
 
     def employees
       @employees ||= company.employees.includes(:account)
-    end
-
-    def company_name
-      company.name
     end
 
     def prepare_working_days

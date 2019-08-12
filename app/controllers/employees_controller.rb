@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
-  before_action :set_company
+  before_action :set_params
   before_action :set_employee, only: %i[show edit update destroy]
 
-  def index
-    @company.employees
+  def show
+    @account_params = {
+      id: @employee.account.id,
+      email: @employee.account.email,
+      name: @employee.account.name,
+      surname: @employee.account.created_at
+    }
   end
-
-  def show; end
 
   def new
     @employee = @company.employees.build
@@ -19,7 +22,7 @@ class EmployeesController < ApplicationController
   def create
     employee = @company.employees.build(employee_params)
     if employee.save
-      redirect_to company_employees_path
+      redirect_to company_path(@company.id)
     else
       render :new
     end
@@ -39,14 +42,16 @@ class EmployeesController < ApplicationController
     else
       flash[:error] = "Employee account wasn't cancelled."
     end
-    redirect_to company_employees_path
+    redirect_to company_path(@employee.company_id)
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_company
+  def set_params
     @company = Company.find(params[:company_id])
+    @employees = @company.employees
+    @accounts = @company.accounts
   end
 
   def set_employee

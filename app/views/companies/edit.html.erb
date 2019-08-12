@@ -1,6 +1,21 @@
-<h1>Editing Company</h1>
+<div class="columns is-desktop is-multiline is-centered is-vcentered">
+  <div class="column is-narrow">
 
-<%= render 'form', company: @company %>
+		<h1 style="margin-bottom:30px;">New company</h1>
 
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+		<%= form_with model: @company, method: 'patch', local: true do |form| %>
+
+  		<div class="field">
+      	<%= form.label :company_name %>
+      	<%= form.text_field :name, class: :input, placeholder: :"Update company name" %>
+    	</div>  
+
+   	  <div class="actions">
+        <%= form.submit %>
+      </div>
+
+ 		<% end %>
+
+ 		<td><%= link_to 'Back', companies_path, class: :"button is-small is-info", style: :'margin-top:10px' %></td>
+	</div>
+</div>

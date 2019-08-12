@@ -1,21 +1,30 @@
-<h2>Sign up</h2>
+<div class="columns is-desktop is-multiline is-centered is-vcentered">
+  <div class="column is-narrow">
 
-<%= form_for(resource, as: resource_name, url: account_registration_path) do |f| %>
+<%= form_for(@account, url: account_registration_path) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <h1 style="text-align: center;padding-bottom:30px;font-size:30px;">SIGN UP</h1>
 
-  <div class="field">
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
     <%= f.label :name %><br>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <%= f.text_field :name, autofocus: true, autocomplete: "surname", class: :input, placeholder: :"Enter your name" %>
+    </p>
+</div>
 
-  <div class="field">
+ 
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
     <%= f.label :surname %><br>
-    <%= f.text_field :surname, autofocus: true, autocomplete: "surname" %>
-  </div>
+    <%= f.text_field :surname, autofocus: true, autocomplete: "surname", class: :input, placeholder: :"Enter your surname" %>
+    </p>
+</div>
 
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <p class="control has-icons-left has-icons-right">
+      <%= f.label :email %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: :input, placeholder: :"Enter your e-mail" %>
+    </p>
   </div>
 
   <div class="field">
@@ -23,17 +32,21 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <%= f.password_field :password, autocomplete: "new-password", class: :input, placeholder: :"Enter your password" %>
+  </div>  
 
   <div class="field">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: :input, placeholder: :"Repeat your password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: :"button is-small is-success"%>
+    <p style="text-align: center;padding:20px 0;">If you have existing account 
+      <a style="" class="button is-small is-info" href='<%= new_account_session_path %>'>
+        Login
+      </a>
+    </p>
   </div>
 <% end %>
 
-<%= render "accounts/shared/links" %>
