@@ -3,6 +3,13 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
 
+  before_action :authenticate_account!
+  load_and_authorize_resource
+
+  def current_ability
+    @current_ability ||= ::Ability.new(current_account)
+  end
+
   # GET /companies
   def index
     @companies = Company.all

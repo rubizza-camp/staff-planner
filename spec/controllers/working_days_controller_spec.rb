@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe WorkingDaysController do
-  render_views
+  #render_views
 
   describe "GET index" do
     let!(:working_day){ create(:working_day) }

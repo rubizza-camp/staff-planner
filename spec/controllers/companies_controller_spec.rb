@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CompaniesController do
-  render_views
+  #render_views
 
   describe 'GET index' do
     let!(:company) { create(:company) }
