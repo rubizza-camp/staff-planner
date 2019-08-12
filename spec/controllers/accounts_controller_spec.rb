@@ -22,7 +22,7 @@ RSpec.describe AccountsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       account = Account.create! valid_attributes
-      get :index, params: {id: account.id}, session: valid_session
+      get :index, params: { id: account.id }, session: valid_session
       expect(response).to be_successful
     end
   end

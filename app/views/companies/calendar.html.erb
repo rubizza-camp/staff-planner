@@ -11,8 +11,8 @@
         <%= employee.account.name %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
-      <% @calendar.days.each do |day| %>
-        <% if @calendar.working_day?(day) %>
+      <% @calendar.working_month.each do |day, value| %>
+        <% if @calendar.working_month[day].eql?('work') %>
           <td style='padding-bottom:0.5em;font-size:14px'>
         <% else %>
           <td style='padding-bottom:0.5em;background-color:lightgray;font-size:14px'>

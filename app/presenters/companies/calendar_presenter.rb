@@ -16,19 +16,12 @@ module Companies
       @employees ||= company.employees.includes(:account)
     end
 
-    def prepare_working_days
-      working_days.map do |day|
-        if day.zero?
-          working_days.push(7)
-        else
-          working_days.push(day)
-        end
+    def working_month
+      @working_month = {}
+      days.each do |day|
+        @working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
       end
-    end
-
-    def working_day?(day)
-      prepare_working_days
-      working_days.include?(day.strftime('%u').to_i)
+      @working_month
     end
   end
 end
