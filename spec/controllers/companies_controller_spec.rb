@@ -30,6 +30,15 @@ RSpec.describe CompaniesController do
     end
   end
 
+  describe 'GET calendar' do
+    let(:company) { create(:company) }
+
+    it 'has a 200 status code' do
+      get :calendar, params: { company_id: company.id }
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'GET edit' do
     let(:company) { create(:company) }
 

@@ -2,12 +2,11 @@
   <div class="column is-narrow">
 
 <%= form_for(@account, url: account_session_path) do |f| %>
-  <img src="/staff_planner.png" alt="logo" width="300" height="28">
-
+  <img src="/staff_planner.png" alt="logo" width="300" height="28" />
 
   <div class="field">
   <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email">
+    <input class="input" type="email" placeholder="Email" />
     <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -16,7 +15,7 @@
 
 <div class="field">
   <p class="control has-icons-left">
-    <input class="input" type="password" placeholder="Password">
+    <input class="input" type="password" placeholder="Password" />
     <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>
@@ -24,10 +23,10 @@
 </div>
 
   <div class="actions">
-    <input class="button is-success" type="submit" value="Login">
+    <input class="button is-success" type="submit" value="Login" />
   </div>
 <% end %>
 
-<%= render "accounts/shared/links" %>
+<%= render 'accounts/shared/links' %>
 </div>
 </div>

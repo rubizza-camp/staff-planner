@@ -55,6 +55,10 @@ class CompaniesController < ApplicationController
     redirect_to companies_url
   end
 
+  def calendar
+    @calendar = Companies::CalendarPresenter.new(params)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
