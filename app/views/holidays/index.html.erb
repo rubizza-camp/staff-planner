@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Holidays of <%= @company.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @holidays.each do |holiday| %>
+      <tr>
+        <td><%= holiday.name %></td>
+        <td><%= holiday.date %></td>
+        <td><%= link_to 'Show', company_holiday_path(id: holiday.id) %></td>
+        <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id) %></td>
+        <td><%= button_to 'Destroy',[@company, holiday], method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Holiday', new_company_holiday_path %>

@@ -1,0 +1,17 @@
+<%= form_with(model: [@company, holiday], local: true) do |form| %>
+ <%= render 'shared/error', object: holiday %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
