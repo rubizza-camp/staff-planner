@@ -11,13 +11,13 @@
         <%= employee.account.name %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
-      <% @calendar.working_month.each do |day, value| %>
-        <% if @calendar.working_month[day].eql?('work') %>
-          <td style='padding-bottom:0.5em;font-size:14px'>
+      <% @calendar.days_status.each do |day, value| %>
+        <% if @calendar.days_status[day].eql?('work') %>
+          <% style = 'padding-bottom:0.5em;font-size:14px' %>
         <% else %>
-          <td style='padding-bottom:0.5em;background-color:lightgray;font-size:14px'>
+          <% style = 'padding-bottom:0.5em;background-color:lightgray;font-size:14px' %>
         <% end %>
-        <%= day.strftime('%d') %>
+        <td style='<%= style %>'><%= day.strftime('%d') %>
         </td>
       <% end %>
     </tbody>

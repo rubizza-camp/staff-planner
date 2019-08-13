@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  before_action :set_account
-  before_action :find_account_company, only: %i[show index]
+  before_action :set_account, except: :index
+  before_action :find_account_companies, only: :show
 
   def index
     @accounts = Account.all
@@ -46,10 +46,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
   end
 
-  def find_account_company
-    @companies = {}
-    @account.companies.each do |company|
-      @companies[company.id] = company.name
-    end
+  def find_account_companies
+    @companies = @account.companies
   end
 end
