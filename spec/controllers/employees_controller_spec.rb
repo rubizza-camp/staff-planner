@@ -6,7 +6,7 @@ RSpec.describe EmployeesController do
   render_views
 
   before(:each) do
-    @account = FactoryBot.create(:account, email: '222@mail.ru') 
+    @account = FactoryBot.create(:account, email: '222@mail.ru')
     @employee = FactoryBot.create(:employee)
     sign_in @account
   end
@@ -57,7 +57,12 @@ RSpec.describe EmployeesController do
 
   describe 'PUT update' do
     it 'updates employee' do
-      put :update, params: {  company_id: @employee.company_id, id: @employee.id, start_day: '2019-02-02', position: 'boss' }
+      put :update, params: {
+        company_id: @employee.company_id,
+        id: @employee.id,
+        start_day: '2019-02-02',
+        position: 'boss'
+      }
       expect(response.status).to eq(302)
     end
 

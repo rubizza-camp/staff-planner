@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CompaniesController do
   before(:each) do
-    @account = FactoryBot.create(:account) 
+    @account = FactoryBot.create(:account)
     @company = FactoryBot.create(:company)
     sign_in @account
   end

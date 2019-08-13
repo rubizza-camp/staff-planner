@@ -6,8 +6,8 @@ RSpec.describe RulesController do
   render_views
 
   before(:each) do
-    @rule = FactoryBot.create(:rule) 
-    account = FactoryBot.create(:account) 
+    @rule = FactoryBot.create(:rule)
+    account = FactoryBot.create(:account)
     sign_in account
   end
 

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :employee do
-  	association :company
-  	association :account
+    association :company
+    association :account
     start_day { '2014-09-09' }
     position { 'Boss' }
     is_enabled { true }
