@@ -5,7 +5,6 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
     @companies = Company.includes(:employees)
   end
 
