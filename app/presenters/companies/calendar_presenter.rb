@@ -15,7 +15,9 @@ module Companies
     end
 
     def days_status
-      days.inject({}) { | (day, status), working_month| working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday' }
+      days.each_with_object({}) do |day, working_month|
+        working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
+      end
     end
   end
 end

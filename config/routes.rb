@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "test.host"
   devise_for :accounts
   devise_scope :account do
     root to: "devise/sessions#new"
