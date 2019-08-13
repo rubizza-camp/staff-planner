@@ -3,6 +3,8 @@
 class EmployeesController < ApplicationController
   before_action :set_company
   before_action :set_employee, only: %i[show edit update destroy]
+  before_action :authenticate_account!
+  load_and_authorize_resource
 
   def index
     @company.employees
@@ -58,10 +60,12 @@ class EmployeesController < ApplicationController
       params[:account_id] = Account.find_by(email: params[:email]).id
       params.permit(:position,
                     :start_day,
-                    :account_id)
+                    :account_id,
+                    :role)
     else
       params.permit(:position,
-                    :start_day)
+                    :start_day,
+                    :role)
     end
   end
 end

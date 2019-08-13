@@ -3,6 +3,8 @@
 class WorkingDaysController < ApplicationController
   before_action :set_company
   before_action :set_working_day, only: %i[show edit update destroy]
+  before_action :authenticate_account!
+  load_and_authorize_resource
 
   def index
     @working_days = @company.working_days.all.map { |working_day| WorkingDayDecorator.new(working_day) }
