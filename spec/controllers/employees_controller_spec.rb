@@ -7,7 +7,7 @@ RSpec.describe EmployeesController do
 
   describe 'GET show' do
     let(:employee) { create(:employee) }
-    let(:account) { create(:account) }
+     let(:account) { create(:account, email: '222@mail.ru') }
 
     it 'has a 200 status code' do
       sign_in account
@@ -18,7 +18,7 @@ RSpec.describe EmployeesController do
 
   describe 'GET new' do
     let(:employee) { create(:employee) }
-    let(:account) { create(:account) }
+     let(:account) { create(:account, email: '222@mail.ru') }
     it 'has a 200 status code' do
       sign_in account
       get :new, params: { company_id: employee.company_id }
@@ -28,7 +28,7 @@ RSpec.describe EmployeesController do
 
   describe 'GET edit' do
     let(:employee) { create(:employee) }
-    let(:account) { create(:account) }
+     let(:account) { create(:account, email: '222@mail.ru') }
 
     it 'has a 200 status code' do
       sign_in account
@@ -65,7 +65,7 @@ RSpec.describe EmployeesController do
 
   describe 'PUT update' do
     let(:employee) { create(:employee)}
-    let(:account) { create(:account) }
+    let(:account) { create(:account, email: '222@mail.ru') }
 
     it 'updates employee' do
       sign_in account

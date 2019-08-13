@@ -28,6 +28,8 @@ RSpec.describe CompaniesController do
   end
 
   describe 'GET new' do
+    let(:account) { create(:account) }
+    
     it 'has a 200 status code' do
       sign_in account
       get :new
