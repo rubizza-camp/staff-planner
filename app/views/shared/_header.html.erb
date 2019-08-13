@@ -22,7 +22,7 @@
       <div class="field is-grouped">
         <% if account_signed_in? %>
           <p class="control">
-            <%= link_to 'Sign out', destroy_account_session_path, :method => :delete, class: :"button is-normal is-danger" %>
+            <%= link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %>
           </p>
         <% else %>
           <p class="control">
