@@ -5,15 +5,6 @@ require 'rails_helper'
 RSpec.describe EmployeesController do
   #render_views
 
-  describe 'GET index' do
-    let(:employee) { create(:employee)}
-
-    it 'has a 200 status code' do
-      get :index, params: { company_id: employee.company_id }
-      expect(response.status).to eq(200)
-    end
-  end
-
   describe 'GET show' do
     let(:employee) { create(:employee) }
 
@@ -82,7 +73,7 @@ RSpec.describe EmployeesController do
 
     it 'deletes employee' do
       delete :destroy, params: { company_id: employee.company_id, id: employee.id }
-      expect(response).to redirect_to(company_employees_url)
+      expect(response).to redirect_to(company_path(employee.company_id))
       expect(Employee.count).to eq(0)
     end
   end

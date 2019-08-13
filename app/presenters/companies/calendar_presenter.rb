@@ -2,22 +2,22 @@
 
 module Companies
   class CalendarPresenter
-    attr_reader :company
+    attr_reader :company, :name, :id, :days, :working_days
 
     def initialize(params)
       @company = Company.find(params[:company_id])
-    end
-
-    def days
-      ((Date.today)..(Date.today + 30)).to_a
+      @days = ((Date.today)..(Date.today + 30)).to_a
+      @working_days = company.working_days.pluck(:day_of_week)
     end
 
     def employees
       @employees ||= company.employees.includes(:account)
     end
 
-    def company_name
-      company.name
+    def days_status
+      days.each_with_object({}) do |(day, _status), working_month|
+        working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
+      end
     end
   end
 end

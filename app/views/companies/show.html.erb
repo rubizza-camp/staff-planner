@@ -1,21 +1,27 @@
-<p id="notice"><%= notice %></p>
+<h1>Employees</h1>
 
-<h1>
-  Название компании : <%= @company.name %>
-</h1>
 <table style="background-color:whitesmoke !important;" class="table">
   <thead>
-    <th> Имя сотрудника </th>
-    <th> Позиция сотрудника </th>
-    <th> Первый день в компании </th>
+    <th> Employee name </th>
+    <th> Created at </th>
+    <th> Activated </th>
+    <th colspan="3"> Actions </th>
   </thead>
   <% @company.employees.each do |employee| %>
     <tbody>
-      <td><%= employee.account.name %></td>
-      <td><%= employee.position %></td>
-      <td><%= employee.start_day %></td>
+      <tr>
+        <td><%= link_to employee.account.name, company_employee_path(id: employee.id, company_id: @company.id) %></td>
+        <td><%= employee.position %></td>
+        <td><%= employee.is_enabled %></td>
+        <td><%= link_to 'Show', company_employee_path(id: employee.id, company_id: @company.id ), class: :"button is-small is-info" %></td>
+        <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id, company_id: @company.id), class: :"button is-small is-info" %></td>
+        <td><%= link_to 'Destroy', company_employee_path(id: employee.id, company_id: @company.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+      </tr>
     </tbody>
   <% end %>
 </table>
+<br>
 
-<%= link_to 'Back to Companies List', companies_path %>
+
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company.id) %>'>New employee</a>
+<a style="padding-right:10px"><a class="button is-small is-info" href='<%= companies_path %>'>Back to Companies List</a>

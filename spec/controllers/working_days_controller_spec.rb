@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe WorkingDaysController do
-  #render_views
+  render_views
+  include Devise::Test::IntegrationHelpers
 
   describe "GET index" do
     let!(:working_day){ create(:working_day) }
@@ -77,9 +78,13 @@ RSpec.describe WorkingDaysController do
   end
 
   describe "DELETE destroy" do
-    let(:working_day){ create(:working_day) }
-
+    user = FactoryBot.create(:account)
+    working_day = FactoryBot.create(:working_day)
+    employee = FactoryBot.build(:employee, company_id: working_day.company_id,
+                                           account_id: user.id)
+    load_and_authorize_resource
     it "deletes working_day" do
+      sign_in user
       delete :destroy, params: { id: working_day.id,
                                  company_id: working_day.company_id }
       expect(response).to redirect_to(company_working_days_url)
