@@ -22,6 +22,7 @@ RSpec.describe AccountsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       account = Account.create! valid_attributes
+      sign_in account
       get :index, params: { id: account.id }, session: valid_session
       expect(response).to be_successful
     end
@@ -30,6 +31,7 @@ RSpec.describe AccountsController, type: :controller do
   describe 'GET #show' do
     it 'returns a success response' do
       account = Account.create! valid_attributes
+      sign_in account
       get :show, params: { id: account.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -38,6 +40,7 @@ RSpec.describe AccountsController, type: :controller do
   describe 'GET #edit' do
     it 'returns a success response' do
       account = Account.create! valid_attributes
+      sign_in account
       get :edit, params: { id: account.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -52,6 +55,7 @@ RSpec.describe AccountsController, type: :controller do
 
       it 'updates the requested account' do
         account = Account.create! valid_attributes
+        sign_in account
         put :update, params: { id: account.to_param, account: new_attributes }, session: valid_session
         account.reload
         expect(account.name).to include('Sime')
@@ -60,6 +64,7 @@ RSpec.describe AccountsController, type: :controller do
 
       it 'redirects to the account' do
         account = Account.create! valid_attributes
+        sign_in account
         put :update, params: { id: account.to_param, account: valid_attributes }, session: valid_session
         expect(response).to redirect_to(account)
       end
@@ -69,6 +74,7 @@ RSpec.describe AccountsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested account' do
       account = Account.create! valid_attributes
+      sign_in account
       expect do
         delete :destroy, params: { id: account.to_param }, session: valid_session
       end.to change(Account, :count).by(-1)
@@ -76,8 +82,9 @@ RSpec.describe AccountsController, type: :controller do
 
     it 'redirects to the accounts list' do
       account = Account.create! valid_attributes
+      sign_in account
       delete :destroy, params: { id: account.to_param }, session: valid_session
-      expect(response).to redirect_to(accounts_url)
+      expect(response).to redirect_to(accounts_path)
     end
   end
 end

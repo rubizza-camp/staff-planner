@@ -1,32 +1,27 @@
 <div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
 
-<%= form_for(@account, url: account_session_path(@account)) do |f| %>
-  <img src="/staff_planner.png" alt="logo" width="300" height="28">
+    <%= form_for(@account, url: account_session_path(@account)) do |f| %>
 
-  <div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email" />
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-  </p>
-</div>
+      <img src="/staff_planner.png" alt="logo" width="300" height="28">
 
-<div class="field">
-  <p class="control has-icons-left">
-    <input class="input" type="password" placeholder="Password" />
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-  </p>
-</div>
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <%= f.label :email %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: :input, placeholder: :"Enter your e-mail" %>
+        </p>
+      </div>
 
-  <div class="actions">
-    <input class="button is-success" type="submit" value="Login" />
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field 'password', autocomplete: "password", class: :input, placeholder: :"Enter your password" %>
+      </div> 
+
+      <div class="actions">
+        <input class="button is-success" type="submit" value="Login" />
+      </div>
+    <% end %>
+
+    <%= render 'accounts/shared/links' %>
   </div>
-<% end %>
-
-<%= render 'accounts/shared/links' %>
-</div>
 </div>

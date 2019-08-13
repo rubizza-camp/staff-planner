@@ -15,7 +15,7 @@ module Companies
     end
 
     def days_status
-      days.each_with_object({}) do |(day, _status), working_month|
+      days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
       end
     end
