@@ -1,31 +1,28 @@
-<h1>
-    Company Name: <%= @calendar.company_name %>
-</h1>
-
-<table style="background-color:whitesmoke" class="table">
+<table style="background-color:whitesmoke;margin-top:50px" class="table">
   <thead>
-    <th>Employee</th>
-    <th>Position</th>
+    <th style='padding-bottom:0.5em;font-size:12px'>Employee</th>
       <% @calendar.days.each do |day| %>
-        <th style="padding: 0.5em 0.75em 0 0;">
-          <%= day.strftime('%a')[0..1] %>
-        </th>
+        <th style="padding-bottom:0.5em;font-size:12px"><%= day.strftime('%a')[0..1] %></th>
       <% end %>
   </thead>
   <% @calendar.employees.each do |employee| %>
     <tbody>
-      <td>
+      <td style='padding-bottom:0.5em;'>
         <%= employee.account.name %>
+        <p style="font-size:8px"><%= employee.position %></p>
       </td>
-      <td>
-        <%= employee.position %>
-      </td>
-      <% @calendar.days.each do |day| %>
-        <td style='padding: 0.5em 0.75em 0 0;'>
-          <%= day.strftime('%d') %>
+      <% @calendar.days_status.each do |day, value| %>
+        <% if @calendar.days_status[day].eql?('work') %>
+          <% style = 'padding-bottom:0.5em;font-size:14px' %>
+        <% else %>
+          <% style = 'padding-bottom:0.5em;background-color:lightgray;font-size:14px' %>
+        <% end %>
+        <td style='<%= style %>'><%= day.strftime('%d') %>
         </td>
       <% end %>
     </tbody>
   <% end %>
 </table>
-<%= link_to 'New Employee', new_company_employee_path %>
+
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path %>'>New employee</a>
+

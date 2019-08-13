@@ -1,8 +1,21 @@
-<p id="notice"><%= notice %></p>
+<p> Name: <%= @account.name %> </p>
+<p> Surname: <%= @account.surname %> </p>
+<p> E-mail:<%= @account.email %> </p>
+<p style="margin-top:20px"> Companies: </p>
 
-        <p>Name: <%= @account.name %></p>
-        <p>Surname: <%= @account.surname %></p>
-        <p>Email: <%= @account.email %></p>
+<% if @companies.present? %>
+ 	<% @companies.each do |company| %>
+    <p><%= link_to company.name, company_calendar_path(company) %></p>
+  <% end %>
+<% else %>
+  <p>Нет привязанных компаний.</p>
+<% end %>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<table style="margin-top:20px">
+  <tr colspan="3">
+    <td style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_path %>'>Create new company</a></td>
+    <td style="padding-right:10px"><a class="button is-small is-info" href='<%= edit_account_path(@account) %>'>Edit account</a></td>
+    <td style="padding-right:10px"><%= button_to 'Delete account', {controller: :accounts,
+      action: :'destroy'}, class: :"button is-small is-danger", method: :delete %></td>
+  </tr>
+</table>

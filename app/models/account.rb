@@ -2,6 +2,7 @@
 
 class Account < ApplicationRecord
   has_many :employees, dependent: :destroy
+  has_many :companies, through: :employees
 
   validates :name, presence: true
   validates :surname, presence: true

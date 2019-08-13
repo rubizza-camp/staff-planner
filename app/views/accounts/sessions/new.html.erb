@@ -1,8 +1,8 @@
 <div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
 
-<%= form_for(@account, url: account_session_path) do |f| %>
-  <img src="/staff_planner.png" alt="logo" width="300" height="28" />
+<%= form_for(@account, url: account_session_path(@account)) do |f| %>
+  <img src="/staff_planner.png" alt="logo" width="300" height="28">
 
   <div class="field">
   <p class="control has-icons-left has-icons-right">
