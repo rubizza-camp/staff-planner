@@ -6,8 +6,6 @@ module Companies
 
     def initialize(params)
       @company = Company.find(params[:company_id])
-      @name = company.name
-      @id = company.id
       @days = ((Date.today)..(Date.today + 30)).to_a
       @working_days = company.working_days.pluck(:day_of_week)
     end
@@ -16,12 +14,12 @@ module Companies
       @employees ||= company.employees.includes(:account)
     end
 
-    def working_month
-      @working_month = {}
+    def days_status
+      @days_status = {}
       days.each do |day|
         @working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
       end
-      @working_month
+      @days_status
     end
   end
 end
