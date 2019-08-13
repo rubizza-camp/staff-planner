@@ -47,9 +47,6 @@ class AccountsController < ApplicationController
   end
 
   def find_account_company
-    @companies = {}
-    @account.companies.each do |company|
-      @companies[company.id] = company.name
-    end
+    @companies = @account.companies
   end
 end

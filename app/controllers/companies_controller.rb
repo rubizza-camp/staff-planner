@@ -5,11 +5,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
-    @employees = {}
-    @companies.each do |company|
-      @employees[company.id] = company.employees
-    end
+    @companies = Company.includes(:employees)
   end
 
   # GET /companies/1
