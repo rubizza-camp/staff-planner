@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   belongs_to :employee
   belongs_to :company
   belongs_to :rule
-  belongs_to :account
+  belongs_to :account, optional: true
 
   validates :employee_id, presence: true
   validates :rule_id, presence: true

@@ -6,7 +6,7 @@ RSpec.describe EventsController, type: :controller do
   render_views
 
   before(:each) do
-    @account = FactoryBot.create(:account, email: '333@mail.ru')
+    @account = FactoryBot.create(:account, email: '322233@mail.ru')
     @employee = FactoryBot.create(:employee, account_id: @account.id)
     @rule = FactoryBot.create(:rule)
     @event = FactoryBot.create(:event)
@@ -58,17 +58,19 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      it 'updates the requested event' do
-        put :update, params: { id: @event.id, company_id: @event.company_id, reason: 'ok' }
-        @event.reload
-        expect(response).to be_successful
+      let(:new_attributes) do
+        { reason: 'Holidaaaays' }
       end
 
-      context 'with invalid params' do
-        it "returns a success response (i.e. to display the 'edit' template)" do
-          put :update, params: { id: @event.id, reason: 'OK', company_id: @event.company_id }
-          expect(response).to be_successful
-        end
+      it 'updates the requested account' do
+        put :update, params: { id: @event.id, company_id: @event.company_id, event: new_attributes }
+        @event.reload
+        expect(@event.reason).eql?('Holidaaaays')
+      end
+
+      it 'redirects to the account' do
+        put :update, params: { id: @event.id, company_id: @event.company_id }
+        expect(response).to redirect_to(company_events_path(company_id: @event.company_id))
       end
     end
   end
