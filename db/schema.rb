@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_132308) do
     t.index ["company_id"], name: "index_employees_on_company_id"
   end
 
-<<<<<<< HEAD
   create_table "events", force: :cascade do |t|
     t.datetime "start_period", null: false
     t.datetime "end_period", null: false
@@ -61,7 +60,8 @@ ActiveRecord::Schema.define(version: 2019_08_12_132308) do
     t.index ["company_id"], name: "index_events_on_company_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
     t.index ["rule_id"], name: "index_events_on_rule_id"
-=======
+  end
+
   create_table "holidays", force: :cascade do |t|
     t.string "name", null: false
     t.date "date", null: false
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_132308) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_holidays_on_company_id"
->>>>>>> master
   end
 
   create_table "rules", force: :cascade do |t|
@@ -93,12 +92,9 @@ ActiveRecord::Schema.define(version: 2019_08_12_132308) do
 
   add_foreign_key "employees", "accounts"
   add_foreign_key "employees", "companies"
-<<<<<<< HEAD
   add_foreign_key "events", "companies"
   add_foreign_key "events", "employees"
   add_foreign_key "events", "rules"
-=======
   add_foreign_key "holidays", "companies"
->>>>>>> master
   add_foreign_key "working_days", "companies"
 end
