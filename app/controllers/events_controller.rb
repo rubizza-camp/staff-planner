@@ -9,13 +9,14 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(event_params)
   end
 
   def edit; end
 
   def create
-    @event = Event.new(event_params)
+    @event = @company.events.build(event_params)
+    @event.employee = Employee.find_by(account: current_account, company: @company)
     if @event.save
       redirect_to company_events_path, notice: 'Event was successfully created.'
     else
@@ -47,12 +48,13 @@ class EventsController < ApplicationController
   end
 
   def company_rules
-    company = Company.find(params[:company_id])
-    @rules = company.rules
+    @company = Company.find(params[:company_id])
+    @rules = @company.rules
   end
 
   def event_params
-    params[:employee_id] = Employee.find_by(account_id: current_account.id).id
-    params.permit(:start_period, :end_period, :reason, :employee_id, :company_id, :rule_id)
+    return unless params[:event]
+
+    params.require(:event).permit(:start_period, :end_period, :reason, :employee_id, :company_id, :rule_id)
   end
 end

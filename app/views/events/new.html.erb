@@ -3,16 +3,16 @@
 
     <h1>New Event</h1>    
 
-    <%= form_with url: company_events_path, method: 'post', local: true do |form| %>    
+    <%= form_with model: @event, url: company_events_path, method: 'post', local: true do |form| %>    
 
       <div class="field">
         <%= form.label :start_period %>
-        <%= form.date_field :start_period, value: params[:start_period], class: :input %>
+        <%= form.datetime_field :start_period, class: :input %>
       </div>    
 
       <div class="field">
         <%= form.label :end_period %>
-        <%= form.date_field :end_period, class: :input %>
+        <%= form.datetime_field :end_period, class: :input %>
       </div>    
 
       <div class="select">
