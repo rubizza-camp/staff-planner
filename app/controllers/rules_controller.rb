@@ -2,7 +2,7 @@
 
 class RulesController < ApplicationController
   before_action :set_rule, only: %i[show edit update destroy]
-  before_action :companies, only: %i[index edit new update create]
+  before_action :companies, only: %i[edit new update create]
 
   # GET /rules
   def index
