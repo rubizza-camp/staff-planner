@@ -1,0 +1,6 @@
+<h3 class="title is-3">Edit holiday: <%= @holiday.name %></h3>
+
+<%= render 'form', holiday: @holiday %>
+
+<%= link_to 'Show', company_holiday_path(id: @holiday.id), class: 'button is-small'%>
+<%= link_to 'Back', company_holiday_path, class: 'button is-small' %>
