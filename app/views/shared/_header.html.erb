@@ -3,38 +3,32 @@
     <a class="navbar-item" href="/">
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
-    <div class="navbar-burger burger" data-target="navbar">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <div class="navbar-burger burger" data-target="navbar"></div>
   </div>
 
   <div id="navbar" class="navbar-menu">
-    <div class="navbar-start">
+    <div class="navbar-item">
+    </div>
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <a class="navbar-item"><%= link_to 'Companies', companies_path %></a>
+        <a class="navbar-item"><%= link_to 'Settings', root_path %></a>
       </div>
     </div>
-
-    <div class="navbar-end">
-       <div class="navbar-item">
-          <div class="field is-grouped">
-            <a class="navbar-item"><%= link_to 'Companies', companies_path %></a>
-            <a class="navbar-item"><%= link_to 'Settings', root_path %></a>
-          </div>
-        </div>
-      <div class="navbar-item">
-        <div class="field is-grouped">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <% if account_signed_in? %>
           <p class="control">
-            <a class="button is-danger is-outlined" href="/accounts/sign_in">
-              <span>Login</span>
-            </a>
+            <%= link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %>
           </p>
+        <% else %>
           <p class="control">
-            <a class="button is-success is-outlined" href="accounts/sign_out">
-              <span>Logout</span>
-            </a>
+            <td><%= link_to 'Login', new_account_session_path, class: :"button is-normal is-success" %></td>
           </p>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

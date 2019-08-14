@@ -2,6 +2,7 @@
 
 class Account < ApplicationRecord
   has_many :employees, dependent: :destroy
+  has_many :companies, through: :employees
 
   validates :name, presence: true
   validates :surname, presence: true
@@ -9,5 +10,5 @@ class Account < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, authentication_keys: [:email]
 end

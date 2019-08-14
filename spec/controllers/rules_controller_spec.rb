@@ -5,9 +5,13 @@ require 'rails_helper'
 RSpec.describe RulesController do
   render_views
 
-  describe 'GET index' do
-    let!(:rule) { create(:rule) }
+  before(:each) do
+    @rule = FactoryBot.create(:rule)
+    account = FactoryBot.create(:account)
+    sign_in account
+  end
 
+  describe 'GET index' do
     it 'has a 200 status code' do
       get :index
       expect(response.status).to eq(200)
@@ -15,10 +19,8 @@ RSpec.describe RulesController do
   end
 
   describe 'GET show' do
-    let(:rule) { create(:rule) }
-
     it 'has a 200 status code' do
-      get :show, params: { id: rule.id }
+      get :show, params: { id: @rule.id }
       expect(response.status).to eq(200)
     end
   end
@@ -31,10 +33,8 @@ RSpec.describe RulesController do
   end
 
   describe 'GET edit' do
-    let(:rule) { create(:rule) }
-
     it 'has a 200 status code' do
-      get :edit, params: { id: rule.id }
+      get :edit, params: { id: @rule.id }
       expect(response.status).to eq(200)
     end
   end
@@ -56,25 +56,21 @@ RSpec.describe RulesController do
   end
 
   describe 'PUT update' do
-    let(:rule) { create(:rule) }
-
     it 'updates rule' do
-      put :update, params: { rule: { name: 'Other Name' }, id: rule.id }
-      expect(rule.reload.name).to eq('Other Name')
+      put :update, params: { rule: { name: 'Other Name' }, id: @rule.id }
+      expect(@rule.reload.name).to eq('Other Name')
       expect(response).to redirect_to(Rule.last)
     end
 
     it 'can not updates rule' do
-      put :update, params: { rule: { name: nil }, id: rule.id }
+      put :update, params: { rule: { name: nil }, id: @rule.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'DELETE destroy' do
-    let(:rule) { create(:rule) }
-
     it 'deletes rule' do
-      delete :destroy, params: { id: rule.id }
+      delete :destroy, params: { id: @rule.id }
       expect(response).to redirect_to(rules_url)
       expect(Rule.count).to eq(0)
     end

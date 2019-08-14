@@ -2,20 +2,19 @@
 
 <%= form_with url: company_employee_path, method: 'patch', local: true do |form| %>
 
-  <div class="field">
+	<div class="field">
     <%= form.label :position %>
     <%= form.text_field :position, id: :employee_position %>
-  </div>
+	</div>
 
-  <div class="field">
+	<div class="field">
     <%= form.label :start_day %>
     <%= form.text_field :start_day, id: :employee_start_day %>
-  </div>
+	</div>
 
-  <div class="actions">
+	<div class="actions">
     <%= form.submit %>
-  </div>
-
+	</div>
 <% end %>
 
 <%= link_to 'Show', company_employee_path %> |
