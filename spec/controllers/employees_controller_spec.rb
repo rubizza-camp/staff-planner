@@ -11,20 +11,13 @@ RSpec.describe EmployeesController do
     sign_in @account
   end
 
-  describe 'GET index' do
-    let(:employee) { create(:employee) }
-
-    it 'has a 200 status code' do
-      get :index, params: { company_id: @employee.company_id }
-      expect(response.status).to eq(200)
-    end
-
   describe 'GET show' do
     it 'has a 200 status code' do
       get :show, params: { company_id: @employee.company_id, id: @employee.id }
       expect(response.status).to eq(200)
     end
   end
+
 
   describe 'GET new' do
     it 'has a 200 status code' do

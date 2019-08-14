@@ -5,6 +5,12 @@ require 'rails_helper'
 RSpec.describe HolidaysController do
   render_views
 
+  before(:each) do
+    account = FactoryBot.create(:account)
+    @company = FactoryBot.create(:company)
+    sign_in account
+  end
+
   describe 'GET index' do
     let!(:holiday) { create(:holiday) }
 
@@ -25,10 +31,10 @@ RSpec.describe HolidaysController do
   end
 
   describe 'GET new' do
-    let(:company) { create(:company) }
+    let(:holiday) { create(:holiday) }
 
     it 'has a 200 status code' do
-      get :new, params: { company_id: company.id }
+      get :new, params: { company_id: holiday.company_id }
       expect(response.status).to eq(200)
     end
   end
@@ -49,13 +55,13 @@ RSpec.describe HolidaysController do
     it 'creates holiday' do
       post :create, params: { holiday: { date: Date.today + 1,
                                          name: 'Lengaz' },
-                              company_id: company.id  }
-      expect(response).to redirect_to company_holidays_url
+                              company_id: @company.id }
+      expect(response).to redirect_to company_holidays_url(company_id: @company.id)
     end
 
     it 'can not creates holiday' do
       post :create, params: { holiday: { date: Date.today - 1 },
-                              company_id: company.id  }
+                              company_id: @company.id  }
       expect(response.status).to eq(200)
     end
   end
@@ -68,7 +74,7 @@ RSpec.describe HolidaysController do
                              id: holiday.id,
                              company_id: holiday.company_id }
       expect(holiday.reload.date).to eq(Date.today + 7)
-      expect(response).to redirect_to company_holidays_url
+      expect(response).to redirect_to company_holidays_url(company_id: holiday.company_id)
     end
 
     it 'can not updates holiday' do
@@ -85,7 +91,7 @@ RSpec.describe HolidaysController do
     it 'deletes holiday' do
       delete :destroy, params: { id: holiday.id,
                                  company_id: holiday.company_id }
-      expect(response).to redirect_to(company_holidays_url)
+      expect(response).to redirect_to(company_holidays_url(holiday.company_id))
       expect(Holiday.count).to eq(0)
     end
   end
