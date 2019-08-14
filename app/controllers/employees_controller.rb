@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :set_params
   before_action :set_employee, only: %i[show edit update destroy]
   before_action :authenticate_account!
-  load_and_authorize_resource
+  load_and_authorize_resource :company
 
   def show; end
 

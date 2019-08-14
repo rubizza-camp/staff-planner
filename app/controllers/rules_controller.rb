@@ -3,8 +3,6 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: %i[show edit update destroy]
   before_action :authenticate_account!
-  load_and_authorize_resource
-
   # GET /rules
   def index
     @rules = Rule.all
