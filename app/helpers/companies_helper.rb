@@ -23,7 +23,8 @@ module CompaniesHelper
         event: { start_period: day.strftime('%c') }
       )
     else
-      link_to day.strftime('%d'), company_event_path(company_id: @calendar.company.id, id: @event.id)
+      link_to day.strftime('%d'),
+              company_event_path(company_id: @calendar.company.id, id: @event.id)
     end
   end
 end
