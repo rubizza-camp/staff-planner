@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :working_days
     resources :events
     get :calendar
+    resources :holidays
   end
   resources :rules
 end

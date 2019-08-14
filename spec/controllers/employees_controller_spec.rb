@@ -18,6 +18,7 @@ RSpec.describe EmployeesController do
     end
   end
 
+
   describe 'GET new' do
     it 'has a 200 status code' do
       get :new, params: { company_id: @employee.company_id }

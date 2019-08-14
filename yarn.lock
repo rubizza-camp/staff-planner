@@ -4303,6 +4303,11 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-bin-setup@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.0.6.tgz#4b5c9bb937ece702d7069b36ca78af4684677528"
+  integrity sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q==
+
 node-forge@0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.5.tgz#6c152c345ce11c52f465c2abd957e8639cd674df"
@@ -4400,6 +4405,13 @@ node-sass@^4.12.0:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+node@^12.8.0:
+  version "12.8.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-12.8.0.tgz#2c6262da20e07d8283813d87ba8b7b3a1af674d8"
+  integrity sha512-ipGOXF4pBfDHJ0VBDmQoXxngQuHgYfurQY8ZHmzQ4g3VdeFm6zDktv27AUD24d+njNygXjouMMNTA87DJeSO/g==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 "nopt@2 || 3":
   version "3.0.6"
