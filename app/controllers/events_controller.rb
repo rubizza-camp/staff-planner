@@ -1,74 +1,70 @@
-class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+# frozen_string_literal: true
 
-  # GET /events
-  # GET /events.json
+class EventsController < ApplicationController
+  before_action :set_event, only: %i[show edit update destroy edit]
+  before_action :set_account, only: %i[show new update destroy index]
+  before_action :company_rules, only: %i[create new]
+
   def index
     @events = Event.all
   end
 
-  # GET /events/1
-  # GET /events/1.json
-  def show
-  end
+  def show; end
 
-  # GET /events/new
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.save
+      redirect_to company_events_path, notice: 'Event was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.update(event_params)
+      redirect_to company_events_path, notice: 'Event was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+    if @event.destroy
+      redirect_to company_events_path, notice: 'Event was successfully destroyed.'
+    else
+      render :edit
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.fetch(:event, {})
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def company_rules
+    set_account
+    company_id = @account.employees.pluck(:company_id).join('')
+    company = Company.find(company_id)
+    @rules = company.rules
+  end
+
+  def event_params
+    params.fetch(:event, {})
+  end
+
+  def set_account
+    @account = current_account
+  end
+
+  def event_params
+    params[:employee_id] = current_account.employees.pluck(:id).join('')
+    params.permit(:start_period, :end_period, :reason, :employee_id, :company_id, :rule_id)
+  end
 end

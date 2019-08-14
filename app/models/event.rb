@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class Event < ApplicationRecord
   belongs_to :employee
   belongs_to :company
   belongs_to :rule
+  belongs_to :account
 
   validates :employee_id, presence: true
   validates :rule_id, presence: true

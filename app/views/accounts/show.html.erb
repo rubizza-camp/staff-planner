@@ -1,21 +1,55 @@
-<p> Name: <%= @account.name %> </p>
-<p> Surname: <%= @account.surname %> </p>
-<p> E-mail:<%= @account.email %> </p>
-<p style="margin-top:20px"> Companies: </p>
+<h1 style="margin-bottom:50px"> Your profile </h1>
 
-<% if @companies.present? %>
- 	<% @companies.each do |company| %>
-    <p><%= link_to company.name, company_calendar_path(company) %></p>
-  <% end %>
-<% else %>
-  <p>Нет привязанных компаний.</p>
-<% end %>
-
-<table style="margin-top:20px">
-  <tr colspan="3">
-    <td style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_path %>'>Create new company</a></td>
-    <td style="padding-right:10px"><a class="button is-small is-info" href='<%= edit_account_path(@account) %>'>Edit account</a></td>
+<table style="background-color:whitesmoke" class="table">
+  <thead>
+  	<th> Name </th>
+		<th> Surname </th>
+		<th> E-mail </th>
+		<th> Company </th>
+		<th colspan="3"> Actions </th>
+	</thead>
+	<tbody>
+		<td><%= @account.name %></td>
+		<td><%= @account.surname %></td>
+		<td><%= @account.email %></td>
+		<td>
+			<% if @companies.present? %>
+ 				<% @companies.each do |company| %>
+    			<p><%= link_to company.name, company_calendar_path(company) %></p>
+  			<% end %>
+			<% else %>
+  			<p>Нет привязанных компаний.</p>
+			<% end %>
+		</td>
+		<td style="padding-right:10px"><a class="button is-small is-info" href='<%= edit_account_path(@account) %>'>Edit account</a></td>
     <td style="padding-right:10px"><%= button_to 'Delete account', {controller: :accounts,
       action: :'destroy'}, class: :"button is-small is-danger", method: :delete %></td>
-  </tr>
+     <td style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_path %>'>Create new company</a></td>
+	</tbody>
 </table>
+
+<h1 style="margin-bottom:50px">Your events</h1>
+
+<table style="background-color:whitesmoke" class="table">
+  <thead>
+    <th> Reason </th>
+    <th> Start Period </th>
+    <th> End period </th>
+    <th> Rule </th>
+    <th colspan="3"> Actions </th>
+  </thead>
+  <% @account_events.each do |event| %>
+    <tbody>
+      <td><%= link_to event.reason, company_event_path(event.company_id) %></td>
+      <td><%= event.start_period.strftime('%Y-%m-%d') %></td>
+      <td><%= event.end_period.strftime('%Y-%m-%d')  %></td>
+      <td><%= event.rule.name %></td>
+      <td><%= link_to 'Show', company_event_path(id: event.id, company_id: event.company_id), class: :"button is-small is-info" %></td>
+      <td><%= link_to 'Edit', edit_company_event_path(id: event.id, company_id: event.company_id), class: :"button is-small is-info" %></td>
+      <td><%= button_to 'Destroy', company_event_path(id: event.id, company_id: event.company_id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+    </tbody>
+  <% end %>
+</table>
+<br>
+
+

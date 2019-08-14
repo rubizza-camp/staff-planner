@@ -17,7 +17,7 @@
         <% else %>
           <% style = 'padding-bottom:0.5em;background-color:lightgray;font-size:14px' %>
         <% end %>
-        <td style='<%= style %>'><%= day.strftime('%d') %>
+        <td style='<%= style %>'><%= link_to day.strftime('%d'), new_company_event_path(company_id: @calendar.company.id, account_id: current_account.id, start_period: day) %>
         </td>
       <% end %>
     </tbody>
