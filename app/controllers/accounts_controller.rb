@@ -8,7 +8,9 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
-  def show; end
+  def show
+    @account_events = @account.events
+  end
 
   def edit; end
 

@@ -1,0 +1,32 @@
+<div class="columns is-desktop is-multiline is-vcentered">
+  <div class="column is-narrow">    
+
+    <h1>New Event</h1>    
+
+    <%= form_with model: @event, url: company_events_path, method: 'post', local: true do |form| %>    
+
+      <div class="field">
+        <%= form.label :start_period %>
+        <%= form.datetime_field :start_period, class: :input %>
+      </div>    
+
+      <div class="field">
+        <%= form.label :end_period %>
+        <%= form.datetime_field :end_period, class: :input %>
+      </div>    
+
+      <div class="select">
+        <%= form.collection_select :rule_id, @rules, :id, :name %>
+      </div>    
+
+      <div class="field">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, class: :input %>
+      </div>    
+
+      <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-small is-success" %>
+      <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
+    <% end %>   
+
+  </div>
+</div>

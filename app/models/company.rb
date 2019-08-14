@@ -6,6 +6,7 @@ class Company < ApplicationRecord
   has_many :working_days, dependent: :destroy
   has_many :holidays, dependent: :destroy
   has_many :accounts, through: :employees
+  has_many :events
 
   validates :name, presence: true
 end

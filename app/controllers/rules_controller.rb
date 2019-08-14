@@ -2,6 +2,7 @@
 
 class RulesController < ApplicationController
   before_action :set_rule, only: %i[show edit update destroy]
+  before_action :companies, only: %i[edit new update create]
 
   # GET /rules
   def index
@@ -53,6 +54,10 @@ class RulesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_rule
     @rule = Rule.find(params[:id])
+  end
+
+  def companies
+    @companies = Company.all.order(:name)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,28 @@
+<div class="columns is-desktop is-multiline is-vcentered">
+  <div class="column is-narrow">
+    <h1>Editing Event</h1>
+
+    <%= form_with url: company_event_path, method: 'patch', local: true do |form| %>
+
+      <div class="field">
+        <%= form.label :start_period %>
+        <%= form.datetime_field :start_period, value: @event.start_period, class: :input %>
+      </div>
+
+      <div class="field">
+        <%= form.label :end_period %>
+        <%= form.datetime_field :end_period, value: @event.end_period, class: :input %>
+      </div>
+
+      <div class="field">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, value: @event.reason, class: :input %>
+      </div>
+
+        <%= form.button type: :submit, class: :"button is-small is-success" %>
+
+      <%= link_to 'Show', company_event_path(@event), class: :"button is-small is-info" %> 
+      <%= link_to 'Back', company_events_path, class: :"button is-small is-info" %>
+    <% end %>
+  </div>
+</div>
