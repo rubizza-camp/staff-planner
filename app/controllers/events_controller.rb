@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[edit update destroy]
+  before_action :set_event, only: %i[edit update destroy show]
   before_action :company_rules, only: %i[create new]
 
   def index
     @events = Event.all
   end
+
+  def show; end
 
   def new
     @event = Event.new(event_params)

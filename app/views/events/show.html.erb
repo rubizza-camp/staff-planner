@@ -1,0 +1,16 @@
+<table style='background-color:whitesmoke' class='table'>
+  <thead>
+    <th> Created by </th>
+    <th> Reason </th>
+    <th> Start Period </th>
+    <th> End period </th>
+    <th> Rule </th>
+    <th colspan="2"> Actions </th>
+  </thead>
+  <tbody>
+    <%= render @event %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New event', new_company_event_path, class: :"button is-small is-success" %>
+<%= link_to 'Back to calendar', company_calendar_path, class: :"button is-small is-success" %>
