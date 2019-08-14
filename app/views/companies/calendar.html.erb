@@ -13,13 +13,13 @@
       </td>
       <% @calendar.days_status.each do |day, value| %>
         <% days_tdstyle(day) %>
-          <% employee.events.each do |event| %>
-            <% calendar_event(event, day) %>
-          <% end %>
-          <td style='<%= @style %>'>
-            <%= event_links(day) %>
-        </td>
+        <% employee.events.each do |event| %>
+          <% calendar_event(event, day) %>
         <% end %>
+        <td style='<%= @style %>'>
+          <%= event_links(day) %>
+        </td>
+      <% end %>
     </tbody>
   <% end %>
 </table>
