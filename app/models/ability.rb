@@ -3,18 +3,19 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    companies_with_role_owner = user.employees.where(role: 'owner').pluck(:company_id)
-    if companies_with_role_owner.size.positive?
-      can :manage, Company, id: companies_with_role_owner
-      can :manage, [Employee, WorkingDay], company_id: companies_with_role_owner
-    end
-    companies_with_role_user = user.employees.where(role: 'user').pluck(:company_id)
-    if companies_with_role_user.size.positive?
-      can :read, Company, id: companies_with_role_user
-      can :read, [Employee, WorkingDay], company_id: companies_with_role_user
-    end
+  def initialize(account)
+    access_to_companies('owner', :manage, account)
+    access_to_companies('user', :read, account)
+
     can :manage, WorkingDayDecorator
-    byebug
+    can %i[new create], Company
+  end
+
+  def access_to_companies(role, access, account)
+    companies = account.employees.where(role: role).pluck(:company_id)
+    return unless companies.size.positive?
+
+    can access, Company, id: companies
+    can access, [Employee, WorkingDay], company_id: companies
   end
 end

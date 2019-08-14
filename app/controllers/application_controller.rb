@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     @current_ability ||= ::Ability.new(current_account)
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     flash[:error] = 'Access denied.'
     redirect_to root_path
   end

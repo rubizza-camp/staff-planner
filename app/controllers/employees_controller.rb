@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :set_params
   before_action :set_employee, only: %i[show edit update destroy]
   before_action :authenticate_account!
-  load_and_authorize_resource
+  load_and_authorize_resource :company
 
   def show; end
 
@@ -56,14 +56,9 @@ class EmployeesController < ApplicationController
   def employee_params
     if params[:email]
       params[:account_id] = Account.find_by(email: params[:email]).id
-      params.permit(:position,
-                    :start_day,
-                    :account_id,
-                    :role)
+      params.permit(:position, :start_day, :account_id, :role)
     else
-      params.permit(:position,
-                    :start_day,
-                    :role)
+      params.permit(:position, :start_day, :role)
     end
   end
 end
