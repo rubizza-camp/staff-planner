@@ -17,9 +17,14 @@
         <% else %>
           <% style = 'padding-bottom:0.5em;background-color:lightgray;font-size:14px' %>
         <% end %>
-        <td style='<%= style %>'><%= link_to day.strftime('%d'), new_company_event_path(company_id: @calendar.company.id, event: { start_period: day.strftime('%c')} ) %></span>
+        <% if @calendar.events_start_period(employee).include?(day.strftime('%Y-%m-%d')) %>
+          <% style = 'background-color:#44c9b3;padding-bottom:0.5em;font-size:14px' %>
+        <% else %>
+          <% style %>
+        <% end %>
+        <td style='<%= style %>'><span style="<%= @spanstyle %>"><%= link_to day.strftime('%d'), new_company_event_path(company_id: @calendar.company.id, event: { start_period: day.strftime('%c')} ) %></span>
         </td>
-      <% end %>
+        <% end %>
     </tbody>
   <% end %>
 </table>

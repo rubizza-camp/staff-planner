@@ -14,6 +14,14 @@ module Companies
       @employees ||= company.employees.includes(:account)
     end
 
+    def events_start_period(employee)
+      events = []
+      employee.events.each do |event|
+        events.push(event.start_period.strftime('%Y-%m-%d'))
+      end
+      events
+    end
+
     def days_status
       days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
