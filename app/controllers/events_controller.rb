@@ -55,10 +55,6 @@ class EventsController < ApplicationController
     @rules = company.rules
   end
 
-  def event_params
-    params.fetch(:event, {})
-  end
-
   def set_account
     @account = current_account
   end
