@@ -1,29 +1,32 @@
-<h1>New Event</h1>
+<div class="columns is-desktop is-multiline is-vcentered">
+  <div class="column is-narrow">    
 
-<%= form_with url: company_events_path, method: 'post', local: true do |form| %>
+    <h1>New Event</h1>    
 
-  <div class="field">
-    <%= form.label :start_period %>
-    <%= form.date_field :start_period, value: params[:start_period] %>
+    <%= form_with url: company_events_path, method: 'post', local: true do |form| %>    
+
+      <div class="field">
+        <%= form.label :start_period %>
+        <%= form.date_field :start_period, value: params[:start_period], class: :input %>
+      </div>    
+
+      <div class="field">
+        <%= form.label :end_period %>
+        <%= form.date_field :end_period, class: :input %>
+      </div>    
+
+      <div class="select">
+        <%= form.collection_select :rule_id, @rules, :id, :name %>
+      </div>    
+
+      <div class="field">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, class: :input %>
+      </div>    
+
+      <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-small is-success" %>
+      <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
+    <% end %>   
+
   </div>
-
-  <div class="field">
-    <%= form.label :end_period %>
-    <%= form.date_field :end_period %>
-  </div>
-
-  <div class="field">
-    <%= form.collection_select :rule_id, @rules, :id, :name, include_blank: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reason %>
-    <%= form.text_field :reason %>
-  </div>
-
-  <div class="actions">
-    <%= form.button :submit, name: :company_id, value: params[:company_id] %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', company_events_path %>
+</div>

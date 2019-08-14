@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destroy edit]
-  before_action :set_account, only: %i[show new update destroy index]
+  before_action :set_event, only: %i[edit update destroy]
   before_action :company_rules, only: %i[create new]
 
   def index
     @events = Event.all
   end
-
-  def show; end
 
   def new
     @event = Event.new
@@ -36,10 +33,11 @@ class EventsController < ApplicationController
 
   def destroy
     if @event.destroy
-      redirect_to company_events_path, notice: 'Event was successfully destroyed.'
+      flash[:notice] = 'You have successfully cancelled your employee.'
     else
-      render :edit
+      flash[:error] = "Employee account wasn't cancelled."
     end
+    redirect_to company_events_path
   end
 
   private
@@ -49,18 +47,12 @@ class EventsController < ApplicationController
   end
 
   def company_rules
-    set_account
-    company_id = @account.employees.pluck(:company_id).join('')
-    company = Company.find(company_id)
+    company = Company.find(params[:company_id])
     @rules = company.rules
   end
 
-  def set_account
-    @account = current_account
-  end
-
   def event_params
-    params[:employee_id] = current_account.employees.pluck(:id).join('')
+    params[:employee_id] = Employee.find_by(account_id: current_account.id).id
     params.permit(:start_period, :end_period, :reason, :employee_id, :company_id, :rule_id)
   end
 end

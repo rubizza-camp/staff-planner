@@ -5,38 +5,30 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller do
   render_views
 
+  let!(:event) { create(:event) }
+
   before(:each) do
-    @account = FactoryBot.create(:account, email: '322233@mail.ru')
-    @employee = FactoryBot.create(:employee, account_id: @account.id)
-    @rule = FactoryBot.create(:rule)
-    @event = FactoryBot.create(:event)
-    sign_in @account
+    account = event.employee.account
+    sign_in account
   end
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index, params: { company_id: @event.company_id }
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #show' do
-    it 'returns a success response' do
-      get :show, params: { id: @event.id, company_id: @event.company_id }
+      get :index, params: { company_id: event.company_id }
       expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
-      get :new, params: { company_id: @event.company_id, rule_id: @rule.id }
+      get :new, params: { company_id: event.company_id, rule_id: event.rule_id }
       expect(response).to be_successful
     end
   end
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      get :edit, params: { id: @event.id, company_id: @event.company_id }
+      get :edit, params: { id: event.id, company_id: event.company_id }
       expect(response).to be_successful
     end
   end
@@ -49,7 +41,7 @@ RSpec.describe EventsController, type: :controller do
 
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
-          post :create, params: { company_id: @event.company_id, rule_id: @event.rule_id, employee_id: @event.employee_id }
+          post :create, params: { company_id: event.company_id, rule_id: event.rule_id, employee_id: event.employee_id }
           expect(response).to be_successful
         end
       end
@@ -63,14 +55,9 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it 'updates the requested account' do
-        put :update, params: { id: @event.id, company_id: @event.company_id, event: new_attributes }
-        @event.reload
-        expect(@event.reason).eql?('Holidaaaays')
-      end
-
-      it 'redirects to the account' do
-        put :update, params: { id: @event.id, company_id: @event.company_id }
-        expect(response).to redirect_to(company_events_path(company_id: @event.company_id))
+        put :update, params: { id: event.id, company_id: event.company_id, event: new_attributes }
+        event.reload
+        expect(event.reason).eql?('Holidaaaays')
       end
     end
   end

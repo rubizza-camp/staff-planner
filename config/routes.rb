@@ -5,13 +5,16 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
     get '/accounts/sign_out' => 'devise/sessions#destroy' 
   end
+
   resources :accounts, except: [:new, :create] 
+  
   resources :companies do
     resources :employees, except: :index 
-    get :calendar
     resources :working_days
     resources :events
+    get :calendar
   end
+
   resources :rules
    
 end
