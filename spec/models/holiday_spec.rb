@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Holiday do
   context 'with valid attributess' do
-    let(:holiday){ create(:holiday) }
+    let(:holiday) { create(:holiday) }
 
     it 'is valid' do
       expect(holiday).to be_valid
@@ -10,7 +12,7 @@ RSpec.describe Holiday do
   end
 
   context 'with blank name' do
-    let(:holiday){ build(:holiday, name: '') }
+    let(:holiday) { build(:holiday, name: '') }
 
     it 'is invalid' do
       expect(holiday).to be_invalid
@@ -19,7 +21,7 @@ RSpec.describe Holiday do
   end
 
   context 'with wrong company_id' do
-    let(:holiday){ build(:holiday, company_id: 'wrong_id') }
+    let(:holiday) { build(:holiday, company_id: 'wrong_id') }
 
     it 'is invalid' do
       expect(holiday).to be_invalid
@@ -28,7 +30,7 @@ RSpec.describe Holiday do
   end
 
   context 'with wrong holiday date' do
-    let(:holiday){ build(:holiday, date: Date.today - 1) }
+    let(:holiday) { build(:holiday, date: Date.today - 1) }
 
     it 'is invalid' do
       expect(holiday).to be_invalid

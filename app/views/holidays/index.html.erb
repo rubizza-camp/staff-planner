@@ -1,30 +1,23 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Holidays of <%= @company.name %></h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Company</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @holidays.each do |holiday| %>
+<h3 class="title is-3">Holidays of company: <%= @company.name %></h3>
+  <table class="table" style="background-color:whitesmoke;">
+    <thead>
       <tr>
-        <td><%= holiday.name %></td>
-        <td><%= holiday.date %></td>
-        <td><%= link_to 'Show', company_holiday_path(id: holiday.id) %></td>
-        <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id) %></td>
-        <td><%= button_to 'Destroy',[@company, holiday], method: :delete %></td>
+        <th>Holiday's name</th>
+        <th>Date</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% @holidays.each do |holiday| %>
+        <tr>
+          <td><%= holiday.name %></td>
+          <td><%= holiday.date %></td>
+          <td><%= link_to 'Show', company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+          <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+          <td><%= button_to 'Destroy',[@company, holiday], method: :delete, class: 'button is-danger is-small' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <br>
-
-<%= link_to 'New Holiday', new_company_holiday_path %>
+<%= link_to 'New Holiday', new_company_holiday_path, class: 'button is-warning is-small' %>

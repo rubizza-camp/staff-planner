@@ -6,7 +6,7 @@ RSpec.describe EmployeesController do
   render_views
 
   describe 'GET index' do
-    let(:employee) { create(:employee)}
+    let(:employee) { create(:employee) }
 
     it 'has a 200 status code' do
       get :index, params: { company_id: employee.company_id }
@@ -64,10 +64,10 @@ RSpec.describe EmployeesController do
   end
 
   describe 'PUT update' do
-    let(:employee) { create(:employee)}
+    let(:employee) { create(:employee) }
 
     it 'updates employee' do
-      put :update, params: {  company_id: employee.company_id, id: employee.id, start_day: '2019-02-02', position: 'boss' }
+      put :update, params: { company_id: employee.company_id, id: employee.id, start_day: '2019-02-02', position: 'boss' }
       expect(response.status).to eq(302)
     end
 

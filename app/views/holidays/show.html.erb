@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @holiday.name %>
 </p>
-
 <p>
   <strong>Date:</strong>
   <%= @holiday.date %>
 </p>
-
-<%= link_to 'Edit', edit_company_holiday_path(id: @holiday.id) %> |
-<%= link_to 'Back', company_holidays_path %>
+<br>
+<%= link_to 'Edit', edit_company_holiday_path(id: @holiday.id), class: 'button is-primary is-small' %>
+<%= link_to 'Back', company_holidays_path, class: 'button is-small' %>

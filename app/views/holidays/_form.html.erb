@@ -1,17 +1,33 @@
-<%= form_with(model: [@company, holiday], local: true) do |form| %>
- <%= render 'shared/error', object: holiday %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="columns is-desktop is-multiline is-left">
+  <div class="column is-half">
+    <%= form_with(model: [@company, holiday], local: true) do |form| %>
+      <div class="field">
+        <label class="label"><%= form.label :name %></label>
+        <div class="control">
+          <% if holiday.errors[:name].any? %>
+            <%= form.text_field :name, class: 'input is-danger'%>
+            <p class="help is-danger">
+              <%= holiday.errors[:name].join('; ').capitalize %>
+            </p>
+          <% else %>
+            <%= form.text_field :name, class: "input", placeholder: "e.g New Year" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label"><%= form.label :date %></label>
+        <% if holiday.errors[:date].any? %>
+          <%= form.date_field :date, class: "input is-danger" %>
+          <p class="help is-danger">
+            <%= holiday.errors[:date].join('; ').capitalize %>
+          </p>
+        <% else %>
+          <%= form.date_field :date, class: "input"%>
+        <%end%>
+      </div>
+      <div class="control">
+        <%= form.submit class: 'button is-info is-small' %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
