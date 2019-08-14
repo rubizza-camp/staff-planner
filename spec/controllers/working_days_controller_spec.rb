@@ -92,21 +92,12 @@ RSpec.describe WorkingDaysController do
   end
 
   describe "DELETE destroy" do
-<<<<<<< HEAD
     user = FactoryBot.create(:account)
     working_day = FactoryBot.create(:working_day)
     employee = FactoryBot.build(:employee, company_id: working_day.company_id,
                                            account_id: user.id)
-    load_and_authorize_resource
     it "deletes working_day" do
       sign_in user
-=======
-    let(:working_day){ create(:working_day) }
-    let(:account) { create(:account) }
-
-    it "deletes working_day" do
-      sign_in account
->>>>>>> 7e122628dd3a8163cc242e3791f3d76f89f00140
       delete :destroy, params: { id: working_day.id,
                                  company_id: working_day.company_id }
       expect(response).to redirect_to(company_working_days_url(working_day.company_id))

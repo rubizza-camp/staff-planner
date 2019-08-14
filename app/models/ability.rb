@@ -15,5 +15,6 @@ class Ability
       can :read, [Employee, WorkingDay], company_id: companies_with_role_user
     end
     can :manage, WorkingDayDecorator
+    byebug
   end
 end

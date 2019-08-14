@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CompaniesController do
-  #render_views
+  render_views
 
   describe 'GET index' do
     let!(:company) { create(:company) }
@@ -29,7 +29,7 @@ RSpec.describe CompaniesController do
 
   describe 'GET new' do
     let(:account) { create(:account) }
-    
+
     it 'has a 200 status code' do
       sign_in account
       get :new
