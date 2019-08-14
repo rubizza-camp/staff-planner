@@ -20,14 +20,15 @@
     </div>
     <div class="navbar-item">
       <div class="field is-grouped">
-        <p class="control">
-          <a class="button is-danger is-outlined" href="/accounts/sign_in">
-            <span>Login</span>
-          </a>
-        </p>
-        <p class="control">
-          <%= link_to('Logout', destroy_account_session_path, method: :delete) %>
-        </p>
+        <% if account_signed_in? %>
+          <p class="control">
+            <%= link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %>
+          </p>
+        <% else %>
+          <p class="control">
+            <td><%= link_to 'Login', new_account_session_path, class: :"button is-normal is-success" %></td>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>
