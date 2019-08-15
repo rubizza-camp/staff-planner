@@ -16,6 +16,6 @@ class Ability
     return if company_ids.empty?
 
     can access, Company, id: company_ids
-    can access, [Employee, WorkingDay], company_id: company_ids
+    can access, [Employee, WorkingDay, Holiday, Rule, Event], company_id: company_ids
   end
 end
