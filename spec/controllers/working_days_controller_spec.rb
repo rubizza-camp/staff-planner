@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe WorkingDaysController do
   render_views
+
   let(:company) { FactoryBot.create(:company) }
   let(:working_day) { FactoryBot.create(:working_day, company_id: company.id) }
 
@@ -52,6 +53,7 @@ RSpec.describe WorkingDaysController do
   end
 
   describe 'POST create' do
+
     it 'creates working_day' do
       post :create, params: { working_day: { day_of_week: rand(7) },
                               company_id: company.id  }
@@ -66,6 +68,7 @@ RSpec.describe WorkingDaysController do
   end
 
   describe 'PUT update' do
+
     it 'updates working_day' do
       put :update, params: { working_day: { day_of_week: 2 },
                              id: working_day.id,
@@ -83,6 +86,7 @@ RSpec.describe WorkingDaysController do
   end
 
   describe 'DELETE destroy' do
+
     it 'deletes working_day' do
       delete :destroy, params: { id: working_day.id,
                                  company_id: company.id }
