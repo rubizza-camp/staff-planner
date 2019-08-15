@@ -12,10 +12,10 @@ class Ability
   end
 
   def access_to_companies(role, access, account)
-    companies = account.employees.where(role: role).pluck(:company_id)
-    return unless companies.size.positive?
+    company_ids = account.employees.where(role: role).pluck(:company_id)
+    return if company_ids.empty?
 
-    can access, Company, id: companies
-    can access, [Employee, WorkingDay], company_id: companies
+    can access, Company, id: company_ids
+    can access, [Employee, WorkingDay], company_id: company_ids
   end
 end

@@ -47,39 +47,42 @@ RSpec.describe EmployeesController do
   describe 'POST create' do
     account2 = FactoryBot.build(:account, email: '111@mail.ru')
     it 'creates employeer' do
-      post :create, params: { is_enabled: true,
-                              position: 'Boss',
-                              start_day: '2019-02-02',
-                              company_id: company.id,
-                              account_id: account.id }
+      post :create, params: { employee: { is_enabled: true,
+                                          position: 'Boss',
+                                          start_day: '2019-02-02',
+                                          account_id: account.id },
+                              company_id: company.id }
       expect(response.status).to eq(200)
     end
 
     it 'can not creates employeer' do
       account2 = FactoryBot.build(:account, email: '111@mail.ru')
-      post :create, params: { is_enabled: true,
-                              position: nil,
-                              start_day: '2019-02-02',
-                              company_id: company.id,
-                              account_id: account2.id }
+      post :create, params: { employee: { is_enabled: true,
+                                          position: nil,
+                                          start_day: '2019-02-02',
+                                          account_id: account2.id },
+                              company_id: company.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'PUT update' do
     it 'updates employee' do
-      put :update, params: {
-        company_id: company.id,
-        id: employee.id,
-        start_day: '2019-02-02',
-        position: 'boss'
-      }
+      put :update, params: { employee: { role: employee.role,
+                                         start_day: '2019-02-02',
+                                         position: 'boss' },
+                             id: employee.id,
+                             company_id: company.id }
       expect(response.status).to eq(302)
     end
 
     it 'can not updates employee' do
-      put :update, params: { company_id: company.id, id: employee.id, is_enabled: nil }
-      expect(response.status).to eq(302)
+      put :update, params: { employee: { role: employee.role,
+                                         start_day: nil,
+                                         position: nil },
+                             id: employee.id,
+                             company_id: company.id }
+      expect(response.status).to eq(200)
     end
   end
 

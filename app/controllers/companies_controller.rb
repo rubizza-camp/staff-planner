@@ -25,6 +25,8 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
+      Employee.create(start_day: Date.today, position: 'director', is_enabled: true, account_id: current_account.id,
+                      company_id: @company.id, role: 'owner')
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
