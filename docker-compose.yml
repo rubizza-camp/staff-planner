@@ -1,0 +1,19 @@
+version: '3'
+services:
+  backend:
+    build: .
+    command: tail -f /dev/null
+    env_file:
+      - postgresql.env
+    volumes:
+      - /home/vsevolod/Work/staff-planner:/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+    links:
+      - database:database
+  database:
+    image: postgres
+    env_file:
+      - postgresql.env
