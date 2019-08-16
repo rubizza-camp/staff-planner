@@ -14,5 +14,10 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= require jquery
+//= require popper
+//= require turbolinks
+//= require bootstrap
+//= require_tree.
 
 @import '~bulma/bulma'

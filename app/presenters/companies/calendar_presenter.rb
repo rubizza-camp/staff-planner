@@ -11,12 +11,26 @@ module Companies
     end
 
     def employees
-      @employees ||= company.employees.includes(:account)
+      employees ||= company.employees.includes(:account)
     end
 
-    def days_status
+    def employees_events(employee)
+      events = employee.events.pluck(:start_period, :end_period)
+      events_ranges = []
+      events.each do |event|
+        range = ((event[0].to_date)..(event[1].to_date))
+        date_range = range.uniq(&:day)
+        date_range.each do |day|
+          events_ranges.push(day)
+        end
+      end
+      Set.new(events_ranges).to_a
+    end
+
+    def days_status(employee)
       days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
+        working_month[day] = 'event' if employees_events(employee).include?(day.to_date)
       end
     end
   end

@@ -52,6 +52,12 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
+  def employee_events
+    @day = event_params[:day].to_date
+    employee = Employee.find(event_params[:employee])
+    @employee_events = EmployeeEventsService.new(employee).events
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -62,5 +68,9 @@ class CompaniesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def event_params
+    params.permit(:day, :employee)
   end
 end

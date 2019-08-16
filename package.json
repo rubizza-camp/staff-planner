@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "^4.0.7",
     "bulma": "^0.7.5",
+    "font-awesome": "^4.7.0",
     "node": "^12.8.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
