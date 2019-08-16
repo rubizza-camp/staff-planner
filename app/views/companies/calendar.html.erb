@@ -1,3 +1,26 @@
+<div class="columns is-desktop" style="margin-left:5px">
+  <div class="column is-narrow">
+    <%= form_tag(company_calendar_path(id: @company), :method => :get) do %>
+      <div id="period"> 
+        <div class="field">
+          <%= label_tag :start_period %>
+          <%= date_field_tag :start_period, class: :input %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :end_period %>
+          <%= date_field_tag :end_period, class: :input %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag 'Set period', class: "button is-small is-warning" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
 <table style="background-color:whitesmoke;margin-top:50px" class="table">
   <thead>
     <th style='padding-bottom:0.5em;font-size:12px'>Employee</th>

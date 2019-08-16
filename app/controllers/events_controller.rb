@@ -11,7 +11,11 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @event = Event.new(event_params)
+    # if AllowanceService.new(@rules, @company, current_account)
+      @event = Event.new(event_params)
+    # else
+      # flash[:error] = 'No available days for this action'
+    # end
   end
 
   def edit; end

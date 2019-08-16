@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[show edit update destroy]
+  before_action :set_company, only: %i[show edit update destroy calendar]
 
   # GET /companies
   def index
@@ -62,7 +62,11 @@ class CompaniesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_company
-    @company = Company.find(params[:id])
+    @company = if params[:id].present?
+                 Company.find(params[:id])
+               else
+                 Company.find(params[:company_id])
+               end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
