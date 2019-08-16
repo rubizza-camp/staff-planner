@@ -10,9 +10,11 @@ module Companies
       @working_days = company.working_days.pluck(:day_of_week)
     end
 
+    # rubocop:disable Lint/UselessAssignment
     def employees
       employees ||= company.employees.includes(:account)
     end
+    # rubocop:enable Lint/UselessAssignment
 
     def employees_events(employee)
       events = employee.events.pluck(:start_period, :end_period)

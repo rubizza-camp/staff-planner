@@ -8,6 +8,8 @@ class EmployeeEventsService
     @events_dates = employee.events.pluck(:start_period, :end_period)
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def events
     events = {}
     events_dates.each do |date|
@@ -23,4 +25,6 @@ class EmployeeEventsService
     end
     events
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 end
