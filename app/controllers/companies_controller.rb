@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[show edit update destroy calendar]
+  before_action :set_company, only: %i[show edit update destroy calendar employee_events]
 
   # GET /companies
   def index
@@ -52,11 +52,17 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
+  # rubocop: disable Metrics/AbcSize
   def employee_events
-    @day = event_params[:day].to_date
     employee = Employee.find(event_params[:employee])
-    @employee_events = EmployeeEventsService.new(employee).events
+    if event_params[:day].present?
+      @day = event_params[:day].to_date
+      @employee_events = EmployeeEventsService.new(employee, params).day_event(@day)
+    else
+      @employee_events = EmployeeEventsService.new(employee, params).events
+    end
   end
+  # rubocop: enable Metrics/AbcSize
 
   private
 
@@ -75,6 +81,6 @@ class CompaniesController < ApplicationController
   end
 
   def event_params
-    params.permit(:day, :employee)
+    params.permit(:day, :employee, :start_period, :end_period)
   end
 end
