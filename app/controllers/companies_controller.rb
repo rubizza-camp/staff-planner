@@ -23,10 +23,9 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    @company = Company.new(company_params)
-    if @company.save
-      Employee.create(start_day: Date.today, position: 'director', is_enabled: true, account_id: current_account.id,
-                      company_id: @company.id, role: 'owner')
+    result = Companies::Create.new.call(company_params, current_account)
+    @company = result.value
+    if result.success?
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
