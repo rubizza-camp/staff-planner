@@ -10,7 +10,7 @@ module Companies
       @days = if params[:start_period].present? && params[:end_period].present?
                 (params[:start_period].to_date)..params[:end_period].to_date.to_a
               else
-                @days = ((Date.today)..(Date.today + 30)).to_a
+                ((Date.today)..(Date.today + 30)).to_a
               end
       @working_days = company.working_days.pluck(:day_of_week)
     end
