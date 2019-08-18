@@ -8,7 +8,7 @@ module Companies
     def initialize(params)
       @company = Company.find(params[:company_id])
       @days = if params[:start_period].present? && params[:end_period].present?
-                ((params[:start_period].to_date)..(params[:end_period].to_date)).to_a
+                (params[:start_period].to_date)..params[:end_period].to_date.to_a
               else
                 @days = ((Date.today)..(Date.today + 30)).to_a
               end
@@ -16,23 +16,21 @@ module Companies
     end
     # rubocop:enable Metrics/AbcSize
 
-    # rubocop:disable Lint/UselessAssignment
     def employees
-      employees ||= company.employees.includes(:account)
+      @employees ||= company.employees.includes(:account)
     end
-    # rubocop:enable Lint/UselessAssignment
 
     def employees_events(employee)
       events = employee.events.where('GREATEST( start_period, ? ) < LEAST( end_period, ? )', @days.first, @days.last)
       events_ranges = []
       events.each do |event|
-        range = ((event.start_period.to_date)..(event.end_period.to_date))
+        range = (event.start_period.to_date)..(event.end_period.to_date)
         date_range = range.uniq(&:day)
         date_range.each do |day|
           events_ranges.push(day)
         end
       end
-      Set.new(events_ranges).to_a
+      events_ranges.uniq
     end
 
     def days_status(employee)
