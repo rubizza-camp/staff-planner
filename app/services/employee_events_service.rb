@@ -18,7 +18,7 @@ class EmployeeEventsService
   def day_event(day)
     events = {}
     events_dates.each do |date|
-      date_range = ((date[0].to_date)..(date[1].to_date))
+      date_range = (date[0].to_date)..(date[1].to_date)
       date_range.each do |day|
         if events[day].present?
           events[day] << employee.events.where(start_period: date[0]).to_a
