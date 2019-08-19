@@ -62,7 +62,7 @@ RSpec.describe HolidaysController do
 
     it 'can not creates holiday' do
       post :create, params: { holiday: { date: Date.today - 1 },
-                              company_id: company.id  }
+                              company_id: company.id }
       expect(response.status).to eq(200)
     end
   end

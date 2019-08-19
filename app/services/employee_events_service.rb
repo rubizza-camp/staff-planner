@@ -3,7 +3,7 @@
 class EmployeeEventsService
   attr_reader :employee, :events_dates
 
-  def initialize(employee, params, day)
+  def initialize(event_params, day)
     @employee = employee
     @events_dates = if event_params[:start_period].present?
                       employee.events
