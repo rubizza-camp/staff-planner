@@ -3,6 +3,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[edit update destroy]
   before_action :company_rules, only: %i[create new]
+  before_action :authenticate_account!
+  load_and_authorize_resource :company
 
   def index
     @events = Event.all

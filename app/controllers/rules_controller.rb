@@ -3,6 +3,8 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: %i[show edit update destroy]
   before_action :companies, only: %i[edit new update create]
+  before_action :authenticate_account!
+  load_and_authorize_resource :company
 
   # GET /rules
   def index
