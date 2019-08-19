@@ -5,7 +5,10 @@ class HolidaysController < ApplicationController
   before_action :set_holiday, only: %i[show edit update destroy]
 
   def index
-    @holidays = @company.holidays.all
+    @holidays = @company.holidays.order(:name).page params[:page]
+
+    @countries = ISO3166::Country.countries.sort_by(&:name)
+    @countries = @countries.collect { |c| [ "#{c.name} #{c.emoji_flag}, #{c.gec}", c.gec] }
   end
 
   def show; end
@@ -41,6 +44,20 @@ class HolidaysController < ApplicationController
       flash[:error] = "Holiday can't be deleted"
     end
     redirect_to company_holidays_url
+  end
+
+  def calendarific_import
+    token = Rails.application.secrets.token_calendarific
+
+    uri = URI("https://calendarific.com/api/v2/holidays?&api_key=#{token}&country=#{params[:country]}&year=#{params[:year]}")
+    parsed_country = JSON.parse(Net::HTTP.get(uri))
+
+    parsed_country['response']['holidays'].each do |holiday|
+      @holiday = @company.holidays.build(name: holiday['name'], date: holiday['date']['iso'])
+      @holiday.save
+    end
+
+    redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
   end
 
   private

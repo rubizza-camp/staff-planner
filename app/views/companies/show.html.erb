@@ -1,5 +1,7 @@
-<h1>Employees</h1>
-
+<%= link_to 'Holidays', company_holidays_path(company_id: @company.id), class: 'button is-link is-outlined' %>
+<h3 class="title is-3 is-narrow" style="margin-top:1em;">
+  Employees
+</h3>
 <table style="background-color:whitesmoke !important;" class="table">
   <thead>
     <th> Employee name </th>
