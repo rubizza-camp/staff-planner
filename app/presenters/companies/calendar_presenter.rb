@@ -21,7 +21,7 @@ module Companies
       @employees ||= company.employees.includes(:account)
     end
 
-    def employees_events(_employee)
+    def employees_events
       date_range = events
                    .map { |event| (event.start_period.to_date)..(event.end_period.to_date) }
                    .flat_map(&:to_a)
@@ -30,10 +30,10 @@ module Companies
       end
     end
 
-    def days_status(employee)
+    def days_status
       days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
-        working_month[day] = 'event' if employees_events(employee).include?(day.to_date)
+        working_month[day] = 'event' if employees_events.include?(day.to_date)
       end
     end
   end
