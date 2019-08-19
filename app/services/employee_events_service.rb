@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 class EmployeeEventsService
-  attr_reader :employee, :events_dates
+  attr_reader :employee
 
-  def initialize(event_params, day)
-    @employee = Employee.find(event_params[:employee])
-    @events_dates = if event_params[:start_period].present?
-                      Event.employee_events(event_params[:start_period], event_params[:end_period])
-                    else
-                      employee.events.where('start_period <= ? AND end_period >= ?', day, day)
-                    end
+  def initialize(employee)
+    @employee = employee
   end
 
-  def events
+  def events(from, to)
+    events_dates = Event.employee_events(from, to).where(employee_id: employee.id)
     events_dates.group_by(&:start_period)
   end
 end

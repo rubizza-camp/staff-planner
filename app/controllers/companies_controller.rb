@@ -55,10 +55,18 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
+  # rubocop: disable Metrics/AbcSize
   def employee_events
-    day = event_params[:day].to_date if event_params[:day].present?
-    @employee_events = EmployeeEventsService.new(event_params, day).events
+    employee = Employee.find(event_params[:employee])
+    if event_params[:day].present?
+      from, to = event_params[:day]
+    else
+      from = event_params[:start_period]
+      to = event_params[:end_period]
+    end
+    @employee_events = EmployeeEventsService.new(employee).events(from, to)
   end
+  # rubocop: enable Metrics/AbcSize
 
   private
 
