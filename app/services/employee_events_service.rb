@@ -16,6 +16,5 @@ class EmployeeEventsService
 
   def events
     events_dates.group_by(&:start_date)
-    end
   end
 end
