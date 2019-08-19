@@ -59,7 +59,8 @@ class CompaniesController < ApplicationController
   def employee_events
     employee = Employee.find(event_params[:employee])
     if event_params[:day].present?
-      from, to = event_params[:day]
+      from = event_params[:day].to_date.beginning_of_day
+      to = event_params[:day].to_date.end_of_day
     else
       from = event_params[:start_period]
       to = event_params[:end_period]

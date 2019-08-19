@@ -13,7 +13,7 @@ module Companies
                 (Date.today)..(Date.today + 30)
               end
       @working_days = company.working_days.pluck(:day_of_week)
-      @events = Event.employee_events(@days.first, @days.last).group_by(&:employee_id)
+      @events = Event.range(@days.first, @days.last).group_by(&:employee_id)
     end
     # rubocop: enable Metrics/AbcSize
 

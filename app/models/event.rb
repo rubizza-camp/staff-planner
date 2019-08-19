@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   belongs_to :rule
   has_one :account, through: :employee
 
-  scope :employee_events,
+  scope :range,
         ->(start_day, end_day) { where('GREATEST( start_period, ? ) < LEAST( end_period, ? )', start_day, end_day) }
 
   validates :employee_id, presence: true
