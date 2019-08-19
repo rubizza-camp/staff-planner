@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    result = Companies::Create.new.call(company_params, current_account)
+    result = Companies::Create.new.call(company_params, current_account.id)
     @company = result.value
     if result.success?
       redirect_to @company, notice: 'Company was successfully created.'
