@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class AllowanceService
-  attr_reader :current_account, :rule, :new_event
+  attr_reader :current_account, :rule, :new_event, :events
 
   def initialize(current_account, event_params)
     @current_account = current_account
     @rule = Rule.find(event_params[:rule_id])
-    @new_event = ((event_params[:start_period].to_date)..(event_params[:end_period].to_date))
+    @new_event = (event_params[:start_period].to_date)..(event_params[:end_period].to_date)
+    @events = Event.employee_events(period.first, period.last).where(rule_id: rule.id)
   end
 
   def allow?
@@ -25,17 +26,11 @@ class AllowanceService
     end
   end
 
-  def events
-    current_account.events
-                   .where('GREATEST( start_period, ? ) < LEAST( end_period, ? )', period.first, period.last)
-                   .where(rule_id: rule.id)
-  end
-
   def used_days
     used_days = 0
     events.each do |event|
-      date_range = ((event[:start_period].to_date)..(event[:end_period].to_date))
-      used_days += date_range.count
+      date_range = (event[:start_period].to_date)..(event[:end_period].to_date)
+      date_range.each { |day| used_days += 1 if period.include?(day) }
     end
     used_days
   end

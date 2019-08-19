@@ -26,7 +26,7 @@ class EventsController < ApplicationController
       redirect_to company_events_path
     else
       redirect_to new_company_event_path,
-                  alert: "You can't have enough days. Allowance days: #{allow.rule.allowance_days}"
+                  alert: "You can't have enough days. Allowance days: #{limit.rule.allowance_days}"
     end
   end
   # rubocop: enable Metrics/AbcSize
