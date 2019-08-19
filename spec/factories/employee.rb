@@ -7,5 +7,6 @@ FactoryBot.define do
     start_day { '2014-09-09' }
     position { 'Boss' }
     is_enabled { true }
+    role { 'owner' }
   end
 end

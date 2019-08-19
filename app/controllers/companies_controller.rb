@@ -2,6 +2,8 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
+  before_action :authenticate_account!
+  load_and_authorize_resource
 
   # GET /companies
   def index
@@ -21,8 +23,9 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    @company = Company.new(company_params)
-    if @company.save
+    result = Companies::Create.new.call(company_params, current_account.id)
+    @company = result.value
+    if result.success?
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
