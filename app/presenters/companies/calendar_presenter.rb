@@ -25,9 +25,6 @@ module Companies
       date_range = events[employee.id]
                    .map { |event| (event.start_period.to_date)..(event.end_period.to_date) }
                    .flat_map(&:to_a)
-      date_range.each_with_object([]) do |day, events_ranges|
-        events_ranges.push(day)
-      end
     end
 
     def days_status(employee)
