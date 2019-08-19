@@ -2,17 +2,18 @@
 
 module Companies
   class CalendarPresenter
-    attr_reader :company, :name, :id, :days, :working_days
+    attr_reader :company, :name, :id, :days, :working_days, :events
 
     # rubocop:disable Metrics/AbcSize
     def initialize(params)
       @company = Company.find(params[:company_id])
       @days = if params[:start_period].present? && params[:end_period].present?
-                (params[:start_period].to_date)..params[:end_period].to_date.to_a
+                (params[:start_period].to_date)..(params[:end_period].to_date)
               else
-                ((Date.today)..(Date.today + 30)).to_a
+                (Date.today)..(Date.today + 30)
               end
       @working_days = company.working_days.pluck(:day_of_week)
+      @events = Event.employee_events(@days.first, @days.last)
     end
     # rubocop:enable Metrics/AbcSize
 
@@ -21,16 +22,12 @@ module Companies
     end
 
     def employees_events(_employee)
-      events = Event.employee_events(@days.first, @days.last)
-      events_ranges = []
-      events.each do |event|
-        range = (event.start_period.to_date)..(event.end_period.to_date)
-        date_range = range.uniq(&:day)
-        date_range.each do |day|
-          events_ranges.push(day)
-        end
+      date_range = events
+                   .map { |event| (event.start_period.to_date)..(event.end_period.to_date) }
+                   .flat_map(&:to_a)
+      date_range.each_with_object([]) do |day, events_ranges|
+        events_ranges.push(day)
       end
-      events_ranges.uniq
     end
 
     def days_status(employee)
