@@ -7,4 +7,6 @@ class Employee < ApplicationRecord
 
   validates :start_day, presence: true
   validates :is_enabled, presence: true
+  validates :role, presence: true,
+                   inclusion: { in: %w[owner user] }
 end

@@ -27,13 +27,14 @@
         <th style="padding-bottom:0.5em;font-size:12px"><%= day.strftime('%a')[0..1] %></th>
       <% end %>
   </thead>
+  <tbody>
   <% @calendar.employees.each do |employee| %>
-    <tbody>
+    <tr>
       <td style='padding-bottom:0.5em;'>
         <%= employee.account.name %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
-        <% @calendar.days_status.each do |day, value| %>
+        <% @calendar.days_status(employee).each do |day, value| %>
           <% case value %>
             <% when 'work' %>
               <td style="padding-bottom:0.5em;font-size:14px">
@@ -53,8 +54,9 @@
               </td>
           <% end %>
         <% end %>
-    </tbody>
-  <% end %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path %>'>New employee</a>

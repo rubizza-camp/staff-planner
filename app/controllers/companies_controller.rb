@@ -2,6 +2,8 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy calendar employee_events]
+  before_action :authenticate_account!
+  load_and_authorize_resource
 
   # GET /companies
   def index
@@ -21,8 +23,9 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    @company = Company.new(company_params)
-    if @company.save
+    result = Companies::Create.new.call(company_params, current_account.id)
+    @company = result.value
+    if result.success?
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
@@ -52,11 +55,19 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
+  # rubocop: disable Metrics/AbcSize
   def employee_events
     employee = Employee.find(event_params[:employee])
-    day = event_params[:day].to_date if event_params[:day].present?
-    @employee_events = EmployeeEventsService.new(event_params, day).events
+    if event_params[:day].present?
+      from = event_params[:day].to_date.beginning_of_day
+      to = event_params[:day].to_date.end_of_day
+    else
+      from = event_params[:start_period]
+      to = event_params[:end_period]
+    end
+    @employee_events = EmployeeEventsService.new(employee).events(from, to)
   end
+  # rubocop: enable Metrics/AbcSize
 
   private
 
