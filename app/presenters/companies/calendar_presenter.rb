@@ -22,9 +22,9 @@ module Companies
     end
 
     def employee_events(employee)
-      date_range = events[employee.id]
-                   .map { |event| (event.start_period.to_date)..(event.end_period.to_date) }
-                   .flat_map(&:to_a)
+      events[employee.id]
+        .map { |event| (event.start_period.to_date)..(event.end_period.to_date) }
+        .flat_map(&:to_a)
     end
 
     def days_status(employee)
