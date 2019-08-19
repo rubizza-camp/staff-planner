@@ -58,7 +58,7 @@ class CompaniesController < ApplicationController
   def employee_events
     employee = Employee.find(event_params[:employee])
     day = event_params[:day].to_date if event_params[:day].present?
-    @employee_events = EmployeeEventsService.new(employee, params, day).events
+    @employee_events = EmployeeEventsService.new(event_params, day).events
   end
 
   private

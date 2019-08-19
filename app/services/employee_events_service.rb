@@ -5,18 +5,17 @@ class EmployeeEventsService
 
   def initialize(employee, params, day)
     @employee = employee
-    @events_dates = if params[:start_period].present?
+    @events_dates = if event_params[:start_period].present?
                       employee.events
                               .where('start_period >= ? AND end_period <= ?',
-                                     params[:start_period], params[:end_period])
+                                     event_params[:start_period], event_params[:end_period])
                     else
                       employee.events.where('start_period <= ? AND end_period >= ?', day, day)
                     end
   end
 
   def events
-    events_dates.each_with_object({}) do |event, events|
-      events[event.start_period] = [event]
+    events_dates.group_by(&:start_date)
     end
   end
 end

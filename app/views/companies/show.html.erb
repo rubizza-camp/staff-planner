@@ -3,7 +3,8 @@
 <table style="background-color:whitesmoke !important;" class="table">
   <thead>
     <th> Employee name </th>
-    <th> Created at </th>
+    <th> Position </th>
+    <th> Start day </th>
     <th> Activated </th>
     <th colspan="3"> Actions </th>
   </thead>
@@ -12,6 +13,7 @@
       <tr>
         <td><%= link_to employee.account.name, company_employee_path(id: employee.id, company_id: @company.id) %></td>
         <td><%= employee.position %></td>
+        <td><%= employee.start_day %></td>
         <td><%= employee.is_enabled %></td>
         <td><%= link_to 'Show', company_employee_path(id: employee.id, company_id: @company.id ), class: :"button is-small is-info" %></td>
         <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id, company_id: @company.id), class: :"button is-small is-info" %></td>
