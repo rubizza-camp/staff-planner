@@ -22,4 +22,13 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(_resourse)
     new_account_session_path
   end
+
+  def current_ability
+    @current_ability ||= ::Ability.new(current_account)
+  end
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    flash[:error] = 'Access denied.'
+    redirect_to root_path
+  end
 end

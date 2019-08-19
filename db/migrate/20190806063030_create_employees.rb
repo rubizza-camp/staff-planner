@@ -6,6 +6,7 @@ class CreateEmployees < ActiveRecord::Migration[5.2]
       t.boolean :is_enabled, null: false, default: true
       t.references :account, index: true, null: false, foreign_key: true
       t.references :company, index: true, null: false, foreign_key: true
+      t.string :role, null: false
 
       t.timestamps
     end
