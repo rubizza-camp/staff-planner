@@ -7,7 +7,7 @@ class AllowanceService
     @current_account = current_account
     @rule = Rule.find(event_params[:rule_id])
     @new_event = (event_params[:start_period].to_date)..(event_params[:end_period].to_date)
-    @events = Event.employee_events(period.first, period.last).where(rule_id: rule.id)
+    @events = Event.range(period.first, period.last).where(rule_id: rule.id)
   end
 
   def allow?
