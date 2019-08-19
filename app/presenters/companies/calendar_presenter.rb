@@ -20,8 +20,8 @@ module Companies
       @employees ||= company.employees.includes(:account)
     end
 
-    def employees_events(employee)
-      events = employee.events.where('GREATEST( start_period, ? ) < LEAST( end_period, ? )', @days.first, @days.last)
+    def employees_events(_employee)
+      events = Event.employee_events(@days.first, @days.last)
       events_ranges = []
       events.each do |event|
         range = (event.start_period.to_date)..(event.end_period.to_date)

@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
       @day = event_params[:day].to_date
       @employee_events = EmployeeEventsService.new(employee, params).day_event(@day)
     else
-      @employee_events = EmployeeEventsService.new(employee, params).events
+      @employee_events = EmployeeEventsService.new(employee, params).period_event
     end
   end
   # rubocop: enable Metrics/AbcSize
