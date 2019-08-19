@@ -52,27 +52,17 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
-  # rubocop: disable Metrics/AbcSize
   def employee_events
     employee = Employee.find(event_params[:employee])
-    if event_params[:day].present?
-      @day = event_params[:day].to_date
-      @employee_events = EmployeeEventsService.new(employee, params).day_event(@day)
-    else
-      @employee_events = EmployeeEventsService.new(employee, params).events
-    end
+    day = event_params[:day].to_date if event_params[:day].present?
+    @employee_events = EmployeeEventsService.new(employee, params, day).events
   end
-  # rubocop: enable Metrics/AbcSize
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_company
-    @company = if params[:id].present?
-                 Company.find(params[:id])
-               else
-                 Company.find(params[:company_id])
-               end
+    @company = Company.find(params[:id] || params[:company_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
