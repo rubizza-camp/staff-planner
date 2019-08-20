@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[edit update destroy]
+  before_action :set_event, only: %i[edit update destroy show]
   before_action :company_rules, only: %i[create new]
   before_action :authenticate_account!
   load_and_authorize_resource :company
@@ -10,8 +10,14 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def show; end
+
   def new
+    # if AllowanceService.new(@rules, @company, current_account)
     @event = Event.new(event_params)
+    # else
+    # flash[:error] = 'No available days for this action'
+    # end
   end
 
   def edit; end

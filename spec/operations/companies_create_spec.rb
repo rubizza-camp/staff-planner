@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Companies::Create do
@@ -10,7 +12,7 @@ RSpec.describe Companies::Create do
 
       it 'creates company and employee' do
         expect { call }.to change { Employee.count }.by(1)
-         .and change {Company.count}.by(1)
+                                                    .and change { Company.count }.by(1)
       end
     end
 
@@ -19,7 +21,7 @@ RSpec.describe Companies::Create do
       subject(:call) { Companies::Create.new.call(company_params, account.id) }
 
       it 'not creates company and employee' do
-        expect { call }.not_to change { Employee.count } and change { Company.count }
+        expect { call }.not_to(change { Employee.count }) && change { Company.count }
       end
     end
 
@@ -28,7 +30,7 @@ RSpec.describe Companies::Create do
       subject(:call) { Companies::Create.new.call(company_params, nil) }
 
       it 'not creates company and employee' do
-        expect { call }.not_to change { Employee.count } and change { Company.count }
+        expect { call }.not_to(change { Employee.count }) && change { Company.count }
       end
     end
   end

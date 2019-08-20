@@ -1,3 +1,25 @@
+<div class="columns is-desktop" style="margin-left:5px">
+  <div class="column is-narrow">
+    <%= form_tag(company_calendar_path(id: @company), :method => :get) do %>
+      <div id="period"> 
+        <div class="field">
+          <%= label_tag :start_period %>
+          <%= date_field_tag :start_period, class: :input %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :end_period %>
+          <%= date_field_tag :end_period, class: :input %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag 'Set period', class: "button is-small is-warning" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <table style="background-color:whitesmoke;margin-top:50px" class="table">
   <thead>
     <th style='padding-bottom:0.5em;font-size:12px'>Employee</th>
@@ -5,23 +27,37 @@
         <th style="padding-bottom:0.5em;font-size:12px"><%= day.strftime('%a')[0..1] %></th>
       <% end %>
   </thead>
+  <tbody>
   <% @calendar.employees.each do |employee| %>
-    <tbody>
+    <tr>
       <td style='padding-bottom:0.5em;'>
         <%= employee.account.name %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
-      <% @calendar.days_status.each do |day, value| %>
-        <% if @calendar.days_status[day].eql?('work') %>
-          <% style = 'padding-bottom:0.5em;font-size:14px' %>
-        <% else %>
-          <% style = 'padding-bottom:0.5em;background-color:lightgray;font-size:14px' %>
+        <% @calendar.days_status(employee).each do |day, value| %>
+          <% case value %>
+            <% when 'work' %>
+              <td style="padding-bottom:0.5em;font-size:14px">
+                <%= link_to day.strftime('%d'), new_company_event_path(
+                    company_id: @calendar.company.id,
+                    event: { start_period: day.strftime('%c') }) %>
+              </td>
+            <% when 'holiday' %>
+              <td style="padding-bottom:0.5em;background-color:lightgray;font-size:14px">
+                <%= link_to day.strftime('%d'), new_company_event_path(
+                    company_id: @calendar.company.id,
+                    event: { start_period: day.strftime('%c') }) %>
+              </td>
+            <% when 'event' %>
+              <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">
+                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+              </td>
+          <% end %>
         <% end %>
-        <td style='<%= style %>'><%= link_to day.strftime('%d'), new_company_event_path(company_id: @calendar.company.id, event: { start_period: day.strftime('%c')} ) %></span>
-        </td>
-      <% end %>
-    </tbody>
-  <% end %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path %>'>New employee</a>
+
