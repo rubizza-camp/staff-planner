@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
+  render_views
+
   before(:each) do
     @account = Account.create! valid_attributes
     sign_in @account
