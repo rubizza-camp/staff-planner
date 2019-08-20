@@ -7,6 +7,7 @@ class Ability
     access_to_companies('owner', :manage, account)
     access_to_companies('user', :read, account)
 
+    can :manage, account
     can :manage, WorkingDayDecorator
     can %i[new create], Company
   end
@@ -16,6 +17,7 @@ class Ability
     return if company_ids.empty?
 
     can access, Company, id: company_ids
+    can :calendar, Company, id: company_ids
     can access, [Employee, WorkingDay, Holiday, Rule, Event], company_id: company_ids
   end
 end

@@ -6,9 +6,7 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
 
   # GET /companies
-  def index
-    @companies = Company.includes(:employees)
-  end
+  def index; end
 
   # GET /companies/1
   def show; end

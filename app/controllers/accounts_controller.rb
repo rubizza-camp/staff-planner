@@ -3,6 +3,7 @@
 class AccountsController < ApplicationController
   before_action :set_account, except: :index
   before_action :find_account_companies, only: :show
+  load_and_authorize_resource
 
   def index
     @accounts = Account.all
