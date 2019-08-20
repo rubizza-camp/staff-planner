@@ -5,10 +5,6 @@ class AccountsController < ApplicationController
   before_action :find_account_companies, only: :show
   load_and_authorize_resource
 
-  def index
-    @accounts = Account.all
-  end
-
   def show
     @account_events = @account.events
   end
