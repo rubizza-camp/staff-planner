@@ -12,14 +12,13 @@ module Holidays
     end
 
     def parsed_country(params)
-      token = Rails.application.secrets.token_calendarific
+      params = {
+        api_key: Rails.application.secrets.token_calendarific,
+        country: params[:country],
+        year: params[:year]
+      }.to_query
 
-      uri = URI(
-        'https://calendarific.com/api/v2/holidays' \
-        "?&api_key=#{token}&" \
-        "country=#{params[:country]}&" \
-        "year=#{params[:year]}"
-      )
+      uri = URI("https://calendarific.com/api/v2/holidays?&#{params}")
 
       JSON.parse(Net::HTTP.get(uri))
     end
