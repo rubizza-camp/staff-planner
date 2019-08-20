@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :employees, except: :index 
     resources :working_days
     resources :events
+    get :employee_events
     get :calendar
     resources :holidays do
       collection do
