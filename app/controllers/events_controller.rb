@@ -13,11 +13,7 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    # if AllowanceService.new(@rules, @company, current_account)
     @event = Event.new(event_params)
-    # else
-    # flash[:error] = 'No available days for this action'
-    # end
   end
 
   def edit; end
@@ -25,8 +21,9 @@ class EventsController < ApplicationController
   def create
     @event = @company.events.build(event_params)
     @event.employee = Employee.find_by(account: current_account, company: @company)
-    if @event.save
-      redirect_to company_events_path, notice: 'Event was successfully created.'
+    result = Events::Create.new.call(event_params, @event, current_account)
+    if result.success?
+      redirect_to company_events_path
     else
       render :new
     end
