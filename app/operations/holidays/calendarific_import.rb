@@ -3,7 +3,7 @@
 module Holidays
   class CalendarificImport
     def call(params)
-      holidays = create_holidays(parsed_country(params), params)
+      holidays = create_holidays(params)
       if holidays.present?
         Result::Success.new(holidays)
       else
@@ -11,29 +11,31 @@ module Holidays
       end
     end
 
-    def parsed_country(params)
-      token = Rails.application.secrets.token_calendarific
+    private
 
-      uri = URI(
-        'https://calendarific.com/api/v2/holidays' \
-        "?&api_key=#{token}&" \
-        "country=#{params[:country]}&" \
-        "year=#{params[:year]}"
-      )
+    def create_holidays(params)
+      list_holidays = parsed_country(params)
+      return if !list_holidays || list_holidays['response'].empty?
 
-      JSON.parse(Net::HTTP.get(uri))
-    end
-
-    def create_holidays(parsed_country, params)
-      company = params[:company_id]
-
-      parsed_country.dig('response', 'holidays').each do |holiday|
+      list_holidays.dig('response', 'holidays').each do |holiday|
         Holiday.create(
           name: holiday['name'],
           date: holiday.dig('date', 'iso'),
-          company_id: company
+          company_id: params[:company_id]
         )
       end
+    end
+
+    def parsed_country(params)
+      url_params = {
+        api_key: Rails.application.secrets.token_calendarific,
+        country: params[:country],
+        year: params[:year]
+      }
+
+      uri = URI("https://calendarific.com/api/v2/holidays?#{url_params.to_query}")
+
+      JSON.parse(Net::HTTP.get(uri))
     end
   end
 end

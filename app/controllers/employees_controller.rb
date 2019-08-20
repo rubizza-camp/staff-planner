@@ -5,6 +5,7 @@ class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[show edit update destroy]
   before_action :authenticate_account!
   load_and_authorize_resource :company
+  load_and_authorize_resource through: :company
 
   def show; end
 
@@ -15,11 +16,12 @@ class EmployeesController < ApplicationController
   def edit; end
 
   def create
-    employee = @company.employees.build(employee_params)
-    if employee.save
+    @employee = @company.employees.build(employee_params)
+    @employee.account = Account.find_by(email: params.dig(:employee, :email))
+
+    if @employee.save
       redirect_to company_path(@company.id)
     else
-      @employee = @company.employees.build
       render :new
     end
   end
@@ -55,12 +57,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    email = params.dig(:employee, :email)
-    if email
-      params[:employee][:account_id] = Account.find_by(email: email).id
-      params.require(:employee).permit(:position, :start_day, :account_id, :role)
-    else
-      params.require(:employee).permit(:position, :start_day, :role)
-    end
+    params.require(:employee).permit(:position, :start_day, :role)
   end
 end
