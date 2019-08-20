@@ -18,8 +18,11 @@ class EventsController < ApplicationController
 
   def edit; end
 
+  # rubocop: disable Metrics/AbcSize
   def create
-    result = Events::Create.new.call(event_params, @company, current_account)
+    @event = @company.events.build(event_params)
+    @event.employee = Employee.find_by(account: current_account, company: @company)
+    result = Events::Create.new.call(event_params, @event, current_account)
     if result.success?
       result.value.save
       redirect_to company_events_path
@@ -27,6 +30,7 @@ class EventsController < ApplicationController
       render :new
     end
   end
+  # rubocop: enable Metrics/AbcSize
 
   def update
     if @event.update(event_params)
