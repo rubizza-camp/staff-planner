@@ -18,7 +18,6 @@ class EventsController < ApplicationController
 
   def edit; end
 
-  # rubocop: disable Metrics/AbcSize
   def create
     @event = @company.events.build(event_params)
     @event.employee = Employee.find_by(account: current_account, company: @company)
@@ -29,7 +28,6 @@ class EventsController < ApplicationController
       render :new
     end
   end
-  # rubocop: enable Metrics/AbcSize
 
   def update
     if @event.update(event_params)
