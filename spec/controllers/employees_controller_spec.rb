@@ -23,7 +23,6 @@ RSpec.describe EmployeesController do
     end
   end
 
-
   describe 'GET new' do
     it 'has a 200 status code' do
       get :new, params: { company_id: company.id }
@@ -90,9 +89,9 @@ RSpec.describe EmployeesController do
   describe 'DELETE destroy' do
     it 'deletes employee' do
       employee
-      expect {
+      expect do
         delete :destroy, params: { company_id: company.id, id: employee.id }
-      }.to change { Employee.count }.by(-1)
+      end.to change { Employee.count }.by(-1)
 
       expect(response).to redirect_to(company_path(company.id))
     end

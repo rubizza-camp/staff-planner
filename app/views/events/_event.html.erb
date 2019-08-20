@@ -1,8 +1,9 @@
-    <tr>
-      <td><%= event.reason %></td>
-      <td><%= event.start_period.strftime('%c') %></td>
-      <td><%= event.end_period.strftime('%c') %></td>
-      <td><%= event.rule.name %></td>
-      <td><%= link_to 'Edit', edit_company_event_path(id: event.company_id, company_id: event.company_id ), class: :"button is-small is-info" %></td>
-      <td><%= button_to 'Destroy', company_event_path(id: event.company_id, company_id: event.company_id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
-    </tr>
+<tr>
+  <td><%= event.account.name %></td>
+  <td><%= event.reason %></td>
+  <td><%= event.start_period.strftime('%c') %></td>
+  <td><%= event.end_period.strftime('%c') %></td>
+  <td><%= event.rule.name %></td>
+  <td><%= link_to 'Edit', edit_company_event_path(id: event.id, company_id: event.company_id ), class: :"button is-small is-info" %></td>
+  <td><%= button_to 'Destroy', company_event_path(id: event.id, company_id: event.company_id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+</tr>
