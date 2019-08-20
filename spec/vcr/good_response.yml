@@ -1,0 +1,357 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=<SECRET>&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Aug 2019 19:25:57 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=frn0aiis74cka5d9fm65ehj6p8; path=/
+      - __cfduid=d3f1d357cccf2cd515225759f454af2da1566588357; expires=Sat, 22-Aug-20
+        19:25:57 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566588357'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50af79b0af64d6f5-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: |2-
+
+        {"meta":{"code":200},"response":{"holidays":[{"name":"New Year's Day","description":"Russians celebrate New Year\u2019s Day in accordance with the Gregorian calendar on January 1.","date":{"iso":"2020-01-01","datetime":{"year":2020,"month":1,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-02","datetime":{"year":2020,"month":1,"day":2}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-03","datetime":{"year":2020,"month":1,"day":3}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-06","datetime":{"year":2020,"month":1,"day":6}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Orthodox Christmas Day","description":"Many Russians celebrate Christmas Day on January 7 in the Gregorian calendar, which corresponds to December 25 in the Julian calendar.","date":{"iso":"2020-01-07","datetime":{"year":2020,"month":1,"day":7}},"type":["National holiday","Orthodox"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-08","datetime":{"year":2020,"month":1,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Old New Year","description":null,"date":{"iso":"2020-01-14","datetime":{"year":2020,"month":1,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Valentine's Day","description":"Valentine\u2019s Day is a special time to celebrate love, romance and friendship.","date":{"iso":"2020-02-14","datetime":{"year":2020,"month":2,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-23","datetime":{"year":2020,"month":2,"day":23}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day observed","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-24","datetime":{"year":2020,"month":2,"day":24}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Special Operations Forces Day","description":"Special Operations Forces Day in Russia falls on February 27.","date":{"iso":"2020-02-27","datetime":{"year":2020,"month":2,"day":27}},"type":["Observance"],"locations":"All","states":"All"},{"name":"International Women's Day","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-08","datetime":{"year":2020,"month":3,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"International Women's Day observed","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-09","datetime":{"year":2020,"month":3,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"March Equinox","description":null,"date":{"iso":"2020-03-20T06:49:36+03:00","datetime":{"year":2020,"month":3,"day":20,"hour":6,"minute":49,"second":36},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Isra and Mi'raj","description":"Isra and Mi'raj (Isra Me'raj, Israa and Mi'raaj, Laylat Al-Isra wa Al-Miraj, Lailat al Miraj, Night Journey and Ascension to Heaven) marks the night that the Prophet Mohammad traveled from Mecca to Jerusalem, ascended to heaven and returned.","date":{"iso":"2020-03-22","datetime":{"year":2020,"month":3,"day":22}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Orthodox Easter Day","description":"Millions of Orthodox Christians around the world often celebrate Easter Sunday at a different time to the date set by many western churches.","date":{"iso":"2020-04-19","datetime":{"year":2020,"month":4,"day":19}},"type":["Observance","Orthodox"],"locations":"All","states":"All"},{"name":"Ramadan starts","description":"Ramadan is a period of prayer, reflection and fasting for many Muslims worldwide. It is the ninth month in the Islamic calendar.","date":{"iso":"2020-04-24","datetime":{"year":2020,"month":4,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Spring and Labor Day","description":"For many Russians, Spring and Labor Day, which falls on May 1, is a family holiday and a time for relaxation.","date":{"iso":"2020-05-01","datetime":{"year":2020,"month":5,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-09","datetime":{"year":2020,"month":5,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day observed","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-11","datetime":{"year":2020,"month":5,"day":11}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Lailat al-Qadr","description":"Laylat al-Qadr commmemorates the time when Mohammad received the first verses of the Koran (Qu'ran).","date":{"iso":"2020-05-19","datetime":{"year":2020,"month":5,"day":19}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Eid al-Fitr","description":"Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.","date":{"iso":"2020-05-24","datetime":{"year":2020,"month":5,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Russia Day","description":"Russia Day, annually celebrated on June 12, marks the beginning of democratic reforms in Russia and is one of the newest holidays in the Russian Federation.","date":{"iso":"2020-06-12","datetime":{"year":2020,"month":6,"day":12}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"June Solstice","description":null,"date":{"iso":"2020-06-21T00:43:40+03:00","datetime":{"year":2020,"month":6,"day":21,"hour":0,"minute":43,"second":40},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Eid al-Adha","description":"Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.","date":{"iso":"2020-07-31","datetime":{"year":2020,"month":7,"day":31}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Muharram","description":"Muharram is the first month of the Islamic calendar and a time of remembrance or mourning.","date":{"iso":"2020-08-20","datetime":{"year":2020,"month":8,"day":20}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Day of Knowledge","description":null,"date":{"iso":"2020-09-01","datetime":{"year":2020,"month":9,"day":1}},"type":["Observance"],"locations":"All","states":"All"},{"name":"September Equinox","description":null,"date":{"iso":"2020-09-22T16:30:39+03:00","datetime":{"year":2020,"month":9,"day":22,"hour":16,"minute":30,"second":39},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"The Prophet's Birthday","description":"Mawlid, or Milad, marks the birth of the Islamic prophet Muhammed, or Mohamed, in the year 570 of the Gregorian calendar.","date":{"iso":"2020-10-29","datetime":{"year":2020,"month":10,"day":29}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Unity Day","description":"Unity Day, which is on November 4, is one of the newest and the most controversial holidays in Russia.","date":{"iso":"2020-11-04","datetime":{"year":2020,"month":11,"day":4}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"December Solstice","description":null,"date":{"iso":"2020-12-21T13:02:19+03:00","datetime":{"year":2020,"month":12,"day":21,"hour":13,"minute":2,"second":19},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"}]}}
+    http_version: 
+  recorded_at: Fri, 23 Aug 2019 19:25:57 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=<SECRET>&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Aug 2019 19:28:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=tllgkqctq6k6p647ompi3vo5dt; path=/
+      - __cfduid=d897a98ac0d6add8afde593f111b25af41566588499; expires=Sat, 22-Aug-20
+        19:28:19 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566588499'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50af7d284bfed6c5-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: |2-
+
+        {"meta":{"code":200},"response":{"holidays":[{"name":"New Year's Day","description":"Russians celebrate New Year\u2019s Day in accordance with the Gregorian calendar on January 1.","date":{"iso":"2020-01-01","datetime":{"year":2020,"month":1,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-02","datetime":{"year":2020,"month":1,"day":2}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-03","datetime":{"year":2020,"month":1,"day":3}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-06","datetime":{"year":2020,"month":1,"day":6}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Orthodox Christmas Day","description":"Many Russians celebrate Christmas Day on January 7 in the Gregorian calendar, which corresponds to December 25 in the Julian calendar.","date":{"iso":"2020-01-07","datetime":{"year":2020,"month":1,"day":7}},"type":["National holiday","Orthodox"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-08","datetime":{"year":2020,"month":1,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Old New Year","description":null,"date":{"iso":"2020-01-14","datetime":{"year":2020,"month":1,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Valentine's Day","description":"Valentine\u2019s Day is a special time to celebrate love, romance and friendship.","date":{"iso":"2020-02-14","datetime":{"year":2020,"month":2,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-23","datetime":{"year":2020,"month":2,"day":23}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day observed","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-24","datetime":{"year":2020,"month":2,"day":24}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Special Operations Forces Day","description":"Special Operations Forces Day in Russia falls on February 27.","date":{"iso":"2020-02-27","datetime":{"year":2020,"month":2,"day":27}},"type":["Observance"],"locations":"All","states":"All"},{"name":"International Women's Day","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-08","datetime":{"year":2020,"month":3,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"International Women's Day observed","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-09","datetime":{"year":2020,"month":3,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"March Equinox","description":null,"date":{"iso":"2020-03-20T06:49:36+03:00","datetime":{"year":2020,"month":3,"day":20,"hour":6,"minute":49,"second":36},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Isra and Mi'raj","description":"Isra and Mi'raj (Isra Me'raj, Israa and Mi'raaj, Laylat Al-Isra wa Al-Miraj, Lailat al Miraj, Night Journey and Ascension to Heaven) marks the night that the Prophet Mohammad traveled from Mecca to Jerusalem, ascended to heaven and returned.","date":{"iso":"2020-03-22","datetime":{"year":2020,"month":3,"day":22}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Orthodox Easter Day","description":"Millions of Orthodox Christians around the world often celebrate Easter Sunday at a different time to the date set by many western churches.","date":{"iso":"2020-04-19","datetime":{"year":2020,"month":4,"day":19}},"type":["Observance","Orthodox"],"locations":"All","states":"All"},{"name":"Ramadan starts","description":"Ramadan is a period of prayer, reflection and fasting for many Muslims worldwide. It is the ninth month in the Islamic calendar.","date":{"iso":"2020-04-24","datetime":{"year":2020,"month":4,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Spring and Labor Day","description":"For many Russians, Spring and Labor Day, which falls on May 1, is a family holiday and a time for relaxation.","date":{"iso":"2020-05-01","datetime":{"year":2020,"month":5,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-09","datetime":{"year":2020,"month":5,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day observed","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-11","datetime":{"year":2020,"month":5,"day":11}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Lailat al-Qadr","description":"Laylat al-Qadr commmemorates the time when Mohammad received the first verses of the Koran (Qu'ran).","date":{"iso":"2020-05-19","datetime":{"year":2020,"month":5,"day":19}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Eid al-Fitr","description":"Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.","date":{"iso":"2020-05-24","datetime":{"year":2020,"month":5,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Russia Day","description":"Russia Day, annually celebrated on June 12, marks the beginning of democratic reforms in Russia and is one of the newest holidays in the Russian Federation.","date":{"iso":"2020-06-12","datetime":{"year":2020,"month":6,"day":12}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"June Solstice","description":null,"date":{"iso":"2020-06-21T00:43:40+03:00","datetime":{"year":2020,"month":6,"day":21,"hour":0,"minute":43,"second":40},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Eid al-Adha","description":"Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.","date":{"iso":"2020-07-31","datetime":{"year":2020,"month":7,"day":31}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Muharram","description":"Muharram is the first month of the Islamic calendar and a time of remembrance or mourning.","date":{"iso":"2020-08-20","datetime":{"year":2020,"month":8,"day":20}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Day of Knowledge","description":null,"date":{"iso":"2020-09-01","datetime":{"year":2020,"month":9,"day":1}},"type":["Observance"],"locations":"All","states":"All"},{"name":"September Equinox","description":null,"date":{"iso":"2020-09-22T16:30:39+03:00","datetime":{"year":2020,"month":9,"day":22,"hour":16,"minute":30,"second":39},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"The Prophet's Birthday","description":"Mawlid, or Milad, marks the birth of the Islamic prophet Muhammed, or Mohamed, in the year 570 of the Gregorian calendar.","date":{"iso":"2020-10-29","datetime":{"year":2020,"month":10,"day":29}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Unity Day","description":"Unity Day, which is on November 4, is one of the newest and the most controversial holidays in Russia.","date":{"iso":"2020-11-04","datetime":{"year":2020,"month":11,"day":4}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"December Solstice","description":null,"date":{"iso":"2020-12-21T13:02:19+03:00","datetime":{"year":2020,"month":12,"day":21,"hour":13,"minute":2,"second":19},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"}]}}
+    http_version: 
+  recorded_at: Fri, 23 Aug 2019 19:28:19 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 16:49:37 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=vcs784h5kece6bpm5h3u49ubfp; path=/
+      - __cfduid=d178aae93ab18bb9cb7c573c09dd6099a1566665377; expires=Sun, 23-Aug-20
+        16:49:37 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566665377'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b6d20e7c0764cd-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 16:49:37 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=fb6facac013921c3264e4dd7d3b743581e0bab52&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 19:31:52 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=28nctkhtho2v0nvn7qfguelq8g; path=/
+      - __cfduid=d827edae044b92f6c1ca09069a64d8ca41566675112; expires=Sun, 23-Aug-20
+        19:31:52 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566675112'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b7bfbc4e2bd6d5-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 19:31:53 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=fb6facac013921c3264e4dd7d3b743581e0bab52&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 19:33:30 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=s7j7ujrltlkjmk6gmqvm1npac6; path=/
+      - __cfduid=d94a66acd2180c73834f14d9ce520523c1566675209; expires=Sun, 23-Aug-20
+        19:33:29 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566675210'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b7c21d5ad7c2ef-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 19:33:30 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=fb6facac013921c3264e4dd7d3b743581e0bab54&country=RU&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 19:36:11 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=gb1e8d2n4kc8mdnn1b8ig76ekc; path=/
+      - __cfduid=d164c4ca4f6910704353b000b7876b9f41566675370; expires=Sun, 23-Aug-20
+        19:36:10 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566675371'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b7c60b88176479-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: |2-
+
+        {"meta":{"code":200},"response":{"holidays":[{"name":"New Year's Day","description":"Russians celebrate New Year\u2019s Day in accordance with the Gregorian calendar on January 1.","date":{"iso":"2020-01-01","datetime":{"year":2020,"month":1,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-02","datetime":{"year":2020,"month":1,"day":2}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-03","datetime":{"year":2020,"month":1,"day":3}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-06","datetime":{"year":2020,"month":1,"day":6}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Orthodox Christmas Day","description":"Many Russians celebrate Christmas Day on January 7 in the Gregorian calendar, which corresponds to December 25 in the Julian calendar.","date":{"iso":"2020-01-07","datetime":{"year":2020,"month":1,"day":7}},"type":["National holiday","Orthodox"],"locations":"All","states":"All"},{"name":"New Year Holiday Week","description":"A 2012 decree has extended the number of days, and the dates for the New Year break.","date":{"iso":"2020-01-08","datetime":{"year":2020,"month":1,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Old New Year","description":null,"date":{"iso":"2020-01-14","datetime":{"year":2020,"month":1,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Valentine's Day","description":"Valentine\u2019s Day is a special time to celebrate love, romance and friendship.","date":{"iso":"2020-02-14","datetime":{"year":2020,"month":2,"day":14}},"type":["Observance"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-23","datetime":{"year":2020,"month":2,"day":23}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Defender of the Fatherland Day observed","description":"Many Russians celebrate Defender of the Fatherland Day on February 23, when they honor military forces and veterans.","date":{"iso":"2020-02-24","datetime":{"year":2020,"month":2,"day":24}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Special Operations Forces Day","description":"Special Operations Forces Day in Russia falls on February 27.","date":{"iso":"2020-02-27","datetime":{"year":2020,"month":2,"day":27}},"type":["Observance"],"locations":"All","states":"All"},{"name":"International Women's Day","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-08","datetime":{"year":2020,"month":3,"day":8}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"International Women's Day observed","description":"Many Russians pay tribute to women\u2019s role in Russian society by celebrating International Women\u2019s Day on March 8.","date":{"iso":"2020-03-09","datetime":{"year":2020,"month":3,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"March Equinox","description":null,"date":{"iso":"2020-03-20T06:49:36+03:00","datetime":{"year":2020,"month":3,"day":20,"hour":6,"minute":49,"second":36},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Isra and Mi'raj","description":"Isra and Mi'raj (Isra Me'raj, Israa and Mi'raaj, Laylat Al-Isra wa Al-Miraj, Lailat al Miraj, Night Journey and Ascension to Heaven) marks the night that the Prophet Mohammad traveled from Mecca to Jerusalem, ascended to heaven and returned.","date":{"iso":"2020-03-22","datetime":{"year":2020,"month":3,"day":22}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Orthodox Easter Day","description":"Millions of Orthodox Christians around the world often celebrate Easter Sunday at a different time to the date set by many western churches.","date":{"iso":"2020-04-19","datetime":{"year":2020,"month":4,"day":19}},"type":["Observance","Orthodox"],"locations":"All","states":"All"},{"name":"Ramadan starts","description":"Ramadan is a period of prayer, reflection and fasting for many Muslims worldwide. It is the ninth month in the Islamic calendar.","date":{"iso":"2020-04-24","datetime":{"year":2020,"month":4,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Spring and Labor Day","description":"For many Russians, Spring and Labor Day, which falls on May 1, is a family holiday and a time for relaxation.","date":{"iso":"2020-05-01","datetime":{"year":2020,"month":5,"day":1}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-09","datetime":{"year":2020,"month":5,"day":9}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Victory Day observed","description":"One of the biggest Russian holidays, Victory Day, marks Germany\u2019s surrender to the Soviet Union in 1945, ending one of the bloodiest wars in Russia\u2019s history.","date":{"iso":"2020-05-11","datetime":{"year":2020,"month":5,"day":11}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"Lailat al-Qadr","description":"Laylat al-Qadr commmemorates the time when Mohammad received the first verses of the Koran (Qu'ran).","date":{"iso":"2020-05-19","datetime":{"year":2020,"month":5,"day":19}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Eid al-Fitr","description":"Eid-al-Fitr is a holiday to mark the end of the Islamic month of Ramadan, during which Muslims fast during the hours of daylight.","date":{"iso":"2020-05-24","datetime":{"year":2020,"month":5,"day":24}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Russia Day","description":"Russia Day, annually celebrated on June 12, marks the beginning of democratic reforms in Russia and is one of the newest holidays in the Russian Federation.","date":{"iso":"2020-06-12","datetime":{"year":2020,"month":6,"day":12}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"June Solstice","description":null,"date":{"iso":"2020-06-21T00:43:40+03:00","datetime":{"year":2020,"month":6,"day":21,"hour":0,"minute":43,"second":40},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"Eid al-Adha","description":"Eid al-Adha (Id ul-Adha) is an Islamic festival falling on the 10th day of the month of Dhul Hijja (Thou al-Hijja) to commemorate the willingness of Ibrahim (Abraham) to sacrifice his son.","date":{"iso":"2020-07-31","datetime":{"year":2020,"month":7,"day":31}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Muharram","description":"Muharram is the first month of the Islamic calendar and a time of remembrance or mourning.","date":{"iso":"2020-08-20","datetime":{"year":2020,"month":8,"day":20}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Day of Knowledge","description":null,"date":{"iso":"2020-09-01","datetime":{"year":2020,"month":9,"day":1}},"type":["Observance"],"locations":"All","states":"All"},{"name":"September Equinox","description":null,"date":{"iso":"2020-09-22T16:30:39+03:00","datetime":{"year":2020,"month":9,"day":22,"hour":16,"minute":30,"second":39},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"},{"name":"The Prophet's Birthday","description":"Mawlid, or Milad, marks the birth of the Islamic prophet Muhammed, or Mohamed, in the year 570 of the Gregorian calendar.","date":{"iso":"2020-10-29","datetime":{"year":2020,"month":10,"day":29}},"type":["Muslim"],"locations":"All","states":"All"},{"name":"Unity Day","description":"Unity Day, which is on November 4, is one of the newest and the most controversial holidays in Russia.","date":{"iso":"2020-11-04","datetime":{"year":2020,"month":11,"day":4}},"type":["National holiday"],"locations":"All","states":"All"},{"name":"December Solstice","description":null,"date":{"iso":"2020-12-21T13:02:19+03:00","datetime":{"year":2020,"month":12,"day":21,"hour":13,"minute":2,"second":19},"timezone":{"offset":"+03:00","zoneabb":"MSK","zoneoffset":10800,"zonedst":0,"zonetotaloffset":10800}},"type":["Season"],"locations":"All","states":"All"}]}}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 19:36:11 GMT
+recorded_with: VCR 5.0.0

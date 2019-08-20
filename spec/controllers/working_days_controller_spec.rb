@@ -55,13 +55,13 @@ RSpec.describe WorkingDaysController do
   describe 'POST create' do
     it 'creates working_day' do
       post :create, params: { working_day: { day_of_week: rand(7) },
-                              company_id: company.id  }
+                              company_id: company.id }
       expect(response).to redirect_to company_working_days_path(company_id: company.id)
     end
 
     it 'can not creates working_day' do
       post :create, params: { working_day: { day_of_week: -1 },
-                              company_id: company.id  }
+                              company_id: company.id }
       expect(response.status).to eq(200)
     end
   end

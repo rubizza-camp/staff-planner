@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_204147) do
+ActiveRecord::Schema.define(version: 2019_08_22_150504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_08_12_204147) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_204147) do
     t.bigint "rule_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["company_id"], name: "index_events_on_company_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
     t.index ["rule_id"], name: "index_events_on_rule_id"

@@ -2,5 +2,5 @@
 
 <%= render 'form', rule: @rule %>
 
-<%= link_to 'Show', @rule %> |
-<%= link_to 'Back', rules_path %>
+<%= link_to 'Show', company_rule_path(id: @rule.id) %> |
+<%= link_to 'Back', company_rules_path %>
