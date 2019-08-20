@@ -52,6 +52,10 @@
               <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">
                 <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
               </td>
+            <% when 'state_holiday' %>
+              <td style="background-color: lightpink ;padding-bottom:0.5em;font-size:14px">
+                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id) %>
+              </td>
           <% end %>
         <% end %>
       </tr>
