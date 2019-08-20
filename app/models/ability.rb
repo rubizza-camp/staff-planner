@@ -5,7 +5,7 @@ class Ability
 
   def initialize(account)
     access_to_companies('owner', :manage, account)
-    access_to_companies('user', :read, account)
+    access_to_companies('employee', :read, account)
 
     can :manage, account
     can :manage, WorkingDayDecorator
