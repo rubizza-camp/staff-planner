@@ -4,6 +4,7 @@ class HolidaysController < ApplicationController
   before_action :set_company
   before_action :set_holiday, only: %i[show edit update destroy]
   load_and_authorize_resource :company
+  load_and_authorize_resource through: :company
 
   def index
     @holidays = @company.holidays.all

@@ -5,6 +5,7 @@ class RulesController < ApplicationController
   before_action :companies, only: %i[edit new update create]
   before_action :authenticate_account!
   load_and_authorize_resource :company
+  load_and_authorize_resource through: :company
 
   # GET /rules
   def index
