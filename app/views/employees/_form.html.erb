@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= form.label :start_day %>
-    <%= form.text_field :start_day, id: :employee_start_day %>
+    <%= form.date_field :start_day, value: Date.today, id: :employee_start_day %>
   </div>
 
   <% if !employee.id %>
@@ -18,11 +18,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :role %>
-    <%= form.text_field :role, id: :role %>
+    <%= label_tag :role %>
+    <%= select_tag :role, options_for_select(['owner', 'employee'])%>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: :"button is-small is-success" %>
   </div>
 <% end %>
