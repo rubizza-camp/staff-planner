@@ -66,6 +66,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     return {} unless params[:rule]
+
     params.require(:rule).permit(:name, :company_id, :allowance_days, :period, :is_enabled)
   end
 end
