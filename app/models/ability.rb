@@ -9,6 +9,8 @@ class Ability
 
     can :manage, account
     can :manage, WorkingDayDecorator
+    can :manage, Event, employee_id: account.employees.pluck(:id)
+
     can %i[new create], Company
   end
 
@@ -19,5 +21,6 @@ class Ability
     can access, Company, id: company_ids
     can :calendar, Company, id: company_ids
     can access, [Employee, WorkingDay, Holiday, Rule, Event], company_id: company_ids
+    can %i[new create], Event, company_id: company_ids
   end
 end
