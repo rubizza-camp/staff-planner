@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_204147) do
     t.boolean "is_enabled", default: true, null: false
     t.bigint "account_id", null: false
     t.bigint "company_id", null: false
-    t.string "role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_employees_on_account_id"
