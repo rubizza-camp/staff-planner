@@ -18,20 +18,15 @@ class EventsController < ApplicationController
 
   def edit; end
 
-  # rubocop: disable Metrics/AbcSize
   def create
-    @event = @company.events.build(event_params)
-    @event.employee = Employee.find_by(account: current_account, company: @company)
-    limit = AllowanceService.new(current_account, event_params)
-    if limit.allow?
-      @event.save
+    result = Events::Create.new.call(event_params, @company, current_account)
+    if result.success?
+      result.value.save
       redirect_to company_events_path
     else
-      redirect_to new_company_event_path,
-                  alert: "You can't have enough days. Allowance days: #{limit.rule.allowance_days}"
+      render :new
     end
   end
-  # rubocop: enable Metrics/AbcSize
 
   def update
     if @event.update(event_params)
