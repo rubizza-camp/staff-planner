@@ -7,9 +7,6 @@ class HolidaysController < ApplicationController
 
   def index
     @holidays = @company.holidays.order(:name).page params[:page]
-
-    @countries = ISO3166::Country.countries.sort_by(&:name)
-    @countries = @countries.collect { |c| ["#{c.name} #{c.emoji_flag}, #{c.gec}", c.gec] }
   end
 
   def show; end
@@ -48,17 +45,11 @@ class HolidaysController < ApplicationController
   end
 
   def calendarific_import
-    token = Rails.application.secrets.token_calendarific
-
-    uri = URI("https://calendarific.com/api/v2/holidays?&api_key=#{token}&country=#{params[:country]}&year=#{params[:year]}")
-    parsed_country = JSON.parse(Net::HTTP.get(uri))
-
-    pparsed_country.dig('response', 'holidays').each do |holiday|
-      @holiday = @company.holidays.build(name: holiday['name'], date: holiday.dig('date', 'iso'))
-      @holiday.save
+    if Holidays::CalendarificImport.new.call(params)
+      redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
+    else
+      render :new
     end
-
-    redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
   end
 
   private

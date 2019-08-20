@@ -4,7 +4,7 @@
     <label class="label">Select country</label>
     <div class="control">
       <div class="select" name="country">
-          <%= select_tag :country, options_for_select(@countries) %> 
+          <%= select_tag :country, options_for_select(countries_for_select) %> 
       </div>
     </div>
   </div>
