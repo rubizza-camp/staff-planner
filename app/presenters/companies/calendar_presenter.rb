@@ -33,8 +33,8 @@ module Companies
       holidays
       days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
-        working_month[day] = 'event' if events[employee.id].present? && employee_events(employee).include?(day.to_date)
         working_month[day] = 'state_holiday' if holidays.include?(day)
+        working_month[day] = 'event' if events[employee.id].present? && employee_events(employee).include?(day.to_date)
       end
     end
     # rubocop: enable Metrics/AbcSize
