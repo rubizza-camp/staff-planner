@@ -42,12 +42,7 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
-    context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { company_id: company.id, rule_id: event.rule_id, employee_id: event.employee_id }
-        expect(response).to be_successful
-      end
-    end
+    # TO DO WITH INVALID PARAMETERS
   end
 
   describe 'PUT #update' do
