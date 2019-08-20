@@ -6,7 +6,7 @@ class HolidaysController < ApplicationController
   load_and_authorize_resource :company
 
   def index
-    @holidays = @company.holidays.order(:name).page params[:page]
+    @holidays = @company.holidays.order(:name).page(params[:page])
   end
 
   def show; end
@@ -45,7 +45,9 @@ class HolidaysController < ApplicationController
   end
 
   def calendarific_import
-    if Holidays::CalendarificImport.new.call(params)
+    result = Holidays::CalendarificImport.new.call(params)
+
+    if result.success?
       redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
     else
       render :new
