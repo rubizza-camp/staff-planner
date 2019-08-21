@@ -71,5 +71,8 @@ class RulesController < ApplicationController
 
   def set_company
     @company = Company.find(params[:company_id])
+    return {} unless params[:rule]
+
+    params.require(:rule).permit(:name, :company_id, :allowance_days, :period, :is_enabled)
   end
 end

@@ -1,30 +1,13 @@
-<h1>Employees</h1>
+<h1 class="title"><%= @company.name %></h1>
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company) %>'>New employee</a>
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= company_rules_path(company_id: @company.id) %>'>Rules</a>
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_working_day_path(@company) %>'>New working day<a>
 
-<table style="background-color:whitesmoke !important;" class="table">
-  <thead>
-    <th> Employee name </th>
-    <th> Position </th>
-    <th> Start day </th>
-    <th> Activated </th>
-    <th colspan="3"> Actions </th>
-  </thead>
-  <% @company.employees.each do |employee| %>
-    <tbody>
-      <tr>
-        <td><%= link_to employee.account.name, company_employee_path(id: employee.id, company_id: @company.id) %></td>
-        <td><%= employee.position %></td>
-        <td><%= employee.start_day %></td>
-        <td><%= employee.is_enabled %></td>
-        <td><%= link_to 'Show', company_employee_path(id: employee.id, company_id: @company.id ), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id, company_id: @company.id), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Destroy', company_employee_path(id: employee.id, company_id: @company.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
-<br>
-
+<div class="columns">
+  <div class="column"><%= render 'employees/list', company: @company %></div>
+  <div class="column"><%= render 'rules/list', rules: @company.rules %></div>
+</div>
 
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company.id) %>'>New employee</a>
-<a style="padding-right:10px"><a class="button is-small is-success" href='<%= company_rules_path(company_id: @company.id) %>'>Rules</a>
+<a style="padding-right:10px"><a class="button is-small is-info" href='<%= company_calendar_path(@company) %>'>Calendar</a>
 <a style="padding-right:10px"><a class="button is-small is-info" href='<%= companies_path %>'>Back to Companies List</a>
