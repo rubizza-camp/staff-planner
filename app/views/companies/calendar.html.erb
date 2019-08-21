@@ -1,7 +1,7 @@
 <div class="columns is-desktop" style="margin-left:5px">
   <div class="column is-narrow">
     <%= form_tag(company_calendar_path(id: @company), :method => :get) do %>
-      <div id="period"> 
+      <div id="period">
         <div class="field">
           <%= label_tag :start_period %>
           <%= date_field_tag :start_period, class: :input %>
@@ -60,4 +60,4 @@
 </table>
 
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path %>'>New employee</a>
-
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= company_rules_path %>'>Rules</a>

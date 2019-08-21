@@ -1,12 +1,12 @@
 <h1 class="title"><%= @company.name %></h1>
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company) %>'>New employee</a>
-<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_rule_path(rule: { company_id: @company.id }) %>'>New rule<a>
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= company_rules_path(company_id: @company.id) %>'>Rules</a>
 <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_working_day_path(@company) %>'>New working day<a>
 
 <div class="columns">
   <div class="column"><%= render 'employees/list', company: @company %></div>
-  <div class="column"><%= render 'rules/list', rules: @company.rules %></div>
 </div>
 
+<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company.id) %>'>New employee</a>
 <a style="padding-right:10px"><a class="button is-small is-info" href='<%= company_calendar_path(@company) %>'>Calendar</a>
 <a style="padding-right:10px"><a class="button is-small is-info" href='<%= companies_path %>'>Back to Companies List</a>

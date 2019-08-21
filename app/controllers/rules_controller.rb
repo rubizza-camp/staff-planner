@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class RulesController < ApplicationController
+  before_action :set_company
   before_action :set_rule, only: %i[show edit update destroy]
   before_action :companies, only: %i[edit new update create]
   before_action :authenticate_account!
   load_and_authorize_resource :company
-  # load_and_authorize_resource through: :company
+  load_and_authorize_resource through: :company
 
   # GET /rules
   def index
-    @rules = Rule.all
+    @rules = @company.rules
   end
 
   # GET /rules/1
@@ -17,7 +18,7 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @rule = Rule.new(rule_params)
+    @rule =  @company.rules.build
   end
 
   # GET /rules/1/edit
@@ -25,9 +26,9 @@ class RulesController < ApplicationController
 
   # POST /rules
   def create
-    @rule = Rule.new(rule_params)
+    @rule = @company.rules.build(rule_params)
     if @rule.save
-      redirect_to @rule, notice: 'Rule was successfully created.'
+      redirect_to company_rules_path, notice: 'Rule was successfully created.'
     else
       render :new
     end
@@ -36,7 +37,7 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1
   def update
     if @rule.update(rule_params)
-      redirect_to @rule, notice: 'Rule was successfully updated.'
+      redirect_to company_rules_url, notice: 'Rule was successfully updated.'
     else
       render :edit
     end
@@ -49,14 +50,14 @@ class RulesController < ApplicationController
     else
       flash[:error] = "Rule can't be deleted"
     end
-    redirect_to rules_url
+    redirect_to company_rules_url
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_rule
-    @rule = Rule.find(params[:id])
+    @rule = @company.rules.find(params[:id])
   end
 
   def companies
@@ -65,8 +66,10 @@ class RulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
-    return {} unless params[:rule]
+    params.require(:rule).permit(:name, :allowance_days, :period, :is_enabled)
+  end
 
-    params.require(:rule).permit(:name, :company_id, :allowance_days, :period, :is_enabled)
+  def set_company
+    @company = Company.find(params[:company_id])
   end
 end
