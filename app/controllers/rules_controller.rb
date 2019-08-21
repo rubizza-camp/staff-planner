@@ -10,7 +10,7 @@ class RulesController < ApplicationController
 
   # GET /rules
   def index
-    @rules = @company.rules.all
+    @rules = @company.rules
   end
 
   # GET /rules/1
@@ -57,7 +57,7 @@ class RulesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_rule
-    @rule = @company.rules.find_by!(id: params[:id])
+    @rule = @company.rules.find(params[:id])
   end
 
   def companies
