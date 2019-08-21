@@ -22,9 +22,9 @@
         <td><%= rule.allowance_days %></td>
         <td><%= rule.period %></td>
         <td><%= rule.is_enabled %></td>
-        <td><%= link_to 'Show', rule %></td>
-        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
-        <td><%= button_to 'Destroy', rule, method: :delete %></td>
+        <td><%= link_to 'Show', company_rule_path(id: rule.id) %></td>
+        <td><%= link_to 'Edit', edit_company_rule_path(id: rule.id) %></td>
+        <td><%= button_to 'Destroy', [@company, rule], method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br />
 
-<%= link_to 'New Rule', new_rule_path %>
+<%= link_to 'New Rule', new_company_rule_path %>
