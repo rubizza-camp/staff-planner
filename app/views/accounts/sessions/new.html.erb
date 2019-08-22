@@ -6,7 +6,7 @@
       <img src="/staff_planner.png" alt="logo" width="300" height="28">
 
       <div class="field">
-        <p class="control has-icons-left has-icons-right">
+        <p class="control">
           <%= f.label :email %><br>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: :input, placeholder: :"Enter your e-mail" %>
         </p>
@@ -18,7 +18,11 @@
       </div> 
 
       <div class="actions">
-        <input class="button is-success" type="submit" value="Login" />
+        <input class="button is-medium is-success" type="submit" value="Login" />
+
+        <%= link_to account_github_omniauth_authorize_path, class: :"button is-medium is-black" do %>
+          <ion-icon name="logo-github"></ion-icon> Sign Up With Github
+        <% end %>
       </div>
     <% end %>
 
