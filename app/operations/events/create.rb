@@ -2,10 +2,12 @@
 
 module Events
   class Create
-    def call(event_params, event, current_account)
-      if AllowanceService.new(current_account, event_params).allow?
+    def call(company, event_params, current_account)
+      event = company.events.build(event_params)
+      event.employee = Employee.find_by(account: current_account, company: company)
+      if AllowanceService.allow?(event.rule_id, event)
         event.save
-        ApplicationMailer.welcome_email.deliver_now
+        ApplicationMailer.event_email(company, event, current_account).deliver_now
         Result::Success.new(event)
       else
         Result::Failure.new(event)
