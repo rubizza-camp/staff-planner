@@ -6,7 +6,9 @@ RSpec.describe Holidays::CalendarificImport do
   let(:employee) { create(:employee) }
   let(:account)  { employee.account }
   let(:company)  { employee.company }
-  describe '#call', :vcr => {:cassette_name => 'good_response'} do
+  describe '#call', :vcr => {:cassette_name => 'good_response',
+                             :record => :new_episodes
+  } do
     context 'with valid params' do
       let(:params) { { company_id: company.id,
                        year: 2020,
@@ -24,7 +26,9 @@ RSpec.describe Holidays::CalendarificImport do
       end
     end
   end
-  describe '#call', :vcr => {:cassette_name => 'bad_response'} do
+  describe '#call', :vcr => {:cassette_name => 'bad_response',
+                             :record => :new_episodes
+  } do
     context 'with invalid country name' do
       let(:params) { { company_id: 1,
                        year: 2020,
