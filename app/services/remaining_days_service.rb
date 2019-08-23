@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemainingDaysService
   def call(employee_id, rule_id)
     rule = Rule.find(rule_id)

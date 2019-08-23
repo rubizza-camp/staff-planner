@@ -7,7 +7,7 @@ module Events
       event.employee = Employee.find_by(account: current_account, company: company)
       if AllowanceService.allow?(event.rule_id, event)
         event.save
-        ApplicationMailer.event_email(company, event, current_account).deliver_now
+        EventMailer.send_email(company, event, current_account).deliver_now
         Result::Success.new(event)
       else
         Result::Failure.new(event)
