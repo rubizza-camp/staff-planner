@@ -51,7 +51,7 @@ class HolidaysController < ApplicationController
     if result.success?
       redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
     else
-      render :new
+      redirect_to company_holidays_url, notice: 'Holidays was not created.'
     end
   end
 
