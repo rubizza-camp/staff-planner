@@ -59,4 +59,240 @@ http_interactions:
         {"meta":{"code":200,"error_type":"call failed","error_detail":"Missing required call parameters. See https:\/\/calendarific.com\/ for details."},"response":[]}
     http_version: 
   recorded_at: Fri, 23 Aug 2019 19:25:59 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=&country=ZZ&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 16:49:38 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=71pb2qd9shup2vfsih2djc241b; path=/
+      - __cfduid=dffde0afedc4e63ad1a9cdf4eefa5a3a71566665377; expires=Sun, 23-Aug-20
+        16:49:37 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566665378'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b6d2139d3fd6c1-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 16:49:38 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=&country=ZZ&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 16:56:49 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=quemg7rk2luf6qpeliqf2bgspo; path=/
+      - __cfduid=d63effa84a3fae1820ea08ad313b495b51566665808; expires=Sun, 23-Aug-20
+        16:56:48 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566665809'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b6dc991a9e64b5-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 16:56:49 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=fb6facac013921c3264e4dd7d3b743581e0bab52&country=ZZ&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 19:26:42 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '165'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=gm3pb2ao5hghdmk83ioh467eu8; path=/
+      - __cfduid=d1202384535841844f1614896cfbc10091566674801; expires=Sun, 23-Aug-20
+        19:26:41 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566674802'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b7b8285875dfa9-FRA
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"meta":{"code":401,"error_type":"auth failed","error_detail":"Missing or invalid api credentials. See https:\/\/calendarific.com\/api for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 19:26:42 GMT
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=fb6facac013921c3264e4dd7d3b743581e0bab54&country=ZZ&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 24 Aug 2019 19:36:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=bmm5811t54bi9ir1cjsf497sl4; path=/
+      - __cfduid=d6623dbcd9aea0ce94fbc3aa4ee8fcb501566675387; expires=Sun, 23-Aug-20
+        19:36:27 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566675389'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50b7c6721888d6fd-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: |2-
+
+        {"meta":{"code":200,"error_type":"call failed","error_detail":"Missing required call parameters. See https:\/\/calendarific.com\/ for details."},"response":[]}
+    http_version: 
+  recorded_at: Sat, 24 Aug 2019 19:36:29 GMT
 recorded_with: VCR 5.0.0

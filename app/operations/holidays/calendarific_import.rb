@@ -28,7 +28,7 @@ module Holidays
 
     def parsed_country(params)
       url_params = {
-        api_key: Rails.application.secrets.token_calendarific,
+        api_key: Rails.application.credentials.vcr[:token_calendarific],
         country: params[:country],
         year: params[:year]
       }
