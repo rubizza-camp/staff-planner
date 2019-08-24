@@ -310,7 +310,10 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari
   listen (>= 3.0.5, < 3.2)
+<<<<<<< HEAD
   oj
+=======
+>>>>>>> master
   omniauth-github
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
