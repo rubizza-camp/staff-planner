@@ -7,7 +7,7 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.configure_rspec_metadata!
   c.default_cassette_options = { record: :new_episodes }
-  c.filter_sensitive_data('<SECRET>') { 
-  	Rails.application.credentials.vcr[:token_calendarific] 
-  }
+  c.filter_sensitive_data('<SECRET>') do
+    Rails.application.credentials.vcr[:token_calendarific]
+  end
 end
