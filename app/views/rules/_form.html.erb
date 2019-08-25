@@ -7,11 +7,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :company_id %>
-    <%= form.collection_select :company_id, @companies, :id, :name %>
-  </div>
-
-  <div class="field">
     <%= form.label :allowance_days %>
     <%= form.number_field :allowance_days %>
   </div>
@@ -27,6 +22,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: :"button is-small is-success"  %>
+    <%= link_to 'Back', company_rules_path, class: :"button is-small is-info"  %>
   </div>
 <% end %>

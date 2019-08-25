@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h1>Holiday Rule</h1>
 
 <p>
   <strong>Name:</strong>
@@ -25,5 +25,5 @@
   <%= @rule.is_enabled %>
 </p>
 
-<%= link_to 'Edit', edit_company_rule_path(id: @rule.id) %> |
-<%= link_to 'Back', company_rules_path %>
+<%= link_to 'Edit', edit_company_rule_path(id: @rule.id),class: :"button is-small is-info" %> 
+<%= link_to 'Back', company_rules_path, class: :"button is-small is-info"  %>

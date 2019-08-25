@@ -1,4 +1,5 @@
-<table style="background-color:whitesmoke" class="table">
+<h3 class="title">Your companies</h3>
+<table class="table">
   <thead>
     <th> Company name </th>
     <th> Created at </th>
@@ -12,9 +13,9 @@
       <td><%= link_to company.employees.size, company_path(company) %></td>
       <td><%= link_to 'Show', company_calendar_url(company), class: :"button is-small is-info" %></td>
       <td><%= link_to 'Edit', edit_company_path(company), class: :"button is-small is-info" %></td>
-      <td><%= button_to 'Destroy', company_path(company), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+      <td><%= button_to 'Destroy', company_path(company), method: :delete, class: "button is-small is-danger" %></td>
     </tbody>
   <% end %>
 </table>
 <br>
-<%= link_to 'New Company', new_company_path, class: :"button is-small is-success" %>
+<%= link_to 'New Company', new_company_path, class: 'button is-medium is-success' %>

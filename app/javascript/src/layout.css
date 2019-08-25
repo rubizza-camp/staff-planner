@@ -1,0 +1,128 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+#main {
+	background-color: whitesmoke;
+}
+
+.navbar {
+	border-bottom:2px solid lightgray;
+}
+
+.footer {
+	border-top:2px solid lightgray;
+	padding: 25px 25px;	
+}
+
+#leftmenu {
+	width:auto;
+}
+
+.is-fullheight.columns {
+    height: calc(100vh - ( 3.25rem - .75rem ) );
+}
+
+.table {
+	background-color: transparent;
+}
+
+.table td, .table th {
+	padding:5px;
+}
+
+div h1 {
+	padding-bottom:50px;
+	font-size:22px;
+	font-width:bold;
+}
+
+.columns {
+  display: flex;
+}
+
+.columns:not(:last-child) {
+	margin-bottom: 0;
+}
+
+.column {
+	padding: 2rem;
+}
+
+#aside {
+	margin-left: -10px;
+}
+
+#signout {
+	padding: 20px 0;
+}
+
+.menu-list #signout a {
+	padding:4px;
+}
+
+.menu-list li {
+	font-size: 14px;
+}
+
+.footer p {
+	font-size:8px;
+}
+
+a.active {
+	background-color:whitesmoke;
+	font-weight:bold;
+	font-size:16px;
+}
+
+#calendar {
+	margin-top:50px
+}
+
+#calendar th, #calendar td {
+	padding:0.5em;
+	font-size:14px;
+}
+
+#calendar a {
+	color: black;
+}
+
+#avatar {
+	border-radius: 50%;
+	width:150px;
+}
+
+#newevent {
+	margin-left:-30px;
+}
+
+.reason {
+	width:97%;
+	margin-top:20px;
+}
+
+td.holiday {
+	background-color:lightgray;
+}
+
+td.fulldayevent {
+	background-color:#44c9b3;
+}
+
+td.firsthalf {
+	background-color:#82F8E4;
+}
+
+td.secondhalf {
+	font-size:14px;
+}
+
+td.stateholiday {
+	background-color: lightpink
+}
+
+.notification {
+	width: 33%;
+	position:absolute;
+}

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  before_action :set_account, except: :index
+  before_action :set_account
   before_action :find_account_companies, only: :show
   load_and_authorize_resource
 
@@ -12,6 +12,7 @@ class AccountsController < ApplicationController
   def edit; end
 
   def update
+    set_avatar(@account, params)
     if @account.update(account_params)
       redirect_to account_path,
                   notice: 'Account was successfully updated.'
@@ -27,7 +28,7 @@ class AccountsController < ApplicationController
     else
       flash[:error] = "Account can't be deleted"
     end
-    redirect_to accounts_path
+    redirect_to root_path
   end
 
   private
@@ -38,7 +39,8 @@ class AccountsController < ApplicationController
                   :surname,
                   :email,
                   :password,
-                  :date_of_birth)
+                  :date_of_birth,
+                  :avatar)
   end
 
   def set_account
@@ -47,5 +49,10 @@ class AccountsController < ApplicationController
 
   def find_account_companies
     @companies = @account.companies
+  end
+
+  def set_avatar(account, params)
+    account.avatar.purge if @account.avatar.present?
+    account.avatar.attach(params[:avatar]) if account_params[:avatar].present?
   end
 end

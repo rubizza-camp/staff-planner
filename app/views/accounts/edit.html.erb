@@ -1,27 +1,32 @@
- <div class="columns is-desktop is-multiline is-centered is-vcentered">
+<div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
     <%= form_with model: @account, local: true do |form| %>
     	<%= render "devise/shared/error_messages", resource: @account %>
 
-    	<h1 style="padding-bottom:20px">Editing Account</h1>
+    	<h1>Editing Account</h1>
+
+      <% if @account.avatar.attached? %>
+        <image id="avatar" src="<%=(url_for(current_account.avatar))%>">
+      <% end %>
 
       <div class="field">
-        <%= form.label :name %>
-      	<%= form.text_field :name, class: :input, placeholder: :"Edit your name" %>
+        <%= form.label "Profile Photo" %>
+        <%= form.file_field :avatar %>
       </div>
 
       <div class="field">
-        <%= form.label :surname %>
+        <%= form.label :name, class: 'label' %>
+        <%= form.text_field :name, class: :input, placeholder: :"Edit your name" %>
+      </div>
+      <div class="field">
+        <%= form.label :surname, class: 'label' %>
         <%= form.text_field :surname, class: :input, placeholder: :"Edit your surname"  %>
       </div>
-
       <div class="actions">
-        <%= form.submit %>
+        <%= form.submit 'Update account', class: 'button is-medium is-success is-fullwidth' %>
       </div>
     <% end %>
+    <br>
+    <%= link_to 'Back', @account, class: 'button' %>
   </div>
 </div>
-
-
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>

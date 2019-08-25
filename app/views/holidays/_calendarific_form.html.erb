@@ -4,7 +4,7 @@
     <label class="label">Select country</label>
     <div class="control">
       <div class="select" name="country">
-          <%= select_tag :country, options_for_select(countries_for_select) %> 
+        <%= select_tag :country, options_for_select(countries_for_select) %> 
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <label class="label">Enter year</label>
     <div class="control">
       <div class="select">
-        <%= select_tag :year, options_for_select(Array(Date.today.year..2050)) %>
+        <%= select_tag :year, options_for_select(Date.today.year..2050) %>
       </div>
     </div>
   </div>

@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller do
   render_views
 
-  let(:company) { FactoryBot.create(:company) }
-  let(:event) { FactoryBot.create(:event, company_id: company.id, employee_id: employee.id) }
-  let(:account) { FactoryBot.create(:account) }
-  let!(:employee) { FactoryBot.create(:employee, company_id: company.id, account_id: account.id) }
+  let(:company) { create(:company) }
+  let(:event) { create(:event, company: company, employee: employee) }
+  let(:account) { create(:account) }
+  let!(:employee) { create(:employee, company: company, account: account) }
 
   before(:each) do
     sign_in account
@@ -23,7 +23,7 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'GET #new' do
     it 'returns a success response' do
-      get :new, params: { company_id: company.id, rule_id: event.rule_id }
+      get :new, params: { company_id: company.id, rule_id: event.rule.id }
       expect(response).to be_successful
     end
   end
@@ -43,12 +43,13 @@ RSpec.describe EventsController, type: :controller do
     end
 
     before :each do
-      allow_any_instance_of(Events::Create).to receive(:call).and_return(Result::Failure.new(Event.create))
+      allow_any_instance_of(Events::Create).to receive(:call)
+        .and_return(Result::Failure.new(Event.create))
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { company_id: company.id, rule_id: event.rule_id, employee_id: event.employee_id }
+        post :create, params: { company_id: company.id, rule_id: event.rule.id, employee_id: event.employee.id }
         expect(response).to be_successful
       end
     end
@@ -58,6 +59,11 @@ RSpec.describe EventsController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) do
         { reason: 'Holidaaaays' }
+      end
+
+      before :each do
+        allow_any_instance_of(Events::Update).to receive(:call)
+          .and_return(Result::Success.new(event))
       end
 
       it 'updates the requested account' do

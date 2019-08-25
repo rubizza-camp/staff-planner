@@ -49,10 +49,11 @@ class HolidaysController < ApplicationController
     result = Holidays::CalendarificImport.new.call(params)
 
     if result.success?
-      redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
+      flash[:notice] = 'Holidays was successfully created.'
     else
-      redirect_to company_holidays_url, notice: 'Holidays was not created.'
+      flash[:error] = 'Holidays was not created.'
     end
+    redirect_to company_holidays_url
   end
 
   private

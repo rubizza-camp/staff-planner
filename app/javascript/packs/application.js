@@ -15,4 +15,7 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-@import '~bulma/bulma'
+require.context('../images', true, /\.(gif|jpg|png|svg)$/i)
+require('../src/application.scss')
+require('../src/layout.css')
+require('../src/button_close.js')
