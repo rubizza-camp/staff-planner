@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2019_08_22_150504) do
     t.bigint "rule_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
     t.index ["company_id"], name: "index_events_on_company_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
     t.index ["rule_id"], name: "index_events_on_rule_id"
