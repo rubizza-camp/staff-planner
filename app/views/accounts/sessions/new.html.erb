@@ -13,13 +13,13 @@
         <%= f.password_field 'password', autocomplete: "password", class: :input, placeholder: :"Enter your password" %>
       </div> 
       <div class="actions">
-        <div class="field is-grouped">
-          <input class="button is-medium is-fullwidth is-success" type="submit" value="Login" style="margin-right:0.5em;" />
-          <%= link_to 'Sign up', new_account_registration_path, class: "button is-info is-medium" %>
+        <div class="buttons">
+          <input class="button is-medium is-success" type="submit" value="Login" />
+          <%= link_to 'Sign up', new_account_registration_path, class: "button is-medium is-info" %>
+          <%= link_to account_github_omniauth_authorize_path, class: "button is-medium is-black" do %>
+            <ion-icon name="logo-github"></ion-icon> Sign Up With Github
+          <% end %>
         </div>
-        <%= link_to account_github_omniauth_authorize_path, class: "button is-medium is-black is-fullwidth" do %>
-          <ion-icon name="logo-github"></ion-icon> Sign Up With Github
-        <% end %>
       </div>
     <% end %>
     <br>
