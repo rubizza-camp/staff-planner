@@ -1,31 +1,28 @@
 <div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
-
     <%= form_for(@account, url: account_session_path(@account)) do |f| %>
-
       <img src="/staff_planner.png" alt="logo" width="300" height="28">
-
       <div class="field">
         <p class="control">
           <%= f.label :email %><br>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: :input, placeholder: :"Enter your e-mail" %>
         </p>
       </div>
-
       <div class="field">
         <%= f.label :password %>
         <%= f.password_field 'password', autocomplete: "password", class: :input, placeholder: :"Enter your password" %>
       </div> 
-
       <div class="actions">
-        <input class="button is-medium is-success" type="submit" value="Login" />
-
-        <%= link_to account_github_omniauth_authorize_path, class: :"button is-medium is-black" do %>
+        <div class="field is-grouped">
+          <input class="button is-medium is-fullwidth is-success" type="submit" value="Login" style="margin-right:0.5em;" />
+          <%= link_to 'Sign up', new_account_registration_path, class: "button is-info is-medium" %>
+        </div>
+        <%= link_to account_github_omniauth_authorize_path, class: "button is-medium is-black is-fullwidth" do %>
           <ion-icon name="logo-github"></ion-icon> Sign Up With Github
         <% end %>
       </div>
     <% end %>
-
+    <br>
     <%= render 'accounts/shared/links' %>
   </div>
 </div>
