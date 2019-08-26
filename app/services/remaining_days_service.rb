@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class RemainingDaysService
-  def call(employee_id, rule_id)
-    rule = Rule.find(rule_id)
+  def call(employee, rule)
     period = get_period(rule)
-    events = Event.range(period.first, period.last).where(rule: rule, employee_id: employee_id)
+    events = employee.events.range(period.first, period.last).where(rule: rule)
     rule.allowance_days - used_days(events, period)
   end
 

@@ -10,7 +10,7 @@ class EventMailer < ApplicationMailer
     return if current_account.nil?
 
     @params = create_email_params(company, event, current_account)
-    mail(to: @params[:owners_email], subject: "#{@params[:company]} event from #{@params[:created_by]}")
+    mail(to: @params[:owners_emails], subject: "#{@params[:company]} event from #{@params[:created_by]}")
   end
 
   private
@@ -19,11 +19,11 @@ class EventMailer < ApplicationMailer
     {
       company: company.name,
       event: event,
-      owners_email: company.accounts.where(employees: { role: 'owner' }).pluck(:email),
+      owners_emails: company.accounts.where(employees: { role: 'owner' }).pluck(:email),
       created_by: "#{current_account.name} #{current_account.surname}",
-      rule_name: Rule.find(event.rule_id).name,
+      rule_name: event.rule.name,
       event_link: link_to_events(company, event),
-      remaining_days: RemainingDaysService.new.call(event.employee_id, event.rule_id)
+      remaining_days: RemainingDaysService.new.call(event.employee, event.rule)
     }
   end
 
