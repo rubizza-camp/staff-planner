@@ -15,15 +15,16 @@ module Holidays
 
     def create_holidays(params)
       list_holidays = parsed_country(params)
-      return if !list_holidays || list_holidays['response'].empty?
+      return if !list_holidays || !list_holidays['response'].is_a?(Hash)
+      return unless list_holidays.dig('response', 'holidays').is_a?(Array)
 
-      list_holidays.dig('response', 'holidays').each do |holiday|
-        Holiday.create(
-          name: holiday['name'],
+      list_holidays = list_holidays.dig('response', 'holidays').map do |holiday|
+        { name: holiday['name'],
           date: holiday.dig('date', 'iso'),
-          company_id: params[:company_id]
-        )
+          company_id: params[:company_id] }
       end
+
+      Holiday.create(list_holidays)
     end
 
     def parsed_country(params)

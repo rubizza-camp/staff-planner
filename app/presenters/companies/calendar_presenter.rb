@@ -14,7 +14,7 @@ module Companies
               end
       @working_days = company.working_days.pluck(:day_of_week)
       @events = Event.range(@days.first, @days.last).group_by(&:employee_id)
-      @holidays = Holiday.all.where('date BETWEEN ? AND ?', days.first, days.last)
+      @holidays = Holiday.where(date: days.first..days.last)
     end
     # rubocop: enable Metrics/AbcSize
 
@@ -30,7 +30,6 @@ module Companies
 
     # rubocop: disable Metrics/AbcSize
     def days_status(employee)
-      holidays
       days.each_with_object({}) do |day, working_month|
         working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
         working_month[day] = 'state_holiday' if holidays.include?(day)
