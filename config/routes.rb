@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     resources :events
     get :employee_events
     get :calendar
-    resources :holidays
+    resources :holidays do
+      collection do
+        post :calendarific_import
+      end
+    end
     resources :rules
   end
 end

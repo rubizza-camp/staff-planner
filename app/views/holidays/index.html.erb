@@ -1,23 +1,34 @@
 <p id="notice"><%= notice %></p>
-<h3 class="title is-3">Holidays of company: <%= @company.name %></h3>
-  <table class="table" style="background-color:whitesmoke;">
-    <thead>
-      <tr>
-        <th>Holiday's name</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @holidays.each do |holiday| %>
+<div class="columns">
+  <div class="column">
+    <h3 class="title is-3">Holidays of company: <%= @company.name %></h3>
+    <table class="table" style="background-color:whitesmoke;">
+      <thead>
         <tr>
-          <td><%= holiday.name %></td>
-          <td><%= holiday.date %></td>
-          <td><%= link_to 'Show', company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
-          <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
-          <td><%= button_to 'Destroy',[@company, holiday], method: :delete, class: 'button is-danger is-small' %></td>
+          <th>Holiday's name</th>
+          <th>Date</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<br>
-<%= link_to 'New Holiday', new_company_holiday_path, class: 'button is-warning is-small' %>
+      </thead>
+      <tbody>
+        <% @holidays.each do |holiday| %>
+          <tr>
+            <td><%= holiday.name %></td>
+            <td><%= holiday.date %></td>
+            <td><%= link_to 'Show', company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+            <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+            <td><%= button_to 'Destroy',[@company, holiday], method: :delete, class: 'button is-danger is-small' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <br>
+  <%= paginate @holidays %>
+  <br>
+  <%= link_to 'New Custom Holiday', new_company_holiday_path, class: 'button is-info is-medium' %>
+  </div>
+  <div class="column">
+    <%= render 'calendarific_form' %>
+  </div>
+</div>
+
+
