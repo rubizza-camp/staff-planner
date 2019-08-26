@@ -20,9 +20,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
-    @event = @company.events.build(event_params)
-    @event.employee = Employee.find_by(account: current_account, company: @company)
-    result = Events::Create.new.call(event_params, @event, current_account)
+    result = Events::Create.new.call(@company, event_params, current_account)
     if result.success?
       redirect_to company_events_path
     else
