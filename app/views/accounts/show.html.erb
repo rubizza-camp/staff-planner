@@ -1,5 +1,5 @@
 <h3 class="title">Your profile</h3>
-<table class="table has-background-white-ter" />
+<table class="table" />
   <thead>
     <th> Name </th>
     <th> Surname </th>
@@ -22,14 +22,14 @@
     </td>
     <td>
       <div class="buttons are-small">
-        <a class="button is-info" href='<%= edit_account_path(@account) %>'>Edit account</a>
+        <%= link_to 'Edit_account', edit_account_path(@account), class: 'button is-info' %>
         <%= button_to 'Delete account', {controller: :accounts, action: :'destroy'}, class: "button is-danger", method: :delete %>
-        <a class="button is-success" href='<%= new_company_path %>'>Create new company</a>
+        <%= link_to 'Create new company', new_company_path, class: 'button is-success' %>
       </div>
   </tbody>
 </table>
 <h3 class="title">Your events</h3>
-<table class="table has-background-white-ter">
+<table class="table">
   <thead>
     <th> Reason </th>
     <th> Start Period </th>
