@@ -1,27 +1,21 @@
- <div class="columns is-desktop is-multiline is-centered is-vcentered">
+<div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
     <%= form_with model: @account, local: true do |form| %>
     	<%= render "devise/shared/error_messages", resource: @account %>
-
-    	<h1 style="padding-bottom:20px">Editing Account</h1>
-
+    	<h3 class="title">Editing Account</h3>
       <div class="field">
-        <%= form.label :name %>
+        <%= form.label :name, class: 'label' %>
       	<%= form.text_field :name, class: :input, placeholder: :"Edit your name" %>
       </div>
-
       <div class="field">
-        <%= form.label :surname %>
+        <%= form.label :surname, class: 'label' %>
         <%= form.text_field :surname, class: :input, placeholder: :"Edit your surname"  %>
       </div>
-
       <div class="actions">
-        <%= form.submit %>
+        <%= form.submit 'Update account', class: 'button is-medium is-success is-fullwidth' %>
       </div>
     <% end %>
+    <br>
+    <%= link_to 'Back', @account, class: 'button' %>
   </div>
 </div>
-
-
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>
