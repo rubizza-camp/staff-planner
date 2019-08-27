@@ -70,7 +70,7 @@ RSpec.describe AccountsController, type: :controller do
 
     it 'redirects to the accounts list' do
       delete :destroy, params: { id: @account.to_param }, session: valid_session
-      expect(response).to redirect_to(accounts_path)
+      expect(response).to redirect_to(root_path)
     end
   end
 end
