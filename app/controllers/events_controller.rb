@@ -20,7 +20,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
-    result = Events::Create.new.call(@company, event_params, current_account)
+    result = Events::Create.new(current_account, params, @company).call
     if result.success?
       redirect_to company_events_path
     else
@@ -29,7 +29,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update(event_params)
+    result = Events::Update.new.call(@event, params)
+    if result.success?
       redirect_to company_events_path, notice: 'Event was successfully updated.'
     else
       render :edit
@@ -59,6 +60,6 @@ class EventsController < ApplicationController
   def event_params
     return unless params[:event]
 
-    params.require(:event).permit(:start_period, :end_period, :reason, :employee_id, :company_id, :rule_id)
+    params.require(:event).permit(:start_period)
   end
 end

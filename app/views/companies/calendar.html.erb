@@ -30,7 +30,7 @@
   <tbody>
   <% @calendar.employees.each do |employee| %>
     <tr>
-      <td style='padding-bottom:0.5em;'>
+      <td id="calendar" style='padding-bottom:0.5em;'>
         <%= link_to employee.account.name, company_employee_path(id: employee.id) %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
@@ -40,21 +40,29 @@
               <td style="padding-bottom:0.5em;font-size:14px">
                 <%= link_to day.strftime('%d'), new_company_event_path(
                     company_id: @calendar.company.id,
-                    event: { start_period: day.strftime('%c') }) %>
+                    event: { start_period: day.strftime('%c') }), style: "color:black" %>
               </td>
             <% when 'holiday' %>
               <td style="padding-bottom:0.5em;background-color:lightgray;font-size:14px">
                 <%= link_to day.strftime('%d'), new_company_event_path(
                     company_id: @calendar.company.id,
-                    event: { start_period: day.strftime('%c') }) %>
+                    event: { start_period: day.strftime('%c') }), style: "color:black" %>
               </td>
-            <% when 'event' %>
+            <% when 'fullday_event' %>
               <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">
-                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ), style: "color:black" %>
+              </td>
+            <% when 'first_half_of_day' %>
+              <td style="background-color:#82F8E4;padding-bottom:0.5em;font-size:14px">
+                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ), style: "color:black" %>
+              </td>
+            <% when 'second_half_of_day' %>
+              <td style="background-color:#248F7D;padding-bottom:0.5em;font-size:14px">
+                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ), style: "color:black" %>
               </td>
             <% when 'state_holiday' %>
               <td style="background-color: lightpink ;padding-bottom:0.5em;font-size:14px">
-                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id) %>
+                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id), style: "color:black" %>
               </td>
           <% end %>
         <% end %>

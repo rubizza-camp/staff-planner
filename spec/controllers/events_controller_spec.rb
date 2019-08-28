@@ -43,7 +43,8 @@ RSpec.describe EventsController, type: :controller do
     end
 
     before :each do
-      allow_any_instance_of(Events::Create).to receive(:call).and_return(Result::Failure.new(Event.create))
+      allow_any_instance_of(Events::Create).to receive(:call)
+        .and_return(Result::Failure.new(Event.create))
     end
 
     context 'with invalid params' do
@@ -58,6 +59,11 @@ RSpec.describe EventsController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) do
         { reason: 'Holidaaaays' }
+      end
+
+      before :each do
+        allow_any_instance_of(Events::Update).to receive(:call)
+          .and_return(Result::Success.new(event))
       end
 
       it 'updates the requested account' do
