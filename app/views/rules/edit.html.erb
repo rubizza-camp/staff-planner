@@ -1,6 +1,6 @@
-<h1>Editing Rule</h1>
-
-<%= render 'form', rule: @rule %>
-
-<%= link_to 'Show', company_rule_path(id: @rule.id) %> |
-<%= link_to 'Back', company_rules_path %>
+<div class="column is-two-fifths is-offset-one-quarter">
+  <h3 class="title">Editing Rule</h3>
+  <%= render 'form', rule: @rule %>
+  <br>
+  <%= link_to 'Back', company_rules_path, class: 'button is-medium' %>
+</div>
