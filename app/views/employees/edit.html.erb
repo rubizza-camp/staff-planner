@@ -1,5 +1,6 @@
-<h1>Editing Employee</h1>
-
-<%= render 'form', employee: @employee %>
-
-<%= link_to 'Back', company_path(id: params[:company_id]) %>
+<div class="column is-two-fifths is-offset-one-quarter">
+  <h3 class="title">Editing Employee</h3>
+  <%= render 'form', employee: @employee %>
+  <br>
+  <%= link_to 'Back', company_path(id: params[:company_id]), class: 'button is-medium' %>
+</div>
