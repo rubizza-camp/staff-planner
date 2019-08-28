@@ -38,15 +38,23 @@
           <% case value %>
             <% when 'work' %>
               <td style="padding-bottom:0.5em;font-size:14px">
-                <%= link_to day.strftime('%d'), new_company_event_path(
-                    company_id: @calendar.company.id,
-                    event: { start_period: day.strftime('%c') }) %>
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      event: { start_period: day.strftime('%c') }) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'holiday' %>
               <td style="padding-bottom:0.5em;background-color:lightgray;font-size:14px">
-                <%= link_to day.strftime('%d'), new_company_event_path(
-                    company_id: @calendar.company.id,
-                    event: { start_period: day.strftime('%c') }) %>
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      event: { start_period: day.strftime('%c') }) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'event' %>
               <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">

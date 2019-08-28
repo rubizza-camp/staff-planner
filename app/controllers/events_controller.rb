@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   def create
     result = Events::Create.new.call(@company, event_params, current_account)
     if result.success?
-      redirect_to company_events_path
+      redirect_to company_calendar_path
     else
       render :new
     end
@@ -43,6 +43,18 @@ class EventsController < ApplicationController
       flash[:error] = "Employee account wasn't cancelled."
     end
     redirect_to company_events_path
+  end
+
+  def accept
+    event = Event.find(params[:event_id])
+    flash[:error] = 'Accept failed' unless event.accept!
+    redirect_to company_calendar_path
+  end
+
+  def decline
+    event = Event.find(params[:event_id])
+    flash[:error] = 'Decline failed' unless event.decline!
+    redirect_to company_calendar_path
   end
 
   private

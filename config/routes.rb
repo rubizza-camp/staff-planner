@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :companies do
     resources :employees, except: :index
     resources :working_days
-    resources :events
+    resources :events do
+      patch :accept
+      patch :decline
+    end
     get :employee_events
     get :calendar
     resources :holidays
