@@ -9,17 +9,17 @@
     <%= @rule.company_id %>
   </p>
   <p>
-  <strong>Allowance days:</strong>
-  <%= @rule.allowance_days %>
-</p>
-<p>
-  <strong>Period:</strong>
-  <%= @rule.period %>
-</p>
-<p>
-  <strong>Is enabled:</strong>
-  <%= @rule.is_enabled %>
-</p>
+    <strong>Allowance days:</strong>
+    <%= @rule.allowance_days %>
+  </p>
+  <p>
+    <strong>Period:</strong>
+    <%= @rule.period %>
+  </p>
+  <p>
+    <strong>Is enabled:</strong>
+    <%= @rule.is_enabled %>
+  </p>
 </div>
 <div class="buttons">
   <%= link_to 'Edit', edit_company_rule_path(id: @rule.id), class: 'button is-medium is-info' %>
