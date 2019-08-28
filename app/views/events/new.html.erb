@@ -1,7 +1,3 @@
-<% if flash[:alert] %>
-  <div class="alert"><%= flash[:alert] %></div>
-<% end %>
-
 <div class="columns is-desktop is-multiline is-vcentered">
   <div class="column is-narrow">    
 
@@ -10,15 +6,24 @@
     <%= form_with model: @event, url: company_events_path, method: 'post', local: true do |form| %>    
 
       <div class="field">
-        <%= form.label :start_period %>
-        <%= form.datetime_field :start_period, class: :input %>
-      </div>    
+        <%= form.label :start_day %>
+        <%= form.date_field :start_day, class: :input %>
+      </div>  
+
+      <div class="select">
+        <%= form.select :first_period, options_for_select(['Morning', 'Afternoon']), class: :input %>
+      </div>   
 
       <div class="field">
-        <%= form.label :end_period %>
-        <%= form.datetime_field :end_period, class: :input %>
-      </div>    
+        <%= form.label :end_day %>
+        <%= form.date_field :end_day, class: :input %>
+      </div>  
 
+      <div class="select">
+        <%= form.select :second_period, options_for_select(['Afternoon', 'End of day']), class: :input %>
+      </div>   
+      <br>
+      <br>
       <div class="select">
         <%= form.collection_select :rule_id, @rules, :id, :name %>
       </div>    

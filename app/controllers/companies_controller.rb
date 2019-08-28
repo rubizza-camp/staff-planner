@@ -65,7 +65,7 @@ class CompaniesController < ApplicationController
       from = event_params[:start_period]
       to = event_params[:end_period]
     end
-    @employee_events = EmployeeEventsService.new(employee).events(from, to)
+    @employee_events = employee.events.range(from, to)
   end
   # rubocop: enable Metrics/AbcSize
 

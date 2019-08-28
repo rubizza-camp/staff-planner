@@ -12,6 +12,10 @@
   <body class="hero is-fullheight has-background-white-ter">
     <%= render 'shared/header' %>
 
+    <% if flash[:alert] %>
+      <div class="alert"><%= flash[:alert] %></div>
+    <% end %>
+
     <section class="section">
       <div class="container">
         <%= yield %>
