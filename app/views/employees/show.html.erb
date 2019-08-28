@@ -1,6 +1,5 @@
-<h1>Employees</h1>
-
-<table style="background-color:whitesmoke !important;" class="table">
+<h3 class="title">Employees</h3>
+<table class="table">
   <thead>
     <th> Employee name </th>
     <th> Surname </th>
@@ -20,11 +19,10 @@
       <td><%= @employee.account.email %></td>
       <td><%= @employee.created_at %></td>
       <td><%= @employee.is_enabled %></td>
-      <td><%= link_to 'Edit', edit_company_employee_path(id: @employee.id, company_id: @company.id), class: :"button is-small is-info" %></td>
-      <td><%= button_to 'Destroy', company_employee_path(id: @employee.id, company_id: @company.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+      <td><%= link_to 'Edit', edit_company_employee_path(id: @employee.id, company_id: @company.id), class: "button is-small is-info" %></td>
+      <td><%= button_to 'Destroy', company_employee_path(id: @employee.id, company_id: @company.id), method: :delete, class: "button is-small is-danger" %></td>
     </tr>
   </tbody>
 </table>
 <br>
-
-<td><%= link_to 'Back', company_path(@company), class: :"button is-small is-info" %></td>
+<%= link_to 'Back', company_path(@company), class: "button is-medium" %>

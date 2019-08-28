@@ -36,6 +36,7 @@ RSpec.describe Employee, type: :model do
                             is_enabled: true,
                             account_id: account.id,
                             company_id: company.id,
+                            position: 'suchief',
                             role: 'owner')
     expect(employee).to be_valid
   end
