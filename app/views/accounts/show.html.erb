@@ -1,6 +1,5 @@
-<h1 style="margin-bottom:50px"> Your profile </h1>
-
-<table style="background-color:whitesmoke" class="table">
+<h3 class="title">Your profile</h3>
+<table class="table" />
   <thead>
     <th> Name </th>
     <th> Surname </th>
@@ -15,22 +14,22 @@
     <td>
       <% if @companies.present? %>
         <% @companies.each do |company| %>
-          <p><%= link_to company.name, company_calendar_path(company) %></p>
+          <p><%= link_to company.name, company_calendar_path(company), class: 'is-link' %></p>
         <% end %>
       <% else %>
-        <p>Нет привязанных компаний.</p>
+        <p>You don't have companies</p>
       <% end %>
     </td>
-    <td style="padding-right:10px"><a class="button is-small is-info" href='<%= edit_account_path(@account) %>'>Edit account</a></td>
-    <td style="padding-right:10px"><%= button_to 'Delete account', {controller: :accounts,
-      action: :'destroy'}, class: :"button is-small is-danger", method: :delete %></td>
-    <td style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_path %>'>Create new company</a></td>
+    <td>
+      <div class="buttons are-small">
+        <%= link_to 'Edit_account', edit_account_path(@account), class: 'button is-info' %>
+        <%= button_to 'Delete account', {controller: :accounts, action: :'destroy'}, class: "button is-danger", method: :delete %>
+        <%= link_to 'Create new company', new_company_path, class: 'button is-success' %>
+      </div>
   </tbody>
 </table>
-
-<h1 style="margin-bottom:50px">Your events</h1>
-
-<table style="background-color:whitesmoke" class="table">
+<h3 class="title">Your events</h3>
+<table class="table">
   <thead>
     <th> Reason </th>
     <th> Start Period </th>
@@ -42,4 +41,3 @@
     <%= render @account_events %>
   <tbody>
 </table>
-<br>

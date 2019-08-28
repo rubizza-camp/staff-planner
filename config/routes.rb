@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
     get '/accounts/sign_out' => 'devise/sessions#destroy'
   end
-  resources :accounts, except: %i[new create]
+  resources :accounts, except: %i[new create index]
   resources :companies do
     resources :employees, except: :index
     resources :working_days
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     end
     get :employee_events
     get :calendar
-    resources :holidays
+    resources :holidays do
+      collection do
+        post :calendarific_import
+      end
+    end
     resources :rules
   end
 end

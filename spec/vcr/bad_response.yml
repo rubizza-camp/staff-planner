@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://calendarific.com/api/v2/holidays?api_key=<SECRET>&country=ZZ&year=2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - calendarific.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Aug 2019 09:17:57 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=gi4lm7flnto4ir0qc7e8facv7u; path=/
+      - __cfduid=d02c71934bb9762df2a15ec0a3e07606e1566811076; expires=Tue, 25-Aug-20
+        09:17:56 GMT; path=/; domain=.calendarific.com; HttpOnly
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Time:
+      - '1566811077'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 50c4b729acc0c3d9-LED
+    body:
+      encoding: ASCII-8BIT
+      string: |2-
+
+        {"meta":{"code":200,"error_type":"call failed","error_detail":"Missing required call parameters. See https:\/\/calendarific.com\/ for details."},"response":[]}
+    http_version: 
+  recorded_at: Mon, 26 Aug 2019 09:17:57 GMT
+recorded_with: VCR 5.0.0

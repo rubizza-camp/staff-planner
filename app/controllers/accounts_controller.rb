@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  before_action :set_account, except: :index
+  before_action :set_account
   before_action :find_account_companies, only: :show
   load_and_authorize_resource
 
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
     else
       flash[:error] = "Account can't be deleted"
     end
-    redirect_to accounts_path
+    redirect_to root_path
   end
 
   private

@@ -1,21 +1,16 @@
 <div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
-
-		<h1 style="margin-bottom:30px;">New company</h1>
-
+		<h3 class="title">Edit company</h3>
 		<%= form_with model: @company, method: 'patch', local: true do |form| %>
-
   		<div class="field">
       	<%= form.label :company_name %>
-      	<%= form.text_field :name, class: :input, placeholder: :"Update company name" %>
+      	<%= form.text_field :name, class: :input, placeholder: "Update company name" %>
     	</div>  
-
    	  <div class="actions">
-        <%= form.submit %>
+        <%= form.submit 'Edit', class: 'button is-medium is-success is-fullwidth' %>
       </div>
-
  		<% end %>
-
- 		<%= link_to 'Back', companies_path, class: :"button is-small is-info", style: :'margin-top:10px' %>
+    <br>
+ 		<%= link_to 'Back', companies_path, class: "button is-medium" %>
 	</div>
 </div>

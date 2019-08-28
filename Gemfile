@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'countries'
+gem 'kaminari'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -33,6 +35,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bulma', '~> 0.1.0'
 
 gem 'erb_lint', require: false
+gem 'oj'
 gem 'rspec', '~> 3.8'
 gem 'rspec_junit_formatter', '~> 0.2.3'
 gem 'rubocop', '~> 0.74.0'
@@ -60,6 +63,8 @@ group :development do
 end
 
 group :test do
+  gem 'vcr'
+  gem 'webmock'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'

@@ -7,7 +7,7 @@ class HolidaysController < ApplicationController
   load_and_authorize_resource through: :company
 
   def index
-    @holidays = @company.holidays.all
+    @holidays = @company.holidays.order(:name).page(params[:page])
   end
 
   def show; end
@@ -43,6 +43,16 @@ class HolidaysController < ApplicationController
       flash[:error] = "Holiday can't be deleted"
     end
     redirect_to company_holidays_url
+  end
+
+  def calendarific_import
+    result = Holidays::CalendarificImport.new.call(params)
+
+    if result.success?
+      redirect_to company_holidays_url, notice: 'Holidays was successfully created.'
+    else
+      redirect_to company_holidays_url, notice: 'Holidays was not created.'
+    end
   end
 
   private
