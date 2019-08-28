@@ -20,20 +20,12 @@ module Events
     end
 
     def start_period
-      hour = if params[:first_period].eql?('Morning')
-               Event::START_DAY
-             else
-               Event::HALF_DAY
-             end
+      hour = params[:first_period].eql?('Morning') ? Event::START_DAY : Event::HALF_DAY
       event.start_period = params[:start_day].to_datetime.change(hour: hour)
     end
 
     def end_period
-      hour = if params[:second_period].eql?('Afternoon')
-               Event::HALF_DAY
-             else
-               Event::END_DAY
-             end
+      hour = params[:second_period].eql?('Afternoon') ? Event::HALF_DAY : Event::END_DAY
       event.end_period = params[:end_day].to_datetime.change(hour: hour)
     end
   end
