@@ -28,17 +28,24 @@
       </div>
   </tbody>
 </table>
-
-<h3 class="title">Your events</h3>
-<table class="table">
-  <thead>
-    <th> Reason </th>
-    <th> Start Period </th>
-    <th> End period </th>
-    <th> Rule </th>
-    <th colspan="3"> Actions </th>
-  </thead>
-  <tbody>
-    <%= render @account_events %>
-  <tbody>
-</table>
+<% if @account_events.any? %>
+  <h3 class="title">Your events</h3>
+  <table class="table">
+    <thead>
+      <th> Reason </th>
+      <th> Start Period </th>
+      <th> End period </th>
+      <th> Rule </th>
+      <th colspan="3"> Actions </th>
+    </thead>
+    <tbody>
+      <%= render @account_events %>
+    <tbody>
+  </table>
+<% else %>
+  <article class="message is-dark">
+    <div class="message-body">
+    You haven't any events.
+    </div>
+  </article>
+<% end %>
