@@ -28,10 +28,6 @@ ActiveRecord::Schema.define(version: 2019_08_27_133807) do
     t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
-    t.string "logo_file_name"
-    t.string "logo_content_type"
-    t.bigint "logo_file_size"
-    t.datetime "logo_updated_at"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
