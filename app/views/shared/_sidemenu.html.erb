@@ -1,0 +1,36 @@
+<div id="leftmenu" class="column is-2 has-background-white">
+  <aside class="menu">
+     <p class="menu-label">
+      Your account
+    </p>
+    <% if current_account.avatar.attached? %>
+      <image id="avatar" src="<%=(url_for(current_account.avatar))%>">
+    <% end %>
+    <ul class="menu-list">
+      <li><%= current_account.name %></li>
+      <li><%= current_account.email %></li>
+      <li id="signout"><%= active_link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %></li>
+    </ul>
+    <ul class="menu-list">
+      <li><%= active_link_to 'My Account & Events', account_path(current_account), active: :exclusive %></li>
+    </ul>
+
+    <% if current_account.employees.pluck(:role).include?('owner') %>
+      <p class="menu-label">
+        Company
+      </p>
+      <ul class="menu-list">
+          <ul>
+            <li><%= active_link_to 'Company & Employees', company_path(@account_company_ids), active: :exclusive %>
+            <li><%= active_link_to 'Create New Event', new_company_event_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Events Calendar', company_calendar_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Rules', company_rules_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Working Days', company_working_days_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Events', company_events_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Holidays', company_holidays_path(@account_company_ids), active: :exclusive %></li>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
+  </aside>
+</div>

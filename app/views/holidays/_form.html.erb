@@ -2,6 +2,7 @@
 <div class="columns is-desktop is-multiline is-left">
   <div class="column is-half">
     <%= form_with(model: [@company, holiday], local: true) do |form| %>
+      <%= render 'shared/error', object: holiday %>
       <div class="field">
         <label class="label"><%= form.label :name %></label>
         <div class="control">

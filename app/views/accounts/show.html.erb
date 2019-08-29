@@ -22,12 +22,13 @@
     </td>
     <td>
       <div class="buttons are-small">
-        <%= link_to 'Edit_account', edit_account_path(@account), class: 'button is-info' %>
+        <%= link_to 'Edit account', edit_account_path(@account), class: 'button is-info' %>
         <%= button_to 'Delete account', {controller: :accounts, action: :'destroy'}, class: "button is-danger", method: :delete %>
         <%= link_to 'Create new company', new_company_path, class: 'button is-success' %>
       </div>
   </tbody>
 </table>
+
 <h3 class="title">Your events</h3>
 <table class="table">
   <thead>

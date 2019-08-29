@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>StaffPlanner</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all'  %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
+<head>
+  <title>StaffPlanner</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_pack_tag 'application' %>
+</head>
 
-  <body class="hero is-fullheight has-background-white-ter">
-    <%= render 'shared/header' %>
+<body>
+  <%= render 'shared/header' %>
+  <section id="main" class="is-fullheight columns">
+    <%= render 'shared/sidemenu' %>
+    <div id="content" class="container column">
+      <%= render 'shared/notification' %>
+      <%= yield %>
+    </div>
+  </section>
+  <%= render 'shared/footer' %>
+</body>
 
-    <% if flash[:alert] %>
-      <div class="alert"><%= flash[:alert] %></div>
-    <% end %>
-
-    <section class="section">
-      <div class="container">
-        <%= yield %>
-      </div>
-    </section>
-
-    <%= render 'shared/footer' %>
-  </body>
-  
 <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+
 </html>

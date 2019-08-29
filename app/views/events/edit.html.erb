@@ -4,42 +4,41 @@
     <h1>New Event</h1>    
 
     <%= form_with model: @event, url: company_event_path, method: 'patch', local: true do |form| %> 
-    <div id="newevent" class="columns">
-      <div class="column">
-        <div class="field">
-          <%= form.label :start_day %>
-          <%= form.date_field :start_day, class: :input %>
-        </div>  
+      <div id="newevent" class="columns">
+        <div class="column">
+          <div class="field">
+            <%= form.label :start_day %>
+            <%= form.date_field :start_day, class: :input %>
+          </div>
 
-        <div class="select period">
-          <%= form.select :first_period,options_for_select(['Morning', 'Afternoon']), class: :input %>
-        </div>   
+          <div class="select period">
+            <%= form.select :first_period,options_for_select(['Morning', 'Afternoon']), class: :input %>
+          </div>
+        </div>
 
+        <div class="column">
+          <div class="field">
+            <%= form.label :end_day %>
+            <%= form.date_field :end_day, class: :input %>
+          </div>  
+          <div class="select period">
+            <%= form.select :second_period,options_for_select(['Afternoon', 'End of day']), class: :input %>
+          </div>
+        </div>
       </div>
 
-      <div class="column">
-
-        <div class="field">
-          <%= form.label :end_day %>
-          <%= form.date_field :end_day, class: :input %>
-        </div>  
-
-        <div class="select period">
-          <%= form.select :second_period,options_for_select(['Afternoon', 'End of day']), class: :input %>
-        </div>     
+      <div class="field reason">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, class: :input %>
       </div>
-    </div>  
 
-    <div class="field reason">
-      <%= form.label :reason %>
-      <%= form.text_field :reason, class: :input %>
-    </div> 
+      <div class="field reason">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, class: :input %>
+      </div> 
 
-
-
-    <%= form.button type: :submit, class: :"button is-small is-success" %>
-    <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
-  <% end %>   
-
+      <%= form.button type: :submit, class: :"button is-small is-success" %>
+      <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
+    <% end %>   
   </div>
 </div>

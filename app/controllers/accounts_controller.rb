@@ -12,7 +12,8 @@ class AccountsController < ApplicationController
   def edit; end
 
   def update
-    if @account.update(account_params)
+    result = Accounts::Update.new.call(@account, account_params)
+    if result.success?
       redirect_to account_path,
                   notice: 'Account was successfully updated.'
     else
@@ -38,7 +39,8 @@ class AccountsController < ApplicationController
                   :surname,
                   :email,
                   :password,
-                  :date_of_birth)
+                  :date_of_birth,
+                  :avatar)
   end
 
   def set_account

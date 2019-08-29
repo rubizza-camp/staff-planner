@@ -3,39 +3,5 @@
     <a class="navbar-item" href="/">
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
-    <div class="navbar-burger burger" data-target="navbar"></div>
-    <div class="navbar-item">
-      <div class="field is-grouped">
-        <a class="navbar-item"><%= link_to 'Companies', companies_path %></a>
-      </div>
-    </div>
-  </div>
-
-  <div id="navbar" class="navbar-menu">
-    <div class="navbar-item">
-    </div>
-  </div>
-
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <% if signed_in? %>
-        <div class="field is-grouped">
-          <a class="navbar-item"><%= link_to current_account.name, root_path %></a>
-        </div>
-      <% end %>
-    </div>
-    <div class="navbar-item">
-      <div class="field is-grouped">
-        <% if account_signed_in? %>
-          <p class="control">
-            <%= link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %>
-          </p>
-        <% else %>
-          <p class="control">
-            <td><%= link_to 'Login', new_account_session_path, class: :"button is-normal is-success" %></td>
-          </p>
-        <% end %>
-      </div>
-    </div>
   </div>
 </nav>

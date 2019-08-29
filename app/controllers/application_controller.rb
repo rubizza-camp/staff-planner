@@ -3,6 +3,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
+  before_action :account_company_ids, unless: :devise_controller?
+
+  def account_company_ids
+    @account_company_ids = current_account.employees.pluck(:company_id).join(' ')
+  end
 
   protected
 

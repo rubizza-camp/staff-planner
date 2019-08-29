@@ -14,6 +14,8 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable,
          authentication_keys: [:email]
 
+  has_one_attached :avatar
+
   # rubocop: disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |account|
@@ -23,7 +25,20 @@ class Account < ApplicationRecord
       account.uid = auth.uid
       account.email = auth.info.email
       account.password = Devise.friendly_token[0, 20]
+      account.github_avatar(auth)
     end
+  end
+
+  def github_avatar(auth)
+    return unless auth.info.image.present?
+
+    downloaded_image = URI.parse(auth.info.image).open
+
+    avatar.attach(
+      io: downloaded_image,
+      filename: 'avatar.png',
+      content_type: downloaded_image.content_type
+    )
   end
   # rubocop: enable Metrics/AbcSize
 end
