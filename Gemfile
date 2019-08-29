@@ -44,6 +44,7 @@ gem 'devise'
 # Authorization
 gem 'cancancan'
 gem 'omniauth-github'
+# Links
 gem 'active_link_to'
 
 group :development, :test do
