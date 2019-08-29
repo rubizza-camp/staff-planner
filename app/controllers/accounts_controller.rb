@@ -12,8 +12,8 @@ class AccountsController < ApplicationController
   def edit; end
 
   def update
-    set_avatar(@account, params)
-    if @account.update(account_params)
+    result = Accounts::Update.new.call(@account, account_params)
+    if result.success?
       redirect_to account_path,
                   notice: 'Account was successfully updated.'
     else
@@ -49,10 +49,5 @@ class AccountsController < ApplicationController
 
   def find_account_companies
     @companies = @account.companies
-  end
-
-  def set_avatar(account, params)
-    account.avatar.purge if @account.avatar.present?
-    account.avatar.attach(params[:avatar]) if account_params[:avatar].present?
   end
 end

@@ -53,16 +53,16 @@
 
 <div class="is-desktop">
   <div>
-    <%= form_tag(company_calendar_path(id: @company), :method => :get) do %>
+    <%= form_with(url: company_calendar_path(id: @company), method: :get) do |form| %>
       <div id="period">
         <div class="field">
-          <%= label_tag :start_period %>
-          <%= date_field_tag :start_period, class: :input %>
+          <%= form.label :start_period %>
+          <%= form.date_field :start_period, class: :input %>
         </div>
 
         <div class="field">
-          <%= label_tag :end_period %>
-          <%= date_field_tag :end_period, class: :input %>
+          <%= form.label :end_period %>
+          <%= form.date_field :end_period, class: :input %>
         </div>
 
         <div class="actions">

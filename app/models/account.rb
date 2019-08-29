@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'open-uri'
-
 class Account < ApplicationRecord
   has_many :employees, dependent: :destroy
   has_many :companies, through: :employees
@@ -27,14 +25,17 @@ class Account < ApplicationRecord
       account.uid = auth.uid
       account.email = auth.info.email
       account.password = Devise.friendly_token[0, 20]
+      account.github_avatar(auth, account)
     end
   end
 
   def github_avatar(auth, account)
     return unless auth.info.image.present?
 
+    downloaded_image = URI.parse(auth.info.image).open
+
     account.avatar.attach(
-      io: File.open(auth.info.image),
+      io: downloaded_image,
       filename: 'avatar.png',
       content_type: downloaded_image.content_type
     )

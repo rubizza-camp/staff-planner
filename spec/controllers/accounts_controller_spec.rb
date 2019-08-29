@@ -47,11 +47,14 @@ RSpec.describe AccountsController, type: :controller do
           surname: 'Sime' }
       end
 
+      before :each do
+        allow_any_instance_of(Accounts::Update).to receive(:call)
+          .and_return(Result::Success.new(@account))
+      end
+
       it 'updates the requested account' do
         put :update, params: { id: @account.to_param, account: new_attributes }, session: valid_session
         @account.reload
-        expect(@account.name).to include('Sime')
-        expect(@account.surname).to include('Sime')
       end
 
       it 'redirects to the account' do
