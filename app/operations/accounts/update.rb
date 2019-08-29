@@ -2,20 +2,30 @@
 
 module Accounts
   class Update
-    def call(account, account_params)
-      set_avatar(account, params)
-      if account.update?(account_params)
-        Result::Success.new(event)
+    def call(account, params)
+      set_avatar(account, params[:avatar])
+      if account.update(account_params(params))
+        Result::Success.new(account)
       else
-        Result::Failure.new(event)
+        Result::Failure.new(account)
       end
     end
 
     private
 
-    def set_avatar(account, params)
-      account.avatar.purge if @account.avatar.present?
-      account.avatar.attach(params[:avatar]) if account_params[:avatar].present?
+    def account_params(params)
+      params.require(:account)
+            .permit(:name,
+                    :surname,
+                    :email,
+                    :password,
+                    :date_of_birth,
+                    :avatar)
+    end
+
+    def set_avatar(account, avatar)
+      account.avatar.purge if account.avatar.present?
+      account.avatar.attach(avatar) if avatar.present?
     end
   end
 end
