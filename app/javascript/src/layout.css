@@ -122,6 +122,10 @@ td.stateholiday {
 	background-color: lightpink
 }
 
+td.work {
+	background-color:transparent;
+}
+
 .notification {
 	width: 33%;
 	position:absolute;

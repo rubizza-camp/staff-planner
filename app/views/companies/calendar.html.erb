@@ -17,10 +17,18 @@
         <% @calendar.days_status(employee).each do |day, value| %>
           <% case value %>
             <% when 'work' %>
-              <td style="padding-bottom:0.5em;font-size:14px;background-color:transparent;">
+              <td class="work">
                 <%= link_to day.strftime('%d'), new_company_event_path(
                     company_id: @calendar.company.id,
                     event: { start_period: day.strftime('%c') })%>
+              </td>
+            <% when 'holiday' %>
+              <td class="holiday">
+                <%= link_to day.strftime('%d'), new_company_event_path(
+                    company_id: @calendar.company.id,
+                    event: { start_period: day.strftime('%c') })%>   
+              </td>     
+            <% when 'fulldayevent' %>        
               <td class="fulldayevent">
                 <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
               </td>

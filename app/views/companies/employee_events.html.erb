@@ -36,19 +36,17 @@
     <th colspan="2"> Actions </th>
   </thead>
   <tbody>
-    <% @employee_events.each do |day, events| %>
-        <% events.each do |event| %>
-          <tr>
-            <td><%= event.account.name %></td>
-            <td><%= event.reason %></td>
-            <td><%= event.start_period.strftime('%c') %></td>
-            <td><%= event.end_period.strftime('%c') %></td>
-            <td><%= event.rule.name %></td>
-            <td><%= link_to 'Accept', edit_company_event_path(id: event.id, company_id: event.company_id ), class: :"button is-small is-success" %></td>
-            <td><%= button_to 'Decline', company_event_path(id: event.id, company_id: event.company_id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
-          </tr>
-        <% end %>
-      <% end %>
+    <% @employee_events.each do |event| %>
+      <tr>
+        <td><%= event.account.name %></td>
+        <td><%= event.reason %></td>
+        <td><%= event.start_period.strftime('%c') %></td>
+        <td><%= event.end_period.strftime('%c') %></td>
+        <td><%= event.rule.name %></td>
+        <td><%= link_to 'Accept', edit_company_event_path(id: event.id, company_id: event.company_id ), class: :"button is-small is-success" %></td>
+        <td><%= button_to 'Decline', company_event_path(id: event.id, company_id: event.company_id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <br>
