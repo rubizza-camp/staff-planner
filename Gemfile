@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Links
+gem 'active_link_to'
+
 # A ruby gem for bulma Modern CSS framework based on Flexbox
 gem 'bulma', '~> 0.1.0'
 
@@ -44,8 +47,6 @@ gem 'devise'
 # Authorization
 gem 'cancancan'
 gem 'omniauth-github'
-# Links
-gem 'active_link_to'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
