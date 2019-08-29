@@ -17,9 +17,9 @@
     </ul>
 
     <% if current_account.employees.pluck(:role).include?('owner') %>
-    <p class="menu-label">
-      Company
-    </p>
+      <p class="menu-label">
+        Company
+      </p>
       <ul class="menu-list">
           <ul>
             <li><%= active_link_to 'Company & Employees', company_path(current_account.employees.pluck(:company_id).join(' ')), active: :exclusive %>
