@@ -1,4 +1,6 @@
-<h1>New Rule</h1>
-
-<%= render 'form', rule: @rule %>
-
+<div class="column is-two-fifths is-offset-one-quarter">
+  <h3 class="title">New Rule</h3>
+  <%= render 'form', rule: @rule %>
+  <br>
+  <%= link_to 'Back', company_rules_path, class: 'button is-medium' %>
+</div>

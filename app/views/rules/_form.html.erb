@@ -1,28 +1,30 @@
 <%= form_with(model: [@company, rule], local: true) do |form| %>
   <%= render 'shared/error', object: rule %>
-
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: 'label' %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
-
   <div class="field">
-    <%= form.label :allowance_days %>
-    <%= form.number_field :allowance_days %>
+    <%= form.label :company_id, class: 'label' %>
+    <div class="select">
+      <%= form.collection_select :company_id, @companies, :id, :name %>
+    </div>
   </div>
-
   <div class="field">
-    <%= form.label :period %>
-    <%= select(:rule, :period, Rule::PERIOD_LIST) %>
+    <%= form.label :allowance_days, class: 'label' %>
+    <%= form.number_field :allowance_days, class: 'input' %>
   </div>
-
   <div class="field">
-    <%= form.label :is_enabled %>
+    <%= form.label :period, class: 'label' %>
+    <div class="select">
+      <%= select(:rule, :period, Rule::PERIOD_LIST) %>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :is_enabled, class: 'checkbox' %>
     <%= form.check_box :is_enabled %>
   </div>
-
   <div class="actions">
-    <%= form.submit class: :"button is-small is-success"  %>
-    <%= link_to 'Back', company_rules_path, class: :"button is-small is-info"  %>
+    <%= form.submit 'Submit', class: 'button is-medium is-success' %>
   </div>
 <% end %>

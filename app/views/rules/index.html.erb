@@ -1,7 +1,10 @@
-<h1>Holidays Rules</h1>
-
-<%= render 'rules/list', rules: @rules %>
-
+<p id="notice"><%= notice %></p>
+<h3 class="title">Rules</h3>
+<% if @rules.any? %>
+  <%= render 'rules/list', rules: @rules %>
+<% else %>
+  <p>Still no rules!</p>
+<% end %>
 <br />
+<%= link_to 'New Rule', new_company_rule_path, class: 'button is-medium is-success' %>
 
-<%= link_to 'New Rule', new_company_rule_path, class: :"button is-small is-success"  %>
