@@ -32,6 +32,11 @@
         <%= form.text_field :reason, class: :input %>
       </div>
 
+      <div class="field reason">
+        <%= form.label :reason %>
+        <%= form.text_field :reason, class: :input %>
+      </div> 
+
       <%= form.button type: :submit, class: :"button is-small is-success" %>
       <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
     <% end %>   

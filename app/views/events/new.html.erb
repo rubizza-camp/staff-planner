@@ -28,6 +28,11 @@
 
       <p>Rule</p>
       <div class="select">
+        <%= form.select :second_period, options_for_select(['Afternoon', 'End of day']), class: :input %>
+      </div>   
+      <br>
+      <br>
+      <div class="select">
         <%= form.collection_select :rule_id, @rules, :id, :name %>
       </div>
 
