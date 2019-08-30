@@ -7,20 +7,16 @@ body {
 }
 
 .navbar {
-	border-bottom:2px solid lightgray;
+	border-bottom:1px solid whitesmoke;
 }
 
 .footer {
-	border-top:2px solid lightgray;
-	padding: 25px 25px;	
+	border-top:1px solid whitesmoke;
+	max-height: 80px;
 }
 
 #leftmenu {
 	width:auto;
-}
-
-.is-fullheight.columns {
-    height: calc(100vh - ( 3.25rem - .75rem ) );
 }
 
 .table {
@@ -66,7 +62,7 @@ div h1 {
 }
 
 .footer p {
-	font-size:8px;
+	font-size:13px;
 }
 
 a.active {

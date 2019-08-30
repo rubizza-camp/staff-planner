@@ -1,48 +1,39 @@
 <div class="columns is-desktop is-multiline is-vcentered">
   <div class="column is-narrow">    
-
-    <h1>New Event</h1>    
-
+    <h3 class="title">New Event</h3>    
     <%= form_with model: @event, url: company_events_path, method: 'post', local: true do |form| %>    
       <div id="newevent" class="columns">
         <div class="column">
           <div class="field">
-            <%= form.label :start_day %>
-            <%= form.date_field :start_day, class: :input %>
+            <%= form.label :start_day, class: 'label' %>
+            <%= form.date_field :start_day, class: :input, value: params[:start_period] %>
           </div>
           <div class="select period">
             <%= form.select :first_period,options_for_select(['Morning', 'Afternoon']), class: :input %>
           </div>
         </div>
-
         <div class="column">
           <div class="field">
-            <%= form.label :end_day %>
-            <%= form.date_field :end_day, class: :input %>
+            <%= form.label :end_day, class: 'label' %>
+            <%= form.date_field :end_day, class: :input, value: params[:start_period] %>
           </div>    
           <div class="select period">
             <%= form.select :second_period,options_for_select(['Afternoon', 'End of day']), class: :input %>
           </div>
         </div>
       </div> 
-
-      <p>Rule</p>
-      <div class="select">
-        <%= form.select :second_period, options_for_select(['Afternoon', 'End of day']), class: :input %>
-      </div>   
-      <br>
-      <br>
+      <label class="label">Rule</label>
       <div class="select">
         <%= form.collection_select :rule_id, @rules, :id, :name %>
       </div>
-
       <div class="field reason">
-        <%= form.label :reason %>
+        <%= form.label :reason, class: 'label' %>
         <%= form.text_field :reason, class: :input %>
       </div>
-  
-      <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-small is-success" %>
-      <%= link_to 'Back', company_events_path, class: "button is-small is-info" %>
+      <div class="buttons">
+        <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-normal is-success" %>
+        <%= link_to 'Back', company_events_path, class: "button is-normal is-info" %>
+      </div>
     <% end %>
   </div>
 </div>
