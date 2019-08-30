@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+  include AASM
+
   START_DAY = 9
   HALF_DAY = 13
   END_DAY = 21
@@ -17,4 +19,18 @@ class Event < ApplicationRecord
   validates :rule_id, presence: true
   validates :start_period, presence: true
   validates :end_period, presence: true
+  validates :state, presence: true, inclusion: { in: %w[pending accepted declined] }
+
+  aasm column: 'state', whiny_transitions: false do
+    state :pending, initial: true
+    state :accepted, :declined
+
+    event :accept do
+      transitions from: :pending, to: :accepted
+    end
+
+    event :decline do
+      transitions from: :pending, to: :declined
+    end
+  end
 end

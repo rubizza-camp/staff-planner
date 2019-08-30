@@ -8,7 +8,9 @@ class EventsController < ApplicationController
   load_and_authorize_resource through: :company, except: :create
 
   def index
-    @events = Event.all
+    employee = Employee.find(params[:employee_id])
+    from, to = determine_from_to(params)
+    @employee_events = employee.events.range(from, to).accessible_by(current_ability)
   end
 
   def show; end
@@ -22,7 +24,7 @@ class EventsController < ApplicationController
   def create
     result = Events::Create.new(current_account, params, @company).call
     if result.success?
-      redirect_to company_events_path
+      redirect_to company_calendar_path
     else
       render :new
     end
@@ -46,7 +48,25 @@ class EventsController < ApplicationController
     redirect_to company_events_path
   end
 
+  def accept
+    event = Event.find(params[:event_id])
+    flash[:error] = 'Accept failed' unless event.accept!
+    redirect_to company_calendar_path
+  end
+
+  def decline
+    event = Event.find(params[:event_id])
+    flash[:error] = 'Decline failed' unless event.decline!
+    redirect_to company_calendar_path
+  end
+
   private
+
+  def determine_from_to(params)
+    from = params[:day]&.to_date&.beginning_of_day || params[:start_period]
+    to = params[:day]&.to_date&.end_of_day || params[:end_period]
+    [from, to]
+  end
 
   def set_event
     @event = Event.find(params[:id])

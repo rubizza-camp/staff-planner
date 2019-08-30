@@ -1,4 +1,29 @@
-<h1>Company Events</h1>
+<div class="columns is-desktop">
+  <div class="column is-narrow">
+    <%= form_with(url: company_employee_events_path, local: true) do %>
+      <div id="period">
+        <div class="field">
+          <%= label_tag :employee_id %>
+          <%= select_tag :employee, options_from_collection_for_select(@company.employees, :id, :position) %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :start_period %>
+          <%= date_field_tag :start_period, class: :input %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :end_period %>
+          <%= date_field_tag :end_period, class: :input %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag 'Set period', class: "button is-small is-warning" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <table class="table">
   <thead>
@@ -7,11 +32,29 @@
     <th> Start Period </th>
     <th> End period </th>
     <th> Rule </th>
+    <th> Status </th>
     <th colspan="2"> Actions </th>
   </thead>
   <tbody>
-    <%= render @events %>
+    <% @employee_events.each do |event| %>
+      <tr>
+        <td><%= event.account.name %></td>
+        <td><%= event.reason %></td>
+        <td><%= event.start_period.strftime('%c') %></td>
+        <td><%= event.end_period.strftime('%c') %></td>
+        <td><%= event.rule.name %></td>
+        <<td><p><%= event.state %></p></td>
+          <td>
+            <% if can?(:accept, event) %>
+              <div class="buttons">
+                <%= button_to 'Accept', company_event_accept_path(event_id: event.id, company_id: event.company_id ), method: :patch, class: "button is-small is-success" %>
+                <%= button_to 'Decline', company_event_decline_path(event_id: event.id, company_id: event.company_id ), method: :patch, class: "button is-small is-danger" %>
+              </div>
+            <% end %>
+          </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New event', new_company_event_path, class: :"button is-small is-success" %>
+<%= link_to 'Back to calendar', company_calendar_path, class: :"button is-small is-info" %>

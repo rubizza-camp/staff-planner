@@ -18,27 +18,47 @@
           <% case value %>
             <% when 'work' %>
               <td class="work">
-                <%= link_to day.strftime('%d'), new_company_event_path(
-                    company_id: @calendar.company.id,
-                    start_period: day.to_s(:db))%>
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      start_period: day.to_s(:db))%>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'holiday' %>
               <td class="holiday">
-                <%= link_to day.strftime('%d'), new_company_event_path(
-                    company_id: @calendar.company.id,
-                    start_period: day.to_s(:db))%>   
-              </td>     
-            <% when 'fulldayevent' %>        
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      start_period: day.to_s(:db))%>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'fulldayevent' %>
               <td class="fulldayevent">
-                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'first_half_of_day' %>
               <td class="firsthalf">
-                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'second_half_of_day' %>
               <td class="secondhalf">
-                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'state_holiday' %>
               <td class="stateholiday">
