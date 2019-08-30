@@ -26,7 +26,7 @@
             <li><%= active_link_to 'Events Calendar', company_calendar_path(@account_company_ids), active: :exclusive %></li>
             <li><%= active_link_to 'Rules', company_rules_path(@account_company_ids), active: :exclusive %></li>
             <li><%= active_link_to 'Working Days', company_working_days_path(@account_company_ids), active: :exclusive %></li>
-            <li><%= active_link_to 'Events', company_events_path(@account_company_ids), active: :exclusive %></li>
+            <li><%= active_link_to 'Events', company_employee_events_path(@account_company_ids, employee_id: @account_employee.id), active: :exclusive %></li>
             <li><%= active_link_to 'Holidays', company_holidays_path(@account_company_ids), active: :exclusive %></li>
           </ul>
         </li>
