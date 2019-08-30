@@ -21,7 +21,7 @@
                 <% if employee.account == current_account %>
                   <%= link_to day.strftime('%d'), new_company_event_path(
                       company_id: @calendar.company.id,
-                      event: { start_period: day.strftime('%c') })%>
+                      start_period: day.to_s(:db))%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
@@ -31,7 +31,7 @@
                 <% if employee.account == current_account %>
                   <%= link_to day.strftime('%d'), new_company_event_path(
                       company_id: @calendar.company.id,
-                      event: { start_period: day.strftime('%c') })%>
+                      start_period: day.to_s(:db))%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>

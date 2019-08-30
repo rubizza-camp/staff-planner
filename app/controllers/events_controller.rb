@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @event = Event.new(event_params)
+    @event = Event.new
   end
 
   def edit; end
@@ -75,11 +75,5 @@ class EventsController < ApplicationController
   def company_rules
     @company = Company.find(params[:company_id])
     @rules = @company.rules
-  end
-
-  def event_params
-    return unless params[:event]
-
-    params.require(:event).permit(:start_period)
   end
 end
