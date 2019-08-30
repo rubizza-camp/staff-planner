@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StaffPlanner</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all'  %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body class="hero is-fullheight has-background-white-ter">
+    <%= render 'shared/header' %>
+
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+
+    <%= render 'shared/footer' %>
+  </body>
+  
+<script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+</html>

@@ -1,15 +1,24 @@
 <div class="columns is-desktop is-multiline is-centered is-vcentered">
   <div class="column is-narrow">
     <%= form_with model: @account, local: true do |form| %>
-      <%= render "devise/shared/error_messages", resource: @account %>
-      <h3 class="title">Editing Account</h3>
+    	<%= render "devise/shared/error_messages", resource: @account %>
+    	<h3 class="title">Editing Account</h3>
+      <% if @account.avatar.attached? %>
+        <figure class="image is-128x128">
+          <%= image_tag(url_for(current_account.avatar)) %>
+        </figure>
+      <% end %>
+      <div class="field">
+        <%= form.label "Profile Photo", class: 'label' %>
+        <%= form.file_field :avatar %>
+      </div>
       <div class="field">
         <%= form.label :name, class: 'label' %>
-        <%= form.text_field :name, class: :input, placeholder: :"Edit your name" %>
+        <%= form.text_field :name, class: :input, placeholder: "Edit your name" %>
       </div>
       <div class="field">
         <%= form.label :surname, class: 'label' %>
-        <%= form.text_field :surname, class: :input, placeholder: :"Edit your surname"  %>
+        <%= form.text_field :surname, class: :input, placeholder: "Edit your surname"  %>
       </div>
       <div class="actions">
         <%= form.submit 'Update account', class: 'button is-medium is-success is-fullwidth' %>

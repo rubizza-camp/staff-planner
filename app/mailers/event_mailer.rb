@@ -23,7 +23,7 @@ class EventMailer < ApplicationMailer
       created_by: "#{current_account.name} #{current_account.surname}",
       rule_name: event.rule.name,
       event_link: link_to_events(company, event),
-      remaining_days: RemainingDaysService.new.call(event.employee, event.rule)
+      remaining_days: Events::RemainingDaysService.new.call(event.employee, event.rule)
     }
   end
 

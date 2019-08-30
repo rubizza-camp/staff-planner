@@ -1,28 +1,26 @@
 <%= form_with(model: [@company, employee], local: true) do |form| %>
   <%= render 'shared/error', object: employee %>
   <div class="field">
-    <%= form.label :position %>
-    <%= form.text_field :position, id: :employee_position %>
+    <%= form.label :position, class: 'label' %>
+    <%= form.text_field :position, id: :employee_position, class: 'input' %>
   </div>
-
   <div class="field">
-    <%= form.label :start_day %>
-    <%= form.date_field :start_day, value: Date.today, id: :employee_start_day %>
+    <%= form.label :start_day, class: 'label' %>
+    <%= form.date_field :start_day, value: Date.today, id: :employee_start_day, class: 'input' %>
   </div>
-
   <% if !employee.id %>
     <div class="field">
-      <%= form.label :email %>
-      <%= form.text_field :email, id: :email %>
+      <%= form.label :email, class: 'label' %>
+      <%= form.text_field :email, id: :email, class: 'input' %>
     </div>
   <% end %>
-
   <div class="field">
-    <%= label_tag :role %>
-    <%= form.select :role, options_for_select(['owner', 'employee'])%>
+    <%= form.label :role, class: 'label' %>
+    <div class="select">
+      <%= form.select :role, options_for_select(['owner', 'employee']) %>
+    </div>
   </div>
-
   <div class="actions">
-    <%= form.submit class: :"button is-small is-success" %>
+    <%= form.submit class: "button is-medium is-success" %>
   </div>
 <% end %>

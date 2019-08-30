@@ -1,15 +1,88 @@
-<div class="columns is-desktop" style="margin-left:5px">
-  <div class="column is-narrow">
-    <%= form_tag(company_calendar_path(id: @company), :method => :get) do %>
+<h1>Company Events Calendar</h1>
+
+<table id="calendar" class="table">
+  <thead>
+    <th>Employee</th>
+      <% @calendar.days.each do |day| %>
+        <th><%= day.strftime('%a')[0..1] %></th>
+      <% end %>
+  </thead>
+  <tbody>
+  <% @calendar.employees.each do |employee| %>
+    <tr>
+      <td id="calendar" style='padding-bottom:0.5em;'>
+        <%= link_to employee.account.name, company_employee_path(id: employee.id) %>
+        <p style="font-size:8px"><%= employee.position %></p>
+      </td>
+        <% @calendar.days_status(employee).each do |day, value| %>
+          <% case value %>
+            <% when 'work' %>
+              <td class="work">
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      event: { start_period: day.strftime('%c') })%>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'holiday' %>
+              <td class="holiday">
+                <% if employee.account == current_account %>
+                  <%= link_to day.strftime('%d'), new_company_event_path(
+                      company_id: @calendar.company.id,
+                      event: { start_period: day.strftime('%c') })%>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'fulldayevent' %>
+              <td class="fulldayevent">
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'first_half_of_day' %>
+              <td class="firsthalf">
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'second_half_of_day' %>
+              <td class="secondhalf">
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'state_holiday' %>
+              <td class="stateholiday">
+                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id)%>
+              </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="is-desktop">
+  <div>
+    <%= form_with(url: company_calendar_path(id: @company), method: :get) do |form| %>
       <div id="period">
         <div class="field">
-          <%= label_tag :start_period %>
-          <%= date_field_tag :start_period, class: :input %>
+          <%= form.label :start_period %>
+          <%= form.date_field :start_period, class: :input %>
         </div>
 
         <div class="field">
-          <%= label_tag :end_period %>
-          <%= date_field_tag :end_period, class: :input %>
+          <%= form.label :end_period %>
+          <%= form.date_field :end_period, class: :input %>
         </div>
 
         <div class="actions">
@@ -20,60 +93,3 @@
   </div>
 </div>
 
-<table style="background-color:whitesmoke;margin-top:50px" class="table">
-  <thead>
-    <th style='padding-bottom:0.5em;font-size:12px'>Employee</th>
-      <% @calendar.days.each do |day| %>
-        <th style="padding-bottom:0.5em;font-size:12px"><%= day.strftime('%a')[0..1] %></th>
-      <% end %>
-  </thead>
-  <tbody>
-  <% @calendar.employees.each do |employee| %>
-    <tr>
-      <td style='padding-bottom:0.5em;'>
-        <%= link_to employee.account.name, company_employee_path(id: employee.id) %>
-        <p style="font-size:8px"><%= employee.position %></p>
-      </td>
-        <% @calendar.days_status(employee).each do |day, value| %>
-          <% case value %>
-            <% when 'work' %>
-              <td style="padding-bottom:0.5em;font-size:14px">
-                <% if employee.account == current_account %>
-                  <%= link_to day.strftime('%d'), new_company_event_path(
-                      company_id: @calendar.company.id,
-                      event: { start_period: day.strftime('%c') }) %>
-                <% else %>
-                  <p><%= day.strftime('%d') %></p>
-                <% end %>
-              </td>
-            <% when 'holiday' %>
-              <td style="padding-bottom:0.5em;background-color:lightgray;font-size:14px">
-                <% if employee.account == current_account %>
-                  <%= link_to day.strftime('%d'), new_company_event_path(
-                      company_id: @calendar.company.id,
-                      event: { start_period: day.strftime('%c') }) %>
-                <% else %>
-                  <p><%= day.strftime('%d') %></p>
-                <% end %>
-              </td>
-            <% when 'event' %>
-              <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">
-                <% if can?(:access_to_your_event, employee) %>
-                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee.id, day: day ) %>
-                <% else %>
-                  <p><%= day.strftime('%d') %></p>
-                <% end %>
-              </td>
-            <% when 'state_holiday' %>
-              <td style="background-color: lightpink ;padding-bottom:0.5em;font-size:14px">
-                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id) %>
-              </td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path %>'>New employee</a>
-<a style="padding-right:10px"><a class="button is-small is-success" href='<%= company_rules_path %>'>Rules</a>

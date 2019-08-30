@@ -3,6 +3,10 @@
 class Event < ApplicationRecord
   include AASM
 
+  START_DAY = 9
+  HALF_DAY = 13
+  END_DAY = 21
+
   belongs_to :employee
   belongs_to :company
   belongs_to :rule

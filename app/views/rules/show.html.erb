@@ -1,29 +1,27 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @rule.name %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @rule.company_id %>
-</p>
-
-<p>
-  <strong>Allowance days:</strong>
-  <%= @rule.allowance_days %>
-</p>
-
-<p>
-  <strong>Period:</strong>
-  <%= @rule.period %>
-</p>
-
-<p>
-  <strong>Is enabled:</strong>
-  <%= @rule.is_enabled %>
-</p>
-
-<%= link_to 'Edit', edit_company_rule_path(id: @rule.id) %> |
-<%= link_to 'Back', company_rules_path %>
+<div class="content">
+  <p>
+    <strong>Name:</strong>
+    <%= @rule.name %>
+  </p>
+  <p>
+    <strong>Company:</strong>
+    <%= @rule.company_id %>
+  </p>
+  <p>
+    <strong>Allowance days:</strong>
+    <%= @rule.allowance_days %>
+  </p>
+  <p>
+    <strong>Period:</strong>
+    <%= @rule.period %>
+  </p>
+  <p>
+    <strong>Is enabled:</strong>
+    <%= @rule.is_enabled %>
+  </p>
+</div>
+<div class="buttons">
+  <%= link_to 'Edit', edit_company_rule_path(id: @rule.id), class: 'button is-medium is-info' %>
+  <%= link_to 'Back', company_rules_path, class: 'button is-medium'%>
+</div>
