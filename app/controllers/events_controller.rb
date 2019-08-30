@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_action :company_rules, only: %i[create new]
   before_action :authenticate_account!
   load_and_authorize_resource :company
-  load_and_authorize_resource through: :company
+  load_and_authorize_resource through: :company, except: :create
 
   def index
     employee = Employee.find(params[:employee_id])
