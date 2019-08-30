@@ -9,13 +9,14 @@ Rails.application.routes.draw do
   end
   resources :accounts, except: %i[new create index]
   resources :companies do
-    resources :employees, except: :index
+    resources :employees, except: :index do
+      resources :events, only: :index
+    end
     resources :working_days
-    resources :events do
+    resources :events, except: :index do
       patch :accept
       patch :decline
     end
-    get :employee_events
     get :calendar
     resources :holidays do
       collection do

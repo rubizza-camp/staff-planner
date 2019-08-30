@@ -7,6 +7,6 @@ class EmployeeEventsService
   end
 
   def events(from, to)
-    Event.range(from, to).where(employee_id: employee.id).group_by(&:start_period)
+    Event.range(from, to).where(employee_id: employee.id) # .group_by(&:start_period)
   end
 end

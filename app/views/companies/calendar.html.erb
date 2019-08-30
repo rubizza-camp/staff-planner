@@ -58,7 +58,11 @@
               </td>
             <% when 'event' %>
               <td style="background-color:#44c9b3;padding-bottom:0.5em;font-size:14px">
-                <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee: employee, day: day ) %>
+                <% if can?(:access_to_your_event, employee) %>
+                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee.id, day: day ) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
               </td>
             <% when 'state_holiday' %>
               <td style="background-color: lightpink ;padding-bottom:0.5em;font-size:14px">

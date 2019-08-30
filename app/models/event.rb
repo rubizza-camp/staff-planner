@@ -15,9 +15,9 @@ class Event < ApplicationRecord
   validates :rule_id, presence: true
   validates :start_period, presence: true
   validates :end_period, presence: true
-  validates :aasm_state, presence: true, inclusion: { in: %w[pending accepted declined] }
+  validates :state, presence: true, inclusion: { in: %w[pending accepted declined] }
 
-  aasm whiny_transitions: false do
+  aasm column: 'state', whiny_transitions: false do
     state :pending, initial: true
     state :accepted, :declined
 

@@ -16,7 +16,7 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index, params: { company_id: company.id }
+      get :index, params: { company_id: company.id, employee_id: employee.id }
       expect(response).to be_successful
     end
   end

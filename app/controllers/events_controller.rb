@@ -8,7 +8,9 @@ class EventsController < ApplicationController
   load_and_authorize_resource through: :company
 
   def index
-    @events = Event.all
+    employee = Employee.find(params[:employee_id])
+    from, to = determine_from_to(params)
+    @events = EmployeeEventsService.new(employee).events(from, to).accessible_by(current_ability)
   end
 
   def show; end
@@ -58,6 +60,12 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def determine_from_to(params)
+    from = params[:day]&.to_date&.beginning_of_day || params[:start_period]
+    to = params[:day]&.to_date&.end_of_day || params[:end_period]
+    [from, to]
+  end
 
   def set_event
     @event = Event.find(params[:id])
