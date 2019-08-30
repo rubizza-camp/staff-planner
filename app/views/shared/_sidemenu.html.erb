@@ -13,17 +13,17 @@
     </ul>
     <ul class="menu-list">
       <li><%= active_link_to 'My Account & Events', account_path(current_account), active: :exclusive %></li>
+      <li><%= active_link_to 'Create New Event', new_company_event_path(@account_company_ids), active: :exclusive %></li>
+      <li><%= active_link_to 'Company & Employees', company_path(@account_company_ids), active: :exclusive %>
+      <li><%= active_link_to 'Events Calendar', company_calendar_path(@account_company_ids), active: :exclusive %></li>
     </ul>
 
-    <% if current_account.employees.pluck(:role).include?('owner') %>
+    <% if @company && can?(:manage, @company) %>
       <p class="menu-label">
         Company
       </p>
       <ul class="menu-list">
           <ul>
-            <li><%= active_link_to 'Company & Employees', company_path(@account_company_ids), active: :exclusive %>
-            <li><%= active_link_to 'Create New Event', new_company_event_path(@account_company_ids), active: :exclusive %></li>
-            <li><%= active_link_to 'Events Calendar', company_calendar_path(@account_company_ids), active: :exclusive %></li>
             <li><%= active_link_to 'Rules', company_rules_path(@account_company_ids), active: :exclusive %></li>
             <li><%= active_link_to 'Working Days', company_working_days_path(@account_company_ids), active: :exclusive %></li>
             <li><%= active_link_to 'Events', company_employee_events_path(@account_company_ids, employee_id: @account_employee.id), active: :exclusive %></li>
