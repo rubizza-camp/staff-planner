@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
                              current_account.employees.pluck(:company_id)[0]
                            end
     session[:company_name] = Company.find(session[:company_id].to_i).name
-    redirect_back fallback_location: root_path
+    redirect_to company_calendar_path(session[:company_id])
   end
   # rubocop: enable Metrics/AbcSize
 
