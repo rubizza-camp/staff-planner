@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :account_employee, unless: :devise_controller?
 
   def account_company_ids
-    @account_company_ids = current_account.employees.first.company_id
+    @account_company_ids = current_account.employees.first&.company_id
   end
 
   def account_employee
