@@ -7,5 +7,7 @@
   <%= @holiday.date %>
 </p>
 <br>
-<%= link_to 'Edit', edit_company_holiday_path(id: @holiday.id), class: 'button is-primary is-small' %>
-<%= link_to 'Back', company_holidays_path, class: 'button is-small' %>
+<div class="buttons">
+  <%= link_to 'Edit', edit_company_holiday_path(id: @holiday.id), class: 'button is-primary is-is-norma' %>
+  <%= link_to 'Back', company_holidays_path, class: 'button is-is-normal' %>
+</div>

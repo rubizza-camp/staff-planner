@@ -1,6 +1,4 @@
-<h3 class="title is-3">New holiday</h3>
-<div class="columns is-desktop is-multiline is-left">
-  <div class="column is-half">
+
     <%= form_with(model: [@company, holiday], local: true) do |form| %>
       <%= render 'shared/error', object: holiday %>
       <div class="field">
@@ -28,8 +26,7 @@
         <%end%>
       </div>
       <div class="control">
-        <%= form.submit class: 'button is-info is-small' %>
+        <%= form.submit class: 'button is-success is-normal' %>
       </div>
     <% end %>
-  </div>
-</div>
+
