@@ -3,11 +3,28 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
-  before_action :account_company_ids, unless: :devise_controller?
+  before_action :account_companies, unless: :devise_controller?
 
-  def account_company_ids
-    @account_company_ids = current_account.employees.pluck(:company_id).join(' ')
+  # rubocop: disable Metrics/AbcSize
+  def account_companies
+    account_company_ids = current_account.employees.pluck(:company_id)
+    @account_companies = account_company_ids.map { |id| Company.find(id.to_i) }
+                                            .map { |company| [company.name, company.id] }
+    @account_companies.delete_if do |company|
+      company == [session[:company_name], session[:company_id].to_i]
+    end.unshift([session[:company_name], session[:company_id]])
   end
+
+  def select_company
+    session[:company_id] = if params[:selected_company].present?
+                             params[:selected_company]
+                           else
+                             current_account.employees.pluck(:company_id)[0]
+                           end
+    session[:company_name] = Company.find(session[:company_id].to_i).name
+    redirect_back fallback_location: root_path
+  end
+  # rubocop: enable Metrics/AbcSize
 
   protected
 

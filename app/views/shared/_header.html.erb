@@ -4,4 +4,12 @@
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
   </div>
+
+  <div class="navbar-end">
+    <div class="select navnav">
+        <%= form_tag :select_company do |form| %>
+          <%= select_tag :selected_company, options_for_select(@account_companies.map {|company| [company[0], company[1]] }), { class: 'form-control', onchange: 'this.form.submit();'} %>
+        <% end %>
+      </div>
+   </div>
 </nav>

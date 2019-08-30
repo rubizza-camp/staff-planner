@@ -14,6 +14,7 @@ RSpec.describe EmployeesController do
 
   before(:each) do
     sign_in account_owner
+    session[:company_id] = 11
   end
 
   describe 'GET show' do

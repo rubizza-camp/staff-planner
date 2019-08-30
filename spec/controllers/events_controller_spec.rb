@@ -12,6 +12,7 @@ RSpec.describe EventsController, type: :controller do
 
   before(:each) do
     sign_in account
+    session[:company_id] = company.id
   end
 
   describe 'GET #index' do

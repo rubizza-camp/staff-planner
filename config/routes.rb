@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     end
     resources :rules
   end
+  post :select_company, controller:'application'
 end

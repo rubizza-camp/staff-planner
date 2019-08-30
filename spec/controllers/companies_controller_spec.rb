@@ -10,6 +10,7 @@ RSpec.describe CompaniesController do
     account = FactoryBot.create(:account)
     employee = FactoryBot.create(:employee, company_id: company.id, account_id: account.id)
     sign_in account
+    session[:company_id] = company.id
   end
 
   describe 'GET index' do
