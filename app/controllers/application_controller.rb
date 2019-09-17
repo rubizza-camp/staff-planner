@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :account_company_ids, unless: :devise_controller?
   before_action :account_employee, unless: :devise_controller?
   before_action :account_companies, unless: :devise_controller?
-  before_action :current_company, unless: :devise_controller?
+  before_action :current_company
 
   def account_companies
     @account_companies = current_account.companies if current_account
@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
 
   def current_company
     @current_company_id = session[:current_company_id]
-    if !@current_company_id
-      session[:current_company_id] = @account_company_ids
-      @current_company_id = @account_company_ids
-    end
+    return if @current_company_id
+
+    session[:current_company_id] = @account_company_ids
+    @current_company_id = @account_company_ids
   end
 
   protected

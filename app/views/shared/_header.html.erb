@@ -3,10 +3,16 @@
     <a class="navbar-item" href="/">
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
-    <% if current_account && @company %>
-      <%= form_with url: company_switch_path, method: 'post', remote: true do |form| %>
-        <%= form.collection_select :id, @account_companies, :id, :name, {}, { onchange: 'this.form.submit();'} %>
+  </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <% if current_account && @account_company_ids %>
+        <%= form_with url: company_switch_path(@current_company_id), method: 'post', remote: true do |form| %>
+          <div class="select">
+            <%= form.collection_select :id, @account_companies, :id, :name, {}, { onchange: 'this.form.submit();'} %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </nav>
