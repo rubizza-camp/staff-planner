@@ -6,7 +6,7 @@ services:
     env_file:
       - postgresql.env
     volumes:
-      - /home/vsevolod/Work/staff-planner:/app
+      - /media/evgeniy/485E45B65E459D96/Project/staff-planner:/app
     ports:
       - '3000:3000'
     depends_on:

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[show edit update destroy calendar employee_events]
+  before_action :set_company, only: %i[show edit update destroy calendar employee_events switch]
   before_action :authenticate_account!
   load_and_authorize_resource
 
@@ -53,6 +53,10 @@ class CompaniesController < ApplicationController
 
   def calendar
     @calendar = Companies::CalendarPresenter.new(params)
+  end
+
+  def switch
+    session[:current_company_id] = params[:id]
   end
 
   private

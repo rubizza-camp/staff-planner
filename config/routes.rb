@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       patch :decline
     end
     get :calendar
+    post :switch
     resources :holidays do
       collection do
         post :calendarific_import
