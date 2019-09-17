@@ -57,6 +57,7 @@ class CompaniesController < ApplicationController
 
   def switch
     session[:current_company_id] = params[:id]
+    redirect_back(fallback_location: root_path)
   end
 
   private
