@@ -55,6 +55,11 @@ class CompaniesController < ApplicationController
     @calendar = Companies::CalendarPresenter.new(params)
   end
 
+  def switch
+    session[:current_company_id] = params[:id]
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
