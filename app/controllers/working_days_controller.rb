@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class WorkingDaysController < ApplicationController
-  before_action :set_company
   before_action :set_working_day, only: %i[show edit update destroy]
   before_action :authenticate_account!
   load_and_authorize_resource :company
@@ -57,9 +56,5 @@ class WorkingDaysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def working_day_params
     params.require(:working_day).permit(:day_of_week)
-  end
-
-  def set_company
-    @company = Company.find(params[:company_id])
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get '/accounts/sign_out' => 'devise/sessions#destroy'
   end
   resources :accounts, except: %i[new create index]
-  resources :companies do
+  resources :companies, except: :index do
     resources :employees, except: :index do
       resources :events, only: :index
     end

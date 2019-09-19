@@ -12,16 +12,17 @@ class ApplicationController < ActionController::Base
   end
 
   def account_employee
-    @account_employee = current_account.employees.find_by(company_id: @current_company_id) if current_account
+    @account_employee = current_account.employees.find_by(company_id: @company.id) if current_account && @company
   end
 
   def current_company
-    @current_company_id = session[:current_company_id]
-    return if @current_company_id
-    return unless current_account
-
-    @current_company_id = current_account.employees.first&.company_id
-    session[:current_company_id] = @current_company_id
+    @company = nil
+    if session[:current_company_id]
+      @company = Company.find(session[:current_company_id])
+    elsif current_account
+      @company = current_account.companies.first
+      session[:current_company_id] = @company.id if @company
+    end
   end
 
   protected

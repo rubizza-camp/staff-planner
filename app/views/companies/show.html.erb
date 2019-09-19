@@ -1,8 +1,12 @@
-<h1><%= @company.name %></h1>
+<h1>
+    <%= @company.name %>
+    <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
+    <% end %>
+</h1>
 
 <div>
   <%= render 'employees/list', company: @company %></div>
   <a style="padding-right:10px"><a class="button is-small is-success" href='<%= new_company_employee_path(@company) %>'>New employee</a>
 </div>
-
 

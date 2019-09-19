@@ -73,7 +73,6 @@ class EventsController < ApplicationController
   end
 
   def company_rules
-    @company = Company.find(params[:company_id])
     @rules = @company.rules
   end
 end

@@ -6,10 +6,10 @@
   </div>
   <div class="navbar-end">
     <div class="navbar-item">
-      <% if current_account && @current_company_id %>
-        <%= form_with url: company_switch_path(@current_company_id), method: 'post' do |form| %>
+      <% if current_account && @company&.persisted? %>
+        <%= form_with url: company_switch_path(@company), method: 'post' do |form| %>
           <div class="select">
-            <%= form.collection_select :id, @account_companies, :id, :name, {selected: @current_company_id}, { onchange: 'this.form.submit();'} %>
+            <%= form.collection_select :id, @account_companies, :id, :name, {selected: @company.id}, { onchange: 'this.form.submit();'} %>
           </div>
         <% end %>
       <% end %>

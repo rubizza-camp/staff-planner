@@ -35,13 +35,6 @@ RSpec.describe EmployeesController do
       get :edit, params: { company_id: company.id, id: employee.id }
       expect(response.status).to eq(200)
     end
-
-    let(:company_other) { FactoryBot.create(:company) }
-    let(:employee_without_access) { FactoryBot.create(:employee, company: company_other, account: account) }
-    it 'has a 302 status code' do
-      get :edit, params: { company_id: company_other.id, id: employee_without_access.id }
-      expect(response.status).to eq(302)
-    end
   end
 
   describe 'POST create' do

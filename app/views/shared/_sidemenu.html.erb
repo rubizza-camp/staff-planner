@@ -13,23 +13,23 @@
     </ul>
     <ul class="menu-list">
       <li><%= active_link_to 'My Account & Events', account_path(current_account), active: :exclusive %></li>
-      <% if @current_company_id -%>
-        <li><%= active_link_to 'Create New Event', new_company_event_path(@current_company_id), active: :exclusive %></li>
-        <li><%= active_link_to 'Company & Employees', company_path(@current_company_id), active: :exclusive %>
-        <li><%= active_link_to 'Events Calendar', company_calendar_path(@current_company_id), active: :exclusive %></li>
+      <% if @company&.persisted? %>
+        <li><%= active_link_to 'Create New Event', new_company_event_path(@company), active: :exclusive %></li>
+        <li><%= active_link_to 'Company & Employees', company_path(@company), active: :exclusive %>
+        <li><%= active_link_to 'Events Calendar', company_calendar_path(@company), active: :exclusive %></li>
       <% end %>
     </ul>
 
-    <% if @company && can?(:manage, @company) %>
+    <% if @company&.persisted? && can?(:manage, @company) %>
       <p class="menu-label">
         Company
       </p>
       <ul class="menu-list">
           <ul>
-            <li><%= active_link_to 'Rules', company_rules_path(@current_company_id), active: :exclusive %></li>
-            <li><%= active_link_to 'Working Days', company_working_days_path(@current_company_id), active: :exclusive %></li>
-            <li><%= active_link_to 'Events', company_employee_events_path(@current_company_id, employee_id: @account_employee.id), active: :exclusive %></li>
-            <li><%= active_link_to 'Holidays', company_holidays_path(@current_company_id), active: :exclusive %></li>
+            <li><%= active_link_to 'Rules', company_rules_path(@company), active: :exclusive %></li>
+            <li><%= active_link_to 'Working Days', company_working_days_path(@company), active: :exclusive %></li>
+            <li><%= active_link_to 'Events', company_employee_events_path(@company, employee_id: @account_employee.id), active: :exclusive %></li>
+            <li><%= active_link_to 'Holidays', company_holidays_path(@company), active: :exclusive %></li>
           </ul>
         </li>
       </ul>

@@ -40,14 +40,6 @@ RSpec.describe RulesController do
       get :edit, params: { id: rule.id, company_id: company.id }
       expect(response.status).to eq(200)
     end
-
-    let(:rule2) { FactoryBot.create(:rule, company_id: company_without_access.id) }
-    let(:company_without_access) { FactoryBot.create(:company) }
-    it 'has a 302 status code' do
-      get :edit, params: { id: rule2.id,
-                           company_id: company_without_access.id }
-      expect(response.status).to eq(302)
-    end
   end
 
   describe 'POST create' do

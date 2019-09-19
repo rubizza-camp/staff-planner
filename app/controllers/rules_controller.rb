@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RulesController < ApplicationController
-  before_action :set_company
   before_action :set_rule, only: %i[show edit update destroy]
   before_action :companies, only: %i[edit new update create]
   before_action :authenticate_account!
@@ -67,9 +66,5 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     params.require(:rule).permit(:name, :allowance_days, :period, :is_enabled)
-  end
-
-  def set_company
-    @company = Company.find(params[:company_id])
   end
 end

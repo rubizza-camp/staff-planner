@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class HolidaysController < ApplicationController
-  before_action :set_company
   before_action :set_holiday, only: %i[show edit update destroy]
   load_and_authorize_resource :company
   load_and_authorize_resource through: :company
@@ -57,10 +56,6 @@ class HolidaysController < ApplicationController
   end
 
   private
-
-  def set_company
-    @company = Company.find(params[:company_id])
-  end
 
   def set_holiday
     @holiday = @company.holidays.find_by!(id: params[:id])

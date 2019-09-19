@@ -1,21 +1,15 @@
 # frozen_string_literal: true
 
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[show edit update destroy calendar employee_events]
   before_action :authenticate_account!
   load_and_authorize_resource
-
-  # GET /companies
-  def index
-    @companies = @companies.includes(:employees)
-  end
 
   # GET /companies/1
   def show; end
 
   # GET /companies/new
   def new
-    @company = Company.new
+    @new_company = Company.new
   end
 
   # GET /companies/1/edit
@@ -26,6 +20,7 @@ class CompaniesController < ApplicationController
     result = Companies::Create.new.call(company_params, current_account.id)
     @company = result.value
     if result.success?
+      session[:current_company_id] = @company.id
       redirect_to @company, notice: 'Company was successfully created.'
     else
       render :new
@@ -48,7 +43,8 @@ class CompaniesController < ApplicationController
     else
       flash[:error] = "Company can't be deleted"
     end
-    redirect_to companies_url
+    session.delete(:current_company_id)
+    redirect_to root_path
   end
 
   def calendar
@@ -61,11 +57,6 @@ class CompaniesController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_company
-    @company = Company.find(params[:id] || params[:company_id])
-  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def company_params
