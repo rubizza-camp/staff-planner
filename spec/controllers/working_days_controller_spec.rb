@@ -16,44 +16,40 @@ RSpec.describe WorkingDaysController do
 
   describe 'GET index' do
     it 'has a 200 status code' do
-      get :index, params: { company_id: company.id }
+      get :index
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET show' do
     it 'has a 200 status code' do
-      get :show, params: { id: working_day.id,
-                           company_id: company.id }
+      get :show, params: { id: working_day.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET new' do
     it 'has a 200 status code' do
-      get :new, params: { company_id: company.id }
+      get :new
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET edit' do
     it 'has a 200 status code' do
-      get :edit, params: { id: working_day.id,
-                           company_id: company.id }
+      get :edit, params: { id: working_day.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'POST create' do
     it 'creates working_day' do
-      post :create, params: { working_day: { day_of_week: rand(7) },
-                              company_id: company.id }
-      expect(response).to redirect_to company_working_days_path(company_id: company.id)
+      post :create, params: { working_day: { day_of_week: rand(7) } }
+      expect(response).to redirect_to working_days_path
     end
 
     it 'can not creates working_day' do
-      post :create, params: { working_day: { day_of_week: -1 },
-                              company_id: company.id }
+      post :create, params: { working_day: { day_of_week: -1 } }
       expect(response.status).to eq(200)
     end
   end
@@ -61,25 +57,22 @@ RSpec.describe WorkingDaysController do
   describe 'PUT update' do
     it 'updates working_day' do
       put :update, params: { working_day: { day_of_week: 2 },
-                             id: working_day.id,
-                             company_id: company.id }
+                             id: working_day.id }
       expect(working_day.reload.day_of_week).to eq(2)
-      expect(response).to redirect_to company_working_days_path(company_id: company.id)
+      expect(response).to redirect_to working_days_path
     end
 
     it 'can not updates working_day' do
       put :update, params: { working_day: { day_of_week: -1 },
-                             id: working_day.id,
-                             company_id: company.id }
+                             id: working_day.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'DELETE destroy' do
     it 'deletes working_day' do
-      delete :destroy, params: { id: working_day.id,
-                                 company_id: company.id }
-      expect(response).to redirect_to(company_working_days_url(company.id))
+      delete :destroy, params: { id: working_day.id }
+      expect(response).to redirect_to working_days_path
       expect(WorkingDay.count).to eq(0)
     end
   end

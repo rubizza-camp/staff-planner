@@ -1,6 +1,6 @@
 <div class="columns is-desktop">
   <div class="column is-narrow">
-    <%= form_with(url: company_employee_events_path, local: true) do %>
+    <%= form_with(url: employee_events_path, local: true) do %>
       <div id="period">
         <div class="field">
           <%= label_tag :employee_id %>
@@ -47,8 +47,8 @@
           <td>
             <% if can?(:accept, event) %>
               <div class="buttons">
-                <%= button_to 'Accept', company_event_accept_path(event_id: event.id, company_id: event.company_id ), method: :patch, class: "button is-small is-success" %>
-                <%= button_to 'Decline', company_event_decline_path(event_id: event.id, company_id: event.company_id ), method: :patch, class: "button is-small is-danger" %>
+                <%= button_to 'Accept', event_accept_path(event_id: event.id), method: :patch, class: "button is-small is-success" %>
+                <%= button_to 'Decline', event_decline_path(event_id: event.id), method: :patch, class: "button is-small is-danger" %>
               </div>
             <% end %>
           </td>
@@ -57,4 +57,4 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'Back to calendar', company_calendar_path, class: :"button is-small is-info" %>
+<%= link_to 'Back to calendar', calendar_path, class: :"button is-small is-info" %>

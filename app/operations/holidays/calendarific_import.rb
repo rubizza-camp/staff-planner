@@ -2,8 +2,8 @@
 
 module Holidays
   class CalendarificImport
-    def call(params)
-      holidays = create_holidays(params)
+    def call(params, company_id)
+      holidays = create_holidays(params, company_id)
       if holidays.present?
         Result::Success.new(holidays)
       else
@@ -13,7 +13,7 @@ module Holidays
 
     private
 
-    def create_holidays(params)
+    def create_holidays(params, company_id)
       list_holidays = parsed_country(params)
       return if !list_holidays || !list_holidays['response'].is_a?(Hash)
       return unless list_holidays.dig('response', 'holidays').is_a?(Array)
@@ -21,7 +21,7 @@ module Holidays
       list_holidays = list_holidays.dig('response', 'holidays').map do |holiday|
         { name: holiday['name'],
           date: holiday.dig('date', 'iso'),
-          company_id: params[:company_id] }
+          company_id: company_id }
       end
 
       Holiday.create(list_holidays)

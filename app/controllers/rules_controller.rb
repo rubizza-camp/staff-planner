@@ -27,7 +27,7 @@ class RulesController < ApplicationController
   def create
     @rule = @company.rules.build(rule_params)
     if @rule.save
-      redirect_to company_rules_path, notice: 'Rule was successfully created.'
+      redirect_to rules_path, notice: 'Rule was successfully created.'
     else
       render :new
     end
@@ -36,7 +36,7 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1
   def update
     if @rule.update(rule_params)
-      redirect_to company_rules_url, notice: 'Rule was successfully updated.'
+      redirect_to rules_path, notice: 'Rule was successfully updated.'
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class RulesController < ApplicationController
     else
       flash[:error] = "Rule can't be deleted"
     end
-    redirect_to company_rules_url
+    redirect_to rules_path
   end
 
   private

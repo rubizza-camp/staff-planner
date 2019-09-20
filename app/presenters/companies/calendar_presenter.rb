@@ -5,14 +5,14 @@ module Companies
     attr_reader :company, :name, :id, :days, :working_days, :events, :holidays
 
     # rubocop: disable Metrics/AbcSize
-    def initialize(params)
-      @company = Company.find(params[:company_id])
+    def initialize(company, params)
+      @company = company
       @days = if params[:start_period].present? && params[:end_period].present?
                 (params[:start_period].to_date)..(params[:end_period].to_date)
               else
                 (Date.today)..(Date.today + 30)
               end
-      @working_days = company.working_days.pluck(:day_of_week)
+      @working_days = @company.working_days.pluck(:day_of_week)
       @events = Event.range(@days.first, @days.last).group_by(&:employee_id)
       @holidays = Holiday.where(date: days.first..days.last)
     end

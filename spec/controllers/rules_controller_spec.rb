@@ -16,28 +16,28 @@ RSpec.describe RulesController do
 
   describe 'GET index' do
     it 'has a 200 status code' do
-      get :index, params: { company_id: company.id }
+      get :index
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET show' do
     it 'has a 200 status code' do
-      get :show, params: { id: rule.id, company_id: company.id }
+      get :show, params: { id: rule.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET new' do
     it 'has a 200 status code' do
-      get :new, params: { company_id: company.id }
+      get :new
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET edit' do
     it 'has a 200 status code' do
-      get :edit, params: { id: rule.id, company_id: company.id }
+      get :edit, params: { id: rule.id }
       expect(response.status).to eq(200)
     end
   end
@@ -46,14 +46,12 @@ RSpec.describe RulesController do
     it 'creates rule' do
       post :create, params: { rule: { name: 'Any',
                                       allowance_days: 1,
-                                      period: 'year' },
-                              company_id: company.id }
-      expect(response).to redirect_to company_rules_path(company_id: company.id)
+                                      period: 'year' } }
+      expect(response).to redirect_to rules_path
     end
 
     it 'can not creates rule' do
-      post :create, params: { rule: { name: nil },
-                              company_id: company.id }
+      post :create, params: { rule: { name: nil } }
       expect(response.status).to eq(200)
     end
   end
@@ -61,15 +59,13 @@ RSpec.describe RulesController do
   describe 'PUT update' do
     it 'updates rule' do
       put :update, params: { rule: { name: 'Other Name' },
-                             company_id: company.id,
                              id: rule.id }
       expect(rule.reload.name).to eq('Other Name')
-      expect(response).to redirect_to company_rules_path(company_id: company.id)
+      expect(response).to redirect_to rules_path
     end
 
     it 'can not updates rule' do
       put :update, params: { rule: { name: nil },
-                             company_id: company.id,
                              id: rule.id }
       expect(response.status).to eq(200)
     end
@@ -77,8 +73,8 @@ RSpec.describe RulesController do
 
   describe 'DELETE destroy' do
     it 'deletes rule' do
-      delete :destroy, params: { id: rule.id, company_id: company.id }
-      expect(response).to redirect_to(company_rules_url(company.id))
+      delete :destroy, params: { id: rule.id }
+      expect(response).to redirect_to rules_path
       expect(Rule.count).to eq(0)
     end
   end

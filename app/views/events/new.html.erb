@@ -1,7 +1,7 @@
 <div class="columns is-desktop is-multiline is-vcentered">
-  <div class="column is-narrow">    
-    <h3 class="title">New Event</h3>    
-    <%= form_with model: @event, url: company_events_path, method: 'post', local: true do |form| %>    
+  <div class="column is-narrow">
+    <h3 class="title">New Event</h3>
+    <%= form_with model: @event, url: events_path, method: 'post', local: true do |form| %>
       <div id="newevent" class="columns">
         <div class="column">
           <div class="field">
@@ -16,12 +16,12 @@
           <div class="field">
             <%= form.label :end_day, class: 'label' %>
             <%= form.date_field :end_day, class: :input, value: params[:start_period] %>
-          </div>    
+          </div>
           <div class="select period">
             <%= form.select :second_period,options_for_select(['Afternoon', 'End of day']), class: :input %>
           </div>
         </div>
-      </div> 
+      </div>
       <label class="label">Rule</label>
       <div class="select">
         <%= form.collection_select :rule_id, @rules, :id, :name %>
@@ -32,7 +32,6 @@
       </div>
       <div class="buttons">
         <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-normal is-success" %>
-        <%= link_to 'Back', company_events_path, class: "button is-normal is-info" %>
       </div>
     <% end %>
   </div>

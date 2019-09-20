@@ -1,4 +1,4 @@
-<%= form_with(model: [@company, working_day], local: true) do |form| %>
+<%= form_with(model: working_day, local: true) do |form| %>
   <%= render 'shared/error', object: working_day %>
 
   <div class="field">
@@ -8,6 +8,6 @@
 
   <div class="actions">
     <%= form.submit class: :"button is-small is-success" %>
-    <%= link_to 'Back', company_working_days_path,class: :"button is-small is-info" %>
+    <%= link_to 'Back', working_days_path, class: :"button is-small is-info" %>
   </div>
 <% end %>

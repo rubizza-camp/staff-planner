@@ -21,7 +21,7 @@ class HolidaysController < ApplicationController
     @holiday = @company.holidays.build(holiday_params)
 
     if @holiday.save
-      redirect_to company_holidays_url, notice: 'Holiday was successfully created.'
+      redirect_to holidays_path, notice: 'Holiday was successfully created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class HolidaysController < ApplicationController
 
   def update
     if @holiday.update(holiday_params)
-      redirect_to company_holidays_url, notice: 'Holiday was successfully updated.'
+      redirect_to holidays_path, notice: 'Holiday was successfully updated.'
     else
       render :edit
     end
@@ -41,18 +41,18 @@ class HolidaysController < ApplicationController
     else
       flash[:error] = "Holiday can't be deleted"
     end
-    redirect_to company_holidays_url
+    redirect_to holidays_path
   end
 
   def calendarific_import
-    result = Holidays::CalendarificImport.new.call(params)
+    result = Holidays::CalendarificImport.new.call(params, @company.id)
 
     if result.success?
       flash[:notice] = 'Holidays was successfully created.'
     else
       flash[:error] = 'Holidays was not created.'
     end
-    redirect_to company_holidays_url
+    redirect_to holidays_path
   end
 
   private
