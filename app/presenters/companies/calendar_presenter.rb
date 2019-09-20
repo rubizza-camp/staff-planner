@@ -12,8 +12,8 @@ module Companies
               else
                 (Date.today)..(Date.today + 30)
               end
-      @working_days = @company.working_days.pluck(:day_of_week)
-      @events = Event.range(@days.first, @days.last).group_by(&:employee_id)
+      @working_days = company.working_days.pluck(:day_of_week)
+      @events = Event.range(days.first, days.last).group_by(&:employee_id)
       @holidays = Holiday.where(date: days.first..days.last)
     end
     # rubocop: enable Metrics/AbcSize

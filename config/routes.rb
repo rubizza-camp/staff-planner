@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   resources :accounts, except: %i[new create index]
   resources :companies, except: :index do
-    post :switch
+    collection do
+      post :switch
+    end
   end
   resources :employees, except: :index do
     resources :events, only: :index

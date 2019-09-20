@@ -40,10 +40,10 @@ class CompaniesController < ApplicationController
   def destroy
     if @company.destroy
       flash[:notice] = 'You have successfully delete company.'
+      session.delete(:current_company_id)
     else
       flash[:error] = "Company can't be deleted"
     end
-    session.delete(:current_company_id)
     redirect_to root_path
   end
 
@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
   end
 
   def switch
-    session[:current_company_id] = params[:id]
+    session[:current_company_id] = @company&.id
     redirect_back(fallback_location: root_path)
   end
 

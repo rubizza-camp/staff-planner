@@ -7,9 +7,9 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <% if current_account && @company&.persisted? %>
-        <%= form_with url: company_switch_path(@company), method: 'post' do |form| %>
+        <%= form_with url: switch_companies_path, method: 'post' do |form| %>
           <div class="select">
-            <%= form.collection_select :id, @account_companies, :id, :name, {selected: @company.id}, { onchange: 'this.form.submit();'} %>
+            <%= form.collection_select :company_id, @account_companies, :id, :name, {selected: @company.id}, { onchange: 'this.form.submit();'} %>
           </div>
         <% end %>
       <% end %>

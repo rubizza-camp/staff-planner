@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
-  before_action :current_company
+  before_action :current_company, if: :current_account
   before_action :account_employee, unless: :devise_controller?
   before_action :account_companies, unless: :devise_controller?
 
@@ -12,17 +12,18 @@ class ApplicationController < ActionController::Base
   end
 
   def account_employee
-    @account_employee = current_account.employees.find_by(company_id: @company.id) if current_account && @company
+    return unless current_account
+    return unless @company
+
+    @account_employee = current_account.employees.find_by(company_id: @company.id)
   end
 
   def current_company
-    @company = nil
-    if session[:current_company_id]
-      @company = Company.find(session[:current_company_id])
-    elsif current_account
-      @company = current_account.companies.first
-      session[:current_company_id] = @company.id if @company
-    end
+    company_id = params[:company_id] || session[:current_company_id]
+    @company = current_account.companies.find_by(id: company_id)
+
+    @company ||= current_account.companies.first
+    session[:current_company_id] = @company.id if @company
   end
 
   protected

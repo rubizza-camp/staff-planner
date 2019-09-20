@@ -6,6 +6,7 @@ RSpec.describe CompaniesController do
   render_views
 
   let(:company) { FactoryBot.create(:company) }
+  let(:company2) { FactoryBot.create(:company) }
 
   before(:each) do
     account = FactoryBot.create(:account)
@@ -45,6 +46,18 @@ RSpec.describe CompaniesController do
     it 'creates company' do
       post :create, params: { company: { name: 'Any Name' } }
       expect(response).to redirect_to(Company.last)
+    end
+  end
+
+  describe 'POST switch' do
+    it 'switch company' do
+      post :switch, params: { company_id: company.id }
+      expect(session[:current_company_id]).to eq(company.id)
+    end
+
+    it 'can not switch company without access' do
+      post :switch, params: { company_id: company2.id }
+      expect(session[:current_company_id]).not_to eq(company2.id)
     end
   end
 
