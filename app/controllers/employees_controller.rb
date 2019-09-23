@@ -47,7 +47,6 @@ class EmployeesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_params
-    @company = Company.find(params[:company_id])
     @employees = @company.employees
     @accounts = @company.accounts
   end

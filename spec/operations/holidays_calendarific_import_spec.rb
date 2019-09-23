@@ -10,12 +10,11 @@ RSpec.describe Holidays::CalendarificImport do
   describe '#call', vcr: { cassette_name: 'good_response' } do
     context 'with valid params' do
       let(:params) do
-        { company_id: company.id,
-          year: 2020,
+        { year: 2020,
           country: 'RU' }
       end
 
-      subject(:call) { Holidays::CalendarificImport.new.call(params) }
+      subject(:call) { Holidays::CalendarificImport.new.call(params, company.id) }
 
       it 'creates holidays' do
         expect { call }.to change { Holiday.count }.by(31)
@@ -30,12 +29,11 @@ RSpec.describe Holidays::CalendarificImport do
   describe '#call', vcr: { cassette_name: 'bad_response' } do
     context 'with invalid country name' do
       let(:params) do
-        { company_id: 1,
-          year: 2020,
+        { year: 2020,
           country: 'ZZ' }
       end
 
-      subject(:call) { Holidays::CalendarificImport.new.call(params) }
+      subject(:call) { Holidays::CalendarificImport.new.call(params, company.id) }
 
       it 'does not create holidays' do
         expect { call }.to change { Holiday.count }.by(0)

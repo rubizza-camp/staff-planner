@@ -10,13 +10,13 @@
   <% company.employees.each do |employee| %>
     <tbody>
       <tr>
-        <td><%= link_to employee.account.name, company_employee_path(id: employee.id, company_id: company.id) %></td>
+        <td><%= link_to employee.account.name, employee_path(id: employee.id) %></td>
         <td><%= employee.position %></td>
         <td><%= employee.start_day %></td>
         <td><%= employee.is_enabled %></td>
-        <td><%= link_to 'Show', company_employee_path(id: employee.id, company_id: company.id ), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Edit', edit_company_employee_path(id: employee.id, company_id: company.id), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Destroy', company_employee_path(id: employee.id, company_id: company.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+        <td><%= link_to 'Show', employee_path(id: employee.id), class: :"button is-small is-info" %></td>
+        <td><%= link_to 'Edit', edit_employee_path(id: employee.id), class: :"button is-small is-info" %></td>
+        <td><%= link_to 'Destroy', employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
       </tr>
     </tbody>
   <% end %>

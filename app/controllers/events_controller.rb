@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: %i[edit update destroy show]
-  before_action :company_rules, only: %i[create new]
+  before_action :rules, only: %i[create new]
   before_action :authenticate_account!
   load_and_authorize_resource :company
   load_and_authorize_resource through: :company, except: :create
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   def create
     result = Events::Create.new(current_account, params, @company).call
     if result.success?
-      redirect_to company_calendar_path
+      redirect_to calendar_path
     else
       render :new
     end
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def update
     result = Events::Update.new.call(@event, params)
     if result.success?
-      redirect_to company_events_path, notice: 'Event was successfully updated.'
+      redirect_to events_path, notice: 'Event was successfully updated.'
     else
       render :edit
     end
@@ -45,19 +45,19 @@ class EventsController < ApplicationController
     else
       flash[:error] = "Employee account wasn't cancelled."
     end
-    redirect_to company_events_path
+    redirect_to events_path
   end
 
   def accept
     event = Event.find(params[:event_id])
     flash[:error] = 'Accept failed' unless event.accept!
-    redirect_to company_calendar_path
+    redirect_to calendar_path
   end
 
   def decline
     event = Event.find(params[:event_id])
     flash[:error] = 'Decline failed' unless event.decline!
-    redirect_to company_calendar_path
+    redirect_to calendar_path
   end
 
   private
@@ -72,8 +72,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def company_rules
-    @company = Company.find(params[:company_id])
+  def rules
     @rules = @company.rules
   end
 end

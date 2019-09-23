@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class WorkingDaysController < ApplicationController
-  before_action :set_company
   before_action :set_working_day, only: %i[show edit update destroy]
   before_action :authenticate_account!
   load_and_authorize_resource :company
@@ -23,7 +22,7 @@ class WorkingDaysController < ApplicationController
     @working_day = @company.working_days.build(working_day_params)
 
     if @working_day.save
-      redirect_to company_working_days_path, notice: 'Working day was successfully created.'
+      redirect_to working_days_path, notice: 'Working day was successfully created.'
     else
       render :new
     end
@@ -31,7 +30,7 @@ class WorkingDaysController < ApplicationController
 
   def update
     if @working_day.update(working_day_params)
-      redirect_to company_working_days_path, notice: 'Working day was successfully updated.'
+      redirect_to working_days_path, notice: 'Working day was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +42,7 @@ class WorkingDaysController < ApplicationController
     else
       flash[:error] = "Working day can't be deleted"
     end
-    redirect_to company_working_days_url
+    redirect_to working_days_path
   end
 
   private
@@ -57,9 +56,5 @@ class WorkingDaysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def working_day_params
     params.require(:working_day).permit(:day_of_week)
-  end
-
-  def set_company
-    @company = Company.find(params[:company_id])
   end
 end

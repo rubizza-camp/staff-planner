@@ -16,21 +16,21 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index, params: { company_id: company.id, employee_id: employee.id }
+      get :index, params: { employee_id: employee.id }
       expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
-      get :new, params: { company_id: company.id, rule_id: event.rule.id }
+      get :new, params: { rule_id: event.rule.id }
       expect(response).to be_successful
     end
   end
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      get :edit, params: { id: event.id, company_id: company.id }
+      get :edit, params: { id: event.id }
       expect(response).to be_successful
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe EventsController, type: :controller do
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { company_id: company.id, rule_id: event.rule.id, employee_id: event.employee.id }
+        post :create, params: { rule_id: event.rule.id, employee_id: event.employee.id }
         expect(response).to be_successful
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it 'updates the requested account' do
-        put :update, params: { id: event.id, company_id: company.id, event: new_attributes }
+        put :update, params: { id: event.id, event: new_attributes }
         event.reload
         expect(event.reason).eql?('Holidaaaays')
       end

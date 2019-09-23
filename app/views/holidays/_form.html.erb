@@ -1,5 +1,5 @@
 
-    <%= form_with(model: [@company, holiday], local: true) do |form| %>
+    <%= form_with(model: holiday, local: true) do |form| %>
       <%= render 'shared/error', object: holiday %>
       <div class="field">
         <label class="label"><%= form.label :name %></label>

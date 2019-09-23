@@ -19,8 +19,8 @@
       <td><%= @employee.account.email %></td>
       <td><%= @employee.created_at %></td>
       <td><%= @employee.is_enabled %></td>
-      <td><%= link_to 'Edit', edit_company_employee_path(id: @employee.id, company_id: @company.id), class: "button is-small is-info" %></td>
-      <td><%= button_to 'Destroy', company_employee_path(id: @employee.id, company_id: @company.id), method: :delete, class: "button is-small is-danger" %></td>
+      <td><%= link_to 'Edit', edit_employee_path(id: @employee.id), class: "button is-small is-info" %></td>
+      <td><%= link_to 'Destroy', employee_path(id: @employee.id), method: :delete, class: "button is-small is-danger" %></td>
     </tr>
   </tbody>
 </table>
