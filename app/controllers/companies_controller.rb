@@ -48,7 +48,7 @@ class CompaniesController < ApplicationController
   end
 
   def calendar
-    @calendar = Companies::CalendarPresenter.new(@company, params)
+    @calendar = Companies::CalendarPresenter.new(@company, current_account.id, params)
   end
 
   def switch
