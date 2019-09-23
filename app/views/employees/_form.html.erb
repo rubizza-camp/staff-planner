@@ -1,4 +1,4 @@
-<%= form_with(model: [@company, employee], local: true) do |form| %>
+<%= form_with(model: employee, local: true) do |form| %>
   <%= render 'shared/error', object: employee %>
   <div class="field">
     <%= form.label :position, class: 'label' %>

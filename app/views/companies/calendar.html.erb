@@ -11,7 +11,7 @@
   <% @calendar.employees.each do |employee| %>
     <tr>
       <td id="calendar" style='padding-bottom:0.5em;'>
-        <%= link_to employee.account.name, company_employee_path(id: employee.id) %>
+        <%= link_to employee.account.name, employee_path(id: employee.id) %>
         <p style="font-size:8px"><%= employee.position %></p>
       </td>
         <% @calendar.days_status(employee).each do |day, value| %>
@@ -19,9 +19,7 @@
             <% when 'work' %>
               <td class="work">
                 <% if employee.account == current_account %>
-                  <%= link_to day.strftime('%d'), new_company_event_path(
-                      company_id: @calendar.company.id,
-                      start_period: day.to_s(:db))%>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db))%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
@@ -29,9 +27,7 @@
             <% when 'holiday' %>
               <td class="holiday">
                 <% if employee.account == current_account %>
-                  <%= link_to day.strftime('%d'), new_company_event_path(
-                      company_id: @calendar.company.id,
-                      start_period: day.to_s(:db))%>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db))%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
@@ -39,7 +35,7 @@
             <% when 'fulldayevent' %>
               <td class="fulldayevent">
                 <% if can?(:access_to_your_event, employee) %>
-                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ) %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
@@ -47,7 +43,7 @@
             <% when 'first_half_of_day' %>
               <td class="firsthalf">
                 <% if can?(:access_to_your_event, employee) %>
-                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ) %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
@@ -55,14 +51,14 @@
             <% when 'second_half_of_day' %>
               <td class="secondhalf">
                 <% if can?(:access_to_your_event, employee) %>
-                  <%= link_to day.strftime('%d'), company_employee_events_path(company_id: @calendar.company.id, employee_id: employee, day: day ) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ) %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
               </td>
             <% when 'state_holiday' %>
               <td class="stateholiday">
-                <%= link_to day.strftime('%d'), company_holidays_path(company_id: @calendar.company.id)%>
+                <%= link_to day.strftime('%d'), holidays_path %>
               </td>
           <% end %>
         <% end %>
@@ -73,7 +69,7 @@
 
 <div class="is-desktop">
   <div>
-    <%= form_with(url: company_calendar_path(id: @company), method: :get) do |form| %>
+    <%= form_with(url: calendar_path, method: :get) do |form| %>
       <div id="period">
         <div class="field">
           <%= form.label :start_period %>

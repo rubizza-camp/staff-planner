@@ -18,29 +18,22 @@ RSpec.describe EmployeesController do
 
   describe 'GET show' do
     it 'has a 200 status code' do
-      get :show, params: { company_id: company.id, id: employee.id }
+      get :show, params: { id: employee.id }
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET new' do
     it 'has a 200 status code' do
-      get :new, params: { company_id: company.id }
+      get :new
       expect(response.status).to eq(200)
     end
   end
 
   describe 'GET edit' do
     it 'has a 200 status code' do
-      get :edit, params: { company_id: company.id, id: employee.id }
+      get :edit, params: { id: employee.id }
       expect(response.status).to eq(200)
-    end
-
-    let(:company_other) { FactoryBot.create(:company) }
-    let(:employee_without_access) { FactoryBot.create(:employee, company: company_other, account: account) }
-    it 'has a 302 status code' do
-      get :edit, params: { company_id: company_other.id, id: employee_without_access.id }
-      expect(response.status).to eq(302)
     end
   end
 
@@ -50,8 +43,7 @@ RSpec.describe EmployeesController do
       post :create, params: { employee: { is_enabled: true,
                                           position: 'Boss',
                                           start_day: '2019-02-02',
-                                          account_id: account.id },
-                              company_id: company.id }
+                                          account_id: account.id } }
       expect(response.status).to eq(200)
     end
 
@@ -60,8 +52,7 @@ RSpec.describe EmployeesController do
       post :create, params: { employee: { is_enabled: true,
                                           position: nil,
                                           start_day: '2019-02-02',
-                                          account_id: account2.id },
-                              company_id: company.id }
+                                          account_id: account2.id } }
       expect(response.status).to eq(200)
     end
   end
@@ -71,8 +62,7 @@ RSpec.describe EmployeesController do
       put :update, params: { employee: { role: employee.role,
                                          start_day: '2019-02-02',
                                          position: 'boss' },
-                             id: employee.id,
-                             company_id: company.id }
+                             id: employee.id }
       expect(response.status).to eq(302)
     end
 
@@ -80,8 +70,7 @@ RSpec.describe EmployeesController do
       put :update, params: { employee: { role: employee.role,
                                          start_day: nil,
                                          position: nil },
-                             id: employee.id,
-                             company_id: company.id }
+                             id: employee.id }
       expect(response.status).to eq(200)
     end
   end
@@ -90,7 +79,7 @@ RSpec.describe EmployeesController do
     it 'deletes employee' do
       employee
       expect do
-        delete :destroy, params: { company_id: company.id, id: employee.id }
+        delete :destroy, params: { id: employee.id }
       end.to change { Employee.count }.by(-1)
 
       expect(response).to redirect_to(company_path(company.id))

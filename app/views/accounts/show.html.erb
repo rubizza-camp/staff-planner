@@ -14,7 +14,7 @@
     <td>
       <% if @companies.present? %>
         <% @companies.each do |company| %>
-          <p><%= link_to company.name, company_calendar_path(company), class: 'is-link' %></p>
+          <p><%= link_to company.name, calendar_path, class: 'is-link' %></p>
         <% end %>
       <% else %>
         <p>You don't have companies</p>

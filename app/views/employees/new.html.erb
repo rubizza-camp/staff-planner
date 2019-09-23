@@ -2,5 +2,5 @@
   <h3 class="title">New Employee</h3>
   <%= render 'form', employee: @employee %>
   <br>
-  <%= link_to 'Back', company_path(id: params[:company_id]), class: 'button is-medium' %>
+  <%= link_to 'Back', company_path(id: @company.id), class: 'button is-medium' %>
 </div>

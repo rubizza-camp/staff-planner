@@ -1,10 +1,10 @@
-<%= form_with(url: calendarific_import_company_holidays_path, local: true) do %>
+<%= form_with(url: calendarific_import_holidays_path, local: true) do %>
   <h3 class="title is-3">Add state holidays to company</h3>
   <div class="field">
     <label class="label">Select country</label>
     <div class="control">
       <div class="select" name="country">
-        <%= select_tag :country, options_for_select(countries_for_select) %> 
+        <%= select_tag :country, options_for_select(countries_for_select) %>
       </div>
     </div>
   </div>

@@ -4,6 +4,6 @@
   <td><%= event.start_period.strftime('%c') %></td>
   <td><%= event.end_period.strftime('%c') %></td>
   <td><%= event.rule.name %></td>
-  <td><%= link_to 'Edit', edit_company_event_path(id: event.id, company_id: event.company_id ), class: :"button is-small is-info" %></td>
-  <td><%= button_to 'Destroy', company_event_path(id: event.id, company_id: event.company_id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+  <td><%= link_to 'Edit', edit_event_path(id: event.id ), class: :"button is-small is-info" %></td>
+  <td><%= link_to 'Destroy', event_path(id: event.id ), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
 </tr>

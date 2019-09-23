@@ -14,7 +14,7 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
+require('@rails/ujs').start();
 require('../src/application.scss');
 require('../src/layout.css');
 require('../src/button_close.js');

@@ -13,9 +13,9 @@
           <tr>
             <td><%= holiday.name %></td>
             <td><%= holiday.date %></td>
-            <td><%= link_to 'Show', company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
-            <td><%= link_to 'Edit', edit_company_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
-            <td><%= button_to 'Destroy',[@company, holiday], method: :delete, class: 'button is-danger is-small' %></td>
+            <td><%= link_to 'Show', holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+            <td><%= link_to 'Edit', edit_holiday_path(id: holiday.id), class: 'button is-info is-small' %></td>
+            <td><%= link_to 'Destroy', holiday_path(id: holiday.id), method: :delete, class: 'button is-danger is-small' %></td>
           </tr>
         <% end %>
       </tbody>
@@ -23,7 +23,7 @@
     <br>
     <%= paginate @holidays %>
     <br>
-    <%= link_to 'New Custom Holiday', new_company_holiday_path, class: 'button is-success is-normal' %>
+    <%= link_to 'New Custom Holiday', new_holiday_path, class: 'button is-success is-normal' %>
   </div>
   <div class="column">
     <%= render 'calendarific_form' %>
