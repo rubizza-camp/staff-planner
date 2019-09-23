@@ -24,6 +24,14 @@
     <%= form.label :is_enabled, class: 'checkbox' %>
     <%= form.check_box :is_enabled %>
   </div>
+  <div class="field">
+    <%= form.label :is_holiday, class: 'checkbox' %>
+    <%= form.check_box :is_holiday %>
+  </div>
+  <div class="field">
+    <%= form.label :auto_confirm, class: 'checkbox' %>
+    <%= form.check_box :auto_confirm %>
+  </div>
   <div class="actions">
     <%= form.submit 'Submit', class: 'button is-medium is-success' %>
   </div>

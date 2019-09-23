@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_133807) do
+ActiveRecord::Schema.define(version: 2019_09_23_093506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 2019_08_27_133807) do
     t.boolean "is_enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_holiday", default: true, null: false
+    t.boolean "auto_confirm", default: false, null: false
     t.index ["company_id"], name: "index_rules_on_company_id"
   end
 
