@@ -24,7 +24,6 @@
     <% end %>
   </div>
 </div>
-
 <table class="table">
   <thead>
     <th> Created by </th>
@@ -43,7 +42,7 @@
         <td><%= event.start_period.strftime('%c') %></td>
         <td><%= event.end_period.strftime('%c') %></td>
         <td><%= event.rule.name %></td>
-        <<td><p><%= event.state %></p></td>
+        <td><p><%= event.state %></p></td>
           <td>
             <% if can?(:accept, event) %>
               <div class="buttons">

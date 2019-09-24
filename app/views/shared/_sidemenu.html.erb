@@ -16,7 +16,7 @@
       <% if @company&.persisted? %>
         <li><%= active_link_to 'Create New Event', new_event_path, active: :exclusive %></li>
         <li><%= active_link_to 'Company & Employees', company_path(@company), active: :exclusive %>
-        <li><%= active_link_to 'Events Calendar', calendar_path, active: :exclusive %></li>
+        <li><%= active_link_to 'Calendar', calendar_path, active: :exclusive %></li>
       <% end %>
     </ul>
 
