@@ -14,6 +14,8 @@ module Events
     def call
       event = company.events.build(create_params)
       event.employee = Employee.find_by(account: current_account, company: company)
+      return Result::Failure.new(event) unless create_params[:rule_id]
+
       rule = Rule.find(create_params[:rule_id])
       event.accept if rule.auto_confirm
       event = Events::ValidatePeriod.new(event, params).call

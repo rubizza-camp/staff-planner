@@ -13,7 +13,7 @@ module Companies
                 (Date.today)..(Date.today + 30)
               end
       @working_days = company.working_days.pluck(:day_of_week)
-      @events = Event.range(days.first, days.last).group_by(&:employee_id)
+      @events = Event.range(days.first, days.last).includes(:rule).group_by(&:employee_id)
       @holidays = Holiday.where(date: days.first..days.last)
       @current_account_id = current_account_id
     end
@@ -33,11 +33,11 @@ module Companies
 
     def days_status(employee)
       days.each_with_object({}) do |day, working_month|
-        working_month[day] = working_days.include?(day.strftime('%w').to_i) ? 'work' : 'holiday'
-        working_month[day] = 'state_holiday' if holidays.include?(day)
-        working_month[day] = 'fullday_event' if
+        working_month[day] = working_days.include?(day.strftime('%w').to_i) ? { state: 'work' } : { state: 'holiday' }
+        working_month[day] = { state: 'state_holiday' } if holidays.include?(day)
+        working_month[day] = { state: 'fullday_event', title: define_rule_name(employee, day) } if
           events[employee.id].present? && employee_events(employee).include?(day.to_date)
-        next unless working_month[day] == 'fullday_event'
+        next unless working_month[day][:state] == 'fullday_event'
 
         half_event(day, working_month)
       end
@@ -48,16 +48,27 @@ module Companies
       events.each do |_employee, employee_events|
         employee_events.each do |event|
           if event.end_period.to_date.eql?(day) && event.end_period.hour == Event::HALF_DAY
-            working_month[day] = 'first_half_of_day'
+            working_month[day] = { state: 'first_half_of_day', title: event.rule.name }
           elsif event.start_period.hour == Event::HALF_DAY &&
                 event.end_period.hour == Event::END_DAY &&
                 (event.end_period..event.start_period).include?(day)
-            working_month[day] = 'second_half_of_day'
+            working_month[day] = { state: 'second_half_of_day', title: event.rule.name }
           end
         end
       end
     end
     # rubocop: enable Metrics/MethodLength
     # rubocop: enable Metrics/AbcSize
+
+    private
+
+    def define_rule_name(employee, day)
+      selected_events = events[employee.id].select { |event| event_in_day?(event, day) }
+      selected_events.map { |event| event.rule.name }
+    end
+
+    def event_in_day?(event, day)
+      event.start_period.to_date <= day && event.end_period.to_date >= day
+    end
   end
 end

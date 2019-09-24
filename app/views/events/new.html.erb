@@ -23,9 +23,14 @@
         </div>
       </div>
       <label class="label">Rule</label>
-      <div class="select">
-        <%= form.collection_select :rule_id, @rules, :id, :name %>
-      </div>
+      <% @rules.each do |rule| %>
+        <div>
+          <label>
+            <%= form.radio_button :rule_id, rule.id %>
+            <%= "#{rule.name} (days left: #{Events::RemainingDaysService.new.call(@employee, rule)})" %>
+          </label>
+        </div>
+      <% end %>
       <div class="field reason">
         <%= form.label :reason, class: 'label' %>
         <%= form.text_field :reason, class: :input %>
