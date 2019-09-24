@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 
   def new
     @employee = Employee.find_by(account: current_account, company: @company)
-    @event = Event.new(rule: @rules[0])
+    @event = @rules.first&.events&.build
   end
 
   def edit; end
