@@ -8,15 +8,16 @@ class EventsController < ApplicationController
   load_and_authorize_resource through: :company, except: :create
 
   def index
-    employee = Employee.find(params[:employee_id])
+    @employee = Employee.find(params[:employee_id])
     from, to = determine_from_to(params)
-    @employee_events = employee.events.range(from, to).accessible_by(current_ability)
+    @employee_events = @employee.events.range(from, to).accessible_by(current_ability)
   end
 
   def show; end
 
   def new
-    @event = Event.new
+    @employee = Employee.find_by(account: current_account, company: @company)
+    @event = Event.new(rule: @rules[0])
   end
 
   def edit; end

@@ -33,6 +33,7 @@
     <th> Rule </th>
     <th> Status </th>
     <th colspan="2"> Actions </th>
+    <th> Days left </th>
   </thead>
   <tbody>
     <% @employee_events.each do |event| %>
@@ -43,14 +44,15 @@
         <td><%= event.end_period.strftime('%c') %></td>
         <td><%= event.rule.name %></td>
         <td><p><%= event.state %></p></td>
-          <td>
-            <% if can?(:accept, event) %>
-              <div class="buttons">
-                <%= button_to 'Accept', event_accept_path(event_id: event.id), method: :patch, class: "button is-small is-success" %>
-                <%= button_to 'Decline', event_decline_path(event_id: event.id), method: :patch, class: "button is-small is-danger" %>
-              </div>
-            <% end %>
-          </td>
+        <td>
+          <% if can?(:accept, event) %>
+            <div class="buttons">
+              <%= button_to 'Accept', event_accept_path(event_id: event.id), method: :patch, class: "button is-small is-success" %>
+              <%= button_to 'Decline', event_decline_path(event_id: event.id), method: :patch, class: "button is-small is-danger" %>
+            </div>
+          <% end %>
+        </td>
+        <td><%= Events::RemainingDaysService.new.call(@employee, event.rule) %></td>
       </tr>
     <% end %>
   </tbody>
