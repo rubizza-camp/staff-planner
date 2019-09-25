@@ -7,6 +7,7 @@ module Events
       events = employee.events
                        .range(period.first, period.last)
                        .where(rule: rule)
+                       .where.not(state: :declined)
       rule.allowance_days - used_days(events, period)
     end
 
