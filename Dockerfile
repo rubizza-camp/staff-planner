@@ -9,4 +9,6 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && \
     apt-get install -y nodejs yarn
 
-CMD ["gem install bundler && bundle && bundle exec rails s -b 0.0.0.0"]
+RUN gem install bundler
+
+CMD ["bundle && yarn install && bundle exec rails s -b 0.0.0.0"]
