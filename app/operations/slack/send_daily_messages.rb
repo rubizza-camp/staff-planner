@@ -3,24 +3,25 @@
 module Slack
   class SendDailyMessages
     def call
-      SlackNotification.all.each do |slack_notification|
-        next unless slack_notification.is_enabled
-
-        token = slack_notification.token
-        next if token.empty?
-
-        text_message = get_text_message(slack_notification.company_id)
+      slack_notifications.each do |slack_notification|
+        text_message = get_text_message(slack_notification.company)
         next if text_message.empty?
 
-        send_message(token, text_message)
+        send_message(slack_notification.token, text_message)
       end
     end
 
     private
 
-    def get_text_message(company_id)
+    def slack_notifications
+      SlackNotification.where(is_enabled: true)
+                       .where.not(token: nil)
+                       .includes(:company)
+    end
+
+    def get_text_message(company)
       text_message = ''
-      events = get_events_today(company_id)
+      events = get_events_today(company)
       events.each_with_index do |event, i|
         account = event.employee.account
         rule_name = event.rule.name
@@ -31,8 +32,7 @@ module Slack
       text_message
     end
 
-    def get_events_today(company_id)
-      company = Company.find(company_id)
+    def get_events_today(company)
       date_today = Date.today.to_datetime
       start_period = date_today.change(hour: Event::END_DAY)
       end_period = date_today.change(hour: Event::START_DAY)
