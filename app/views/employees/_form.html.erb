@@ -17,7 +17,7 @@
   <div class="field">
     <%= form.label :role, class: 'label' %>
     <div class="select">
-      <%= form.select :role, options_for_select(['owner', 'employee']) %>
+      <%= form.select :role, options_for_select(['owner', 'employee'], employee.role) %>
     </div>
   </div>
   <div class="actions">

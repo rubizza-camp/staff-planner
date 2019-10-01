@@ -1,9 +1,15 @@
 <h1>
-    <%= @company.name %>
-    <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
-    <% end %>
+  <%= @company.name %>
+  <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
+  <% end %>
 </h1>
+
+<% if can?(:accept, @company) %>
+  <h1>
+    <td><%= link_to 'Slack notifications', @link_to_slack_notification, class: :"button is-small is-success" %></td>
+  </h1>
+<% end %>
 
 <div>
   <%= render 'employees/list', company: @company %></div>

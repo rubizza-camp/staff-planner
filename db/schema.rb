@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_23_093506) do
+ActiveRecord::Schema.define(version: 2019_09_25_132133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,15 @@ ActiveRecord::Schema.define(version: 2019_09_23_093506) do
     t.index ["company_id"], name: "index_rules_on_company_id"
   end
 
+  create_table "slack_notifications", force: :cascade do |t|
+    t.string "token"
+    t.boolean "is_enabled", default: false, null: false
+    t.bigint "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_slack_notifications_on_company_id"
+  end
+
   create_table "working_days", force: :cascade do |t|
     t.bigint "company_id", null: false
     t.integer "day_of_week", null: false
@@ -124,5 +133,6 @@ ActiveRecord::Schema.define(version: 2019_09_23_093506) do
   add_foreign_key "events", "employees"
   add_foreign_key "events", "rules"
   add_foreign_key "holidays", "companies"
+  add_foreign_key "slack_notifications", "companies"
   add_foreign_key "working_days", "companies"
 end

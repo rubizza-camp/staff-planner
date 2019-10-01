@@ -5,7 +5,13 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
 
   # GET /companies/1
-  def show; end
+  def show
+    @link_to_slack_notification = if @company.slack_notification
+                                    edit_slack_notification_path
+                                  else
+                                    new_slack_notification_path
+                                  end
+  end
 
   # GET /companies/new
   def new
