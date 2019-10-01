@@ -18,7 +18,7 @@
           <% case value[:state] %>
             <% when 'work' %>
               <td class="work">
-                <% if employee.account == current_account %>
+                <% if employee.account == current_account || can?(:accept, @company) %>
                   <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db)) %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
@@ -26,7 +26,7 @@
               </td>
             <% when 'holiday' %>
               <td class="holiday">
-                <% if employee.account == current_account %>
+                <% if employee.account == current_account || can?(:accept, @company) %>
                   <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db))%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
