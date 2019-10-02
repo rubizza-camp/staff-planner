@@ -77,7 +77,9 @@ class EventsController < ApplicationController
   end
 
   def employee
-    @account_employee if @account_employee.role != 'owner'
+    byebug
+    return @account_employee if @account_employee.role != 'owner'
+
     employee_id = params[:employee_id]
     employee_id ||= params[:event][:employee_id] if params[:event]
     return @company.employees.find(employee_id) if employee_id
