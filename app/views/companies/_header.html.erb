@@ -1,0 +1,19 @@
+<h1>
+  <%= @company.name %>
+  <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
+  <% end %>
+</h1>
+
+<% if can?(:manage, @company) %>
+  <div class="tabs">
+    <ul>
+      <%= active_link_to 'Employees', @company, class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Slack notifications', link_to_slack_notification(@company), class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Rules', rules_path, active: :exclusive, class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Working Days', working_days_path, active: :exclusive, class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Events', employee_events_path(employee_id: @account_employee.id), active: :exclusive, class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Holidays', holidays_path, active: :exclusive, class_active: 'is-active', wrap_tag: :li %>
+    </ul>
+  </div>
+<% end %>

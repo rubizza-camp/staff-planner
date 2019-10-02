@@ -8,13 +8,15 @@ module Events
                        .range(period.first, period.last)
                        .where(rule: rule)
                        .where.not(state: :declined)
-      rule.allowance_days - used_days(events, period)
+      "#{rule.allowance_days - used_days(events, period)} / #{rule.period}"
     end
 
     private
 
     def get_period(rule)
       case rule.period
+      when 'week'
+        Date.today.at_beginning_of_week..Date.today.at_end_of_week
       when 'month'
         Date.today.at_beginning_of_month..Date.today.at_end_of_month
       when 'year'

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :set_raven_context
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
   before_action :current_company, if: :current_account
@@ -8,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :account_companies, unless: :devise_controller?
 
   def account_companies
-    @account_companies = current_account.companies if current_account
+    @account_companies = current_account.companies - [@company] if current_account
   end
 
   def account_employee
@@ -38,7 +40,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    account_path(id: resource.id)
+    if @company
+      calendar_path
+    else
+      account_path(id: resource.id)
+    end
   end
 
   def after_sign_out_path_for(_resourse)
@@ -52,5 +58,12 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |_exception|
     flash[:error] = 'Access denied.'
     redirect_to root_path
+  end
+
+  private
+
+  def set_raven_context
+    Raven.user_context(id: current_account.id) if current_account
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 end

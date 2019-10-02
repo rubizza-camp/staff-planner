@@ -2,6 +2,7 @@
 
 <table id="calendar" class="table">
   <thead>
+    <th></th>
     <th>Employee</th>
       <% @calendar.days.each do |day| %>
         <th><%= day.strftime('%a')[0..1] %></th>
@@ -10,6 +11,13 @@
   <tbody>
   <% @calendar.employees.each do |employee| %>
     <tr>
+      <td>
+        <%- if can?(:access_to_event, employee) %>
+          <%= link_to new_event_path(event: { employee_id: employee.id }) do %>
+            <ion-icon name="add-circle-outline" class="icon is-medium has-text-success"></ion-icon>
+          <%- end %>
+        <%- end %>
+      </td>
       <td id="calendar" style='padding-bottom:0.5em;'>
         <%= link_to employee.account.name, employee_path(id: employee.id) %>
         <p style="font-size:8px"><%= employee.position %></p>
@@ -34,7 +42,7 @@
               </td>
             <% when 'fullday_event' %>
               <td class="fulldayevent">
-                <% if can?(:access_to_your_event, employee) %>
+                <% if can?(:access_to_event, employee) %>
                   <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
@@ -42,7 +50,7 @@
               </td>
             <% when 'first_half_of_day' %>
               <td class="firsthalf">
-                <% if can?(:access_to_your_event, employee) %>
+                <% if can?(:access_to_event, employee) %>
                   <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
@@ -50,7 +58,7 @@
               </td>
             <% when 'second_half_of_day' %>
               <td class="secondhalf">
-                <% if can?(:access_to_your_event, employee) %>
+                <% if can?(:access_to_event, employee) %>
                   <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>

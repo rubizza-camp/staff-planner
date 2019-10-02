@@ -77,7 +77,6 @@ class EventsController < ApplicationController
   end
 
   def employee
-    byebug
     return @account_employee if @account_employee.role != 'owner'
 
     employee_id = params[:employee_id]
@@ -85,5 +84,9 @@ class EventsController < ApplicationController
     return @company.employees.find(employee_id) if employee_id
 
     @account_employee
+  end
+
+  def event_params
+    params.require(:event).permit(:employee_id)
   end
 end
