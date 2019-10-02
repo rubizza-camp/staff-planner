@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :set_raven_context
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
   before_action :current_company, if: :current_account
@@ -56,5 +58,12 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |_exception|
     flash[:error] = 'Access denied.'
     redirect_to root_path
+  end
+
+  private
+
+  def set_raven_context
+    Raven.user_context(id: current_account.id) if current_account
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 end
