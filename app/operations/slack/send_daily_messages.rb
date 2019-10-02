@@ -25,9 +25,7 @@ module Slack
     def text_message(events)
       text_message = ''
       events.each_with_index do |event, i|
-        account = event.employee.account
-        rule_name = event.rule.name
-        text_message += "#{i + 1}) #{account.full_name}. #{rule_name}"
+        text_message += "#{i + 1}) #{event.account.full_name}. #{event.rule.name}"
         text_message += ' (pending)' if event.state == 'pending'
         text_message += "\n"
       end
@@ -35,8 +33,8 @@ module Slack
     end
 
     def send_message(token, text_message)
-      client = Slack::Notifier.new token
-      client.ping text_message
+      client = Slack::Notifier.new(token)
+      client.ping(text_message)
     rescue StandardError => e
       p e
     end
