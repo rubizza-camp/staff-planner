@@ -12,7 +12,7 @@
   <% @calendar.employees.each do |employee| %>
     <tr>
       <td>
-        <%- if can?(:access_to_event, employee) %>
+        <% if can?(:access_to_event, employee) %>
           <%= link_to new_event_path(event: { employee_id: employee.id }) do %>
             <ion-icon name="add-circle-outline" class="icon is-medium has-text-success"></ion-icon>
           <%- end %>
@@ -26,16 +26,16 @@
           <% case value[:state] %>
             <% when 'work' %>
               <td class="work">
-                <% if employee.account == current_account || can?(:accept, @company) %>
-                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), employee_id: employee.id) %>
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), event: { employee_id: employee.id }) %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
               </td>
             <% when 'holiday' %>
               <td class="holiday">
-                <% if employee.account == current_account || can?(:accept, @company) %>
-                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), employee_id: employee.id)%>
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), event: { employee_id: employee.id })%>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>

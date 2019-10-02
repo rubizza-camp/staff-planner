@@ -27,7 +27,7 @@
         <div>
           <label>
             <%= form.radio_button :rule_id, rule.id %>
-            <%= "#{rule.name} (days left: #{Events::RemainingDaysService.new.call(@event.employee, rule)})" %>
+            <%= "#{rule.name} (days left: #{Events::RemainingDaysService.new.call(@event.employee, rule)} / #{rule.period})" %>
           </label>
         </div>
       <% end %>
