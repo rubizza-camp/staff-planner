@@ -41,4 +41,8 @@ class Account < ApplicationRecord
     )
   end
   # rubocop: enable Metrics/AbcSize
+
+  def full_name
+    "#{surname} #{name}"
+  end
 end

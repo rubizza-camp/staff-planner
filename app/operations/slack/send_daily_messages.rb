@@ -3,12 +3,8 @@
 module Slack
   class SendDailyMessages
     def call
-      companies_events.each do |companie_events|
-        company, events = companie_events
-        text_message = make_text_message(events)
-        next if text_message.empty?
-
-        send_message(company.slack_notification.token, text_message)
+      companies_events.each do |company, events|
+        send_message(company.slack_notification.token, text_message(events))
       end
     end
 
@@ -18,20 +14,20 @@ module Slack
       date_today = Date.today.to_datetime
       start_period = date_today.change(hour: Event::END_DAY)
       end_period = date_today.change(hour: Event::START_DAY)
+
       Event.includes(:rule, company: :slack_notification, employee: :account)
            .where('start_period <= ? and end_period >= ?', start_period, end_period)
            .where(state: %i[accepted pending])
            .where(companies: { slack_notifications: { is_enabled: true } })
-           .where.not(companies: { slack_notifications: { token: nil } })
            .group_by(&:company)
     end
 
-    def make_text_message(events)
+    def text_message(events)
       text_message = ''
       events.each_with_index do |event, i|
         account = event.employee.account
         rule_name = event.rule.name
-        text_message += "#{i + 1}) #{account.surname} #{account.name}. #{rule_name}"
+        text_message += "#{i + 1}) #{account.full_name}. #{rule_name}"
         text_message += ' (pending)' if event.state == 'pending'
         text_message += "\n"
       end
