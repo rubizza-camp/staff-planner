@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: 'companies#calendar', as: :calendar
   default_url_options host: 'test.host'
 
   devise_for :accounts, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -8,8 +9,6 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
     get '/accounts/sign_out' => 'devise/sessions#destroy'
   end
-
-  get :calendar, to: 'companies#calendar'
 
   resources :accounts, except: %i[new create index]
   resources :companies, except: :index do

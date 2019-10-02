@@ -4,15 +4,30 @@
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
   </div>
+  <%- if current_account %>
   <div class="navbar-end">
     <div class="navbar-item">
-      <% if current_account && @company&.persisted? %>
-        <%= form_with url: switch_companies_path, method: 'post' do |form| %>
-          <div class="select">
-            <%= form.collection_select :company_id, @account_companies, :id, :name, {selected: @company.id}, { onchange: 'this.form.submit();'} %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= link_to current_account.name, account_path(current_account) %>
     </div>
+
+    <%- if @company&.persisted? %>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"><%= @company.name %></a>
+
+        <div class="navbar-dropdown">
+          <%- @account_companies.each do |account_company| -%>
+            <%= link_to switch_companies_path(company_id: account_company.id), method: 'post', class: 'navbar-item' do %>
+              <%= account_company.name %>
+              About
+            <%- end %>
+          <%- end %>
+          <%= link_to 'New company', new_company_path, class: 'navbar-item' -%>
+        <% end %>
+      </div>
+    <%- else %>
+      <a class="navbar-item">
+        You haven't yet company
+      </a>
+    <%- end %>
   </div>
 </nav>

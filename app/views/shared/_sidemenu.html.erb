@@ -1,38 +1,22 @@
 <div id="leftmenu" class="column is-2 has-background-white">
   <aside class="menu">
-     <p class="menu-label">
-      Your account
-    </p>
     <% if current_account.avatar.attached? %>
-      <image id="avatar" src="<%=(url_for(current_account.avatar))%>">
+      <a href="/">
+        <image id="avatar" src="<%=(url_for(current_account.avatar))%>">
+      </a>
     <% end %>
-    <ul class="menu-list">
-      <li><%= current_account.name %></li>
-      <li><%= current_account.email %></li>
-      <li id="signout"><%= active_link_to 'Sign out', destroy_account_session_path, method: :delete, class: :"button is-normal is-danger" %></li>
-    </ul>
-    <ul class="menu-list">
-      <li><%= active_link_to 'My Account & Events', account_path(current_account), active: :exclusive %></li>
-      <% if @company&.persisted? %>
-        <li><%= active_link_to 'Create New Event', new_event_path, active: :exclusive %></li>
-        <li><%= active_link_to 'Company & Employees', company_path(@company), active: :exclusive %>
-        <li><%= active_link_to 'Calendar', calendar_path, active: :exclusive %></li>
-      <% end %>
-    </ul>
-
-    <% if @company&.persisted? && can?(:manage, @company) %>
-      <p class="menu-label">
-        Company
-      </p>
+    <% if @company&.persisted? %>
+      <p class="menu-label">Company</p>
       <ul class="menu-list">
-          <ul>
-            <li><%= active_link_to 'Rules', rules_path, active: :exclusive %></li>
-            <li><%= active_link_to 'Working Days', working_days_path, active: :exclusive %></li>
-            <li><%= active_link_to 'Events', employee_events_path(employee_id: @account_employee.id), active: :exclusive %></li>
-            <li><%= active_link_to 'Holidays', holidays_path, active: :exclusive %></li>
-          </ul>
-        </li>
+        <li><%= active_link_to 'Calendar', calendar_path, active: :exclusive %></li>
+        <li><%= active_link_to 'Create New Event', new_event_path, active: :exclusive %></li>
+        <li><%= active_link_to 'Company info', company_path(@company), active: :exclusive %></li>
       </ul>
     <% end %>
+    <p class="menu-label">Account</p>
+    <ul class="menu-list">
+      <li><%= link_to current_account.email, account_path(current_account) %></li>
+      <li><%= link_to 'Sign out', destroy_account_session_path, method: :delete %></li>
+    </ul>
   </aside>
 </div>
