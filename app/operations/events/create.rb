@@ -2,18 +2,19 @@
 
 module Events
   class Create
-    attr_reader :params, :company, :current_account
+    attr_reader :params, :company, :current_account, :employee
 
-    def initialize(current_account, params, company)
+    def initialize(current_account, params, company, employee)
       @params = params
       @company = company
       @current_account = current_account
+      @employee = employee
     end
 
     # rubocop: disable Metrics/AbcSize
     def call
       event = company.events.build(create_params)
-      event.employee = Employee.find_by(account: current_account, company: company)
+      event.employee = employee
       return Result::Failure.new(event) unless create_params[:rule_id]
 
       rule = Rule.find(create_params[:rule_id])

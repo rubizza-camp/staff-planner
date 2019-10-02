@@ -16,14 +16,13 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @employee = Employee.find_by(account: current_account, company: @company)
-    @event = @rules.first&.events&.build
+    @event = @rules.first&.events&.build(employee: employee)
   end
 
   def edit; end
 
   def create
-    result = Events::Create.new(current_account, params, @company).call
+    result = Events::Create.new(current_account, params, @company, employee).call
     if result.success?
       redirect_to calendar_path
     else
@@ -75,5 +74,14 @@ class EventsController < ApplicationController
 
   def rules
     @rules = @company.rules
+  end
+
+  def employee
+    @account_employee if @account_employee.role != 'owner'
+    employee_id = params[:employee_id]
+    employee_id ||= params[:event][:employee_id] if params[:event]
+    return @company.employees.find(employee_id) if employee_id
+
+    @account_employee
   end
 end
