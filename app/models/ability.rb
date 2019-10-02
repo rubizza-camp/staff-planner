@@ -20,7 +20,7 @@ class Ability
 
     can access, Company, id: company_ids
     can :calendar, Company, id: company_ids
-    can access, [Employee, WorkingDay, Holiday, Rule], company_id: company_ids
+    can access, [Employee, WorkingDay, Holiday, Rule, SlackNotification], company_id: company_ids
   end
 
   def access_to_events_employee(account)

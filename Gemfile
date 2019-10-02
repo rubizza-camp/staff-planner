@@ -47,6 +47,7 @@ gem 'devise'
 # Authorization
 gem 'cancancan'
 gem 'omniauth-github'
+gem 'slack-notifier'
 
 gem 'aasm'
 group :development, :test do

@@ -7,5 +7,7 @@ FactoryBot.define do
     allowance_days { 25 }
     period { 'year' }
     is_enabled { true }
+    auto_confirm { false }
+    is_holiday { false }
   end
 end

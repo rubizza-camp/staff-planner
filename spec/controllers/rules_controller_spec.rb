@@ -46,7 +46,10 @@ RSpec.describe RulesController do
     it 'creates rule' do
       post :create, params: { rule: { name: 'Any',
                                       allowance_days: 1,
-                                      period: 'year' } }
+                                      period: 'year',
+                                      is_enabled: true,
+                                      auto_confirm: false,
+                                      is_holiday: false } }
       expect(response).to redirect_to rules_path
     end
 

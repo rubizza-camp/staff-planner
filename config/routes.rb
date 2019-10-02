@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     end
   end
   resources :rules
+  resource :slack_notification, except: %i[show destroy]
   resources :working_days
 end

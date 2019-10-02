@@ -1,0 +1,20 @@
+<%= form_with(model: slack_notification, url: slack_notification_path, local: true) do |form| %>
+  <h1>Slack notifications</h1>
+
+  <%= render 'shared/error', object: slack_notification %>
+
+  <div class="field">
+    <%= form.label :token, class: 'label' %>
+    <%= form.text_field :token, class: :input %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_enabled, class: 'checkbox' %>
+    <%= form.check_box :is_enabled %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: :"button is-small is-success" %>
+    <%= link_to 'Back', company_path(@company), class: :"button is-small is-info" %>
+  </div>
+<% end %>
