@@ -263,6 +263,8 @@ GEM
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
+    sentry-raven (2.11.3)
+      faraday (>= 0.7.6, < 1.0)
     simplecov (0.17.0)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -342,6 +344,7 @@ DEPENDENCIES
   rspec_junit_formatter (~> 0.2.3)
   rubocop (~> 0.74.0)
   selenium-webdriver
+  sentry-raven
   simplecov
   slack-notifier
   spring
