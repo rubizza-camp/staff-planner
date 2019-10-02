@@ -76,4 +76,8 @@ class EventsController < ApplicationController
   def rules
     @rules = @company.rules
   end
+
+  def event_params
+    params.require(:event).permit(:employee_id)
+  end
 end
