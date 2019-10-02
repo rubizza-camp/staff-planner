@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe SlackNotificationsController do
   render_views
 
-  let(:company) { FactoryBot.create(:company) }
-  let!(:slack_notification) { FactoryBot.create(:slack_notification, company_id: company.id) }
+  let(:company) { create(:company) }
+  let!(:slack_notification) { create(:slack_notification, company_id: company.id) }
 
   before(:each) do
-    account = FactoryBot.create(:account)
-    employee = FactoryBot.create(:employee, company_id: company.id, account_id: account.id)
+    account = create(:account)
+    create(:employee, company_id: company.id, account_id: account.id)
     sign_in account
   end
 
