@@ -16,7 +16,7 @@ RSpec.describe Companies::Create do
 
   describe '#call' do
     it 'pings messages' do
-      message = "1) Simonee Simon. holiday (pending)\n"
+      message = "1. Simon. MyString [holiday] (not approved yet)\n"
       expect(slack_notifier).to receive(:ping).with(message)
       Slack::SendDailyMessages.new.call
     end

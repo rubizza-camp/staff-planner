@@ -25,8 +25,8 @@ module Slack
     def text_message(events)
       text_message = ''
       events.each_with_index do |event, i|
-        text_message += "#{i + 1}) #{event.account.full_name}. #{event.rule.name}"
-        text_message += ' (pending)' if event.state == 'pending'
+        text_message += "#{i + 1}. #{event.account.name}. #{event.reason} [#{event.rule.name}]"
+        text_message += ' (not approved yet)' if event.state == 'pending'
         text_message += "\n"
       end
       text_message
