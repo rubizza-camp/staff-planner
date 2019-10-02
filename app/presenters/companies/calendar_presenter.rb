@@ -20,7 +20,10 @@ module Companies
     # rubocop: enable Metrics/AbcSize
 
     def employees
-      @employees ||= company.employees.includes(:account).order("accounts.id=#{current_account_id} DESC, accounts.name")
+      @employees ||= company
+                     .employees
+                     .includes(:account)
+                     .order(['accounts.id=? DESC, accounts.name', current_account_id])
     end
 
     def employee_events(employee)
