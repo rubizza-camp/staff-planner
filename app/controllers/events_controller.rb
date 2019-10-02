@@ -9,8 +9,7 @@ class EventsController < ApplicationController
 
   def index
     @employee = Employee.find(params[:employee_id])
-    from, to = determine_from_to(params)
-    @employee_events = @employee.events.range(from, to).accessible_by(current_ability)
+    @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
   end
 
   def show; end
@@ -62,12 +61,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-  def determine_from_to(params)
-    from = params[:day]&.to_date&.beginning_of_day || params[:start_period]
-    to = params[:day]&.to_date&.end_of_day || params[:end_period]
-    [from, to]
-  end
 
   def set_event
     @event = Event.find(params[:id])

@@ -7,7 +7,9 @@ class EmployeesController < ApplicationController
   load_and_authorize_resource :company
   load_and_authorize_resource through: :company
 
-  def show; end
+  def show
+    @events_presenter = Events::IndexPresenter.new(@employee, current_ability, params)
+  end
 
   def new
     @employee = @company.employees.build
