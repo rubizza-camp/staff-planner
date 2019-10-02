@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :account_companies, unless: :devise_controller?
 
   def account_companies
-    @account_companies = current_account.companies if current_account
+    @account_companies = current_account.companies - [@company] if current_account
   end
 
   def account_employee
@@ -40,7 +40,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    account_path(id: resource.id)
+    if @company
+      calendar_path
+    else
+      account_path(id: resource.id)
+    end
   end
 
   def after_sign_out_path_for(_resourse)
