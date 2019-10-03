@@ -7,6 +7,7 @@ module Companies
       ActiveRecord::Base.transaction do
         company.save!
         create_employee(current_account_id, company)
+        create_working_days(company)
         Result::Success.new(company)
       end
     rescue ActiveRecord::RecordInvalid => e
@@ -22,6 +23,12 @@ module Companies
         company_id: company.id,
         role: 'owner'
       )
+    end
+
+    def create_working_days(company)
+      (1..5).each do |day_of_week|
+        WorkingDay.create!(company_id: company.id, day_of_week: day_of_week)
+      end
     end
   end
 end
