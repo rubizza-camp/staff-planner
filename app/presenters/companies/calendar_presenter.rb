@@ -2,12 +2,13 @@
 
 module Companies
   class CalendarPresenter
+    DEFAULT_PERIOD_DAYS = 30
+
     attr_reader :company, :name, :id, :days, :working_days, :events, :holidays, :current_account_id
 
     # rubocop: disable Metrics/AbcSize
     def initialize(company, current_account_id, params)
       @company = company
-      params[:end_period] ||= params[:start_period].to_date + 1.month if params[:start_period]
       @days = get_period(params)
       @working_days = company.working_days.pluck(:day_of_week)
       @events = Event.range(days.first, days.last).includes(:rule).group_by(&:employee_id)
@@ -72,11 +73,10 @@ module Companies
     end
 
     def get_period(params)
-      if params[:start_period].present? && params[:end_period].present?
-        return (params[:start_period].to_date)..(params[:end_period].to_date)
-      end
+      start_period = (params[:start_period].presence || Date.today).to_date
+      end_period = (params[:end_period].presence || (start_period + DEFAULT_PERIOD_DAYS)).to_date
 
-      (Date.today)..(Date.today + 30)
+      start_period..end_period
     end
   end
 end

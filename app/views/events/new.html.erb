@@ -2,6 +2,8 @@
   <div class="column is-narrow">
     <h3 class="title">New Event</h3>
     <%= form_with model: @event, url: events_path, method: 'post', local: true do |form| %>
+      <%= render 'shared/error', object: @event %>
+
       <div id="newevent" class="columns">
         <div class="column">
           <div class="field">
