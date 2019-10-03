@@ -7,11 +7,8 @@ module Companies
     # rubocop: disable Metrics/AbcSize
     def initialize(company, current_account_id, params)
       @company = company
-      @days = if params[:start_period].present? && params[:end_period].present?
-                (params[:start_period].to_date)..(params[:end_period].to_date)
-              else
-                (Date.today)..(Date.today + 30)
-              end
+      params[:end_period] ||= params[:start_period].to_date + 1.month if params[:start_period]
+      @days = get_period(params)
       @working_days = company.working_days.pluck(:day_of_week)
       @events = Event.range(days.first, days.last).includes(:rule).group_by(&:employee_id)
       @holidays = Holiday.where(date: days.first..days.last)
@@ -72,6 +69,14 @@ module Companies
 
     def event_in_day?(event, day)
       event.start_period.to_date <= day && event.end_period.to_date >= day
+    end
+
+    def get_period(params)
+      if params[:start_period].present? && params[:end_period].present?
+        return (params[:start_period].to_date)..(params[:end_period].to_date)
+      end
+
+      (Date.today)..(Date.today + 30)
     end
   end
 end

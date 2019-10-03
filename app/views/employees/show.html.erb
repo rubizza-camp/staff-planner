@@ -25,4 +25,6 @@
   </tbody>
 </table>
 <br>
+<%= render 'events/index_filter', path: [@employee] %>
+<%= render 'events/list', events: @events_presenter.events %>
 <%= link_to 'Back', company_path(@company), class: "button is-medium" %>
