@@ -10,9 +10,10 @@ RSpec.describe Companies::Create do
       let(:company_params) { { name: 'Any Name' } }
       subject(:call) { Companies::Create.new.call(company_params, account.id) }
 
-      it 'creates company and employee' do
+      it 'creates company, employee and working days' do
         expect { call }.to change { Employee.count }.by(1)
                                                     .and change { Company.count }.by(1)
+                                                    .and change { WorkingDay.count }.by(5)
       end
     end
 
