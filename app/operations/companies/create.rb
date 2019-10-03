@@ -15,19 +15,19 @@ module Companies
     end
 
     def create_employee(current_account_id, company)
-      company.employees.build(
+      company.employees.create(
         start_day: Date.today,
         position: 'director',
         is_enabled: true,
         account_id: current_account_id,
         company_id: company.id,
         role: 'owner'
-      ).save
+      )
     end
 
     def create_working_days(company)
       (1..5).each do |day_of_week|
-        company.working_days.build(company_id: company.id, day_of_week: day_of_week).save
+        company.working_days.create(company_id: company.id, day_of_week: day_of_week)
       end
     end
   end
