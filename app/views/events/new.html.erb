@@ -27,13 +27,16 @@
         <div>
           <label>
             <%= form.radio_button :rule_id, rule.id %>
-            <%= "#{rule.name} (days left: #{Events::RemainingDaysService.new.call(@employee, rule)})" %>
+            <%= "#{rule.name} (days left: #{Events::RemainingDaysService.new.call(@event.employee, rule)} / #{rule.period})" %>
           </label>
         </div>
       <% end %>
       <div class="field reason">
         <%= form.label :reason, class: 'label' %>
         <%= form.text_field :reason, class: :input %>
+      </div>
+      <div class="field employee">
+        <%= form.hidden_field :employee_id %>
       </div>
       <div class="buttons">
         <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-normal is-success" %>

@@ -22,7 +22,7 @@
   <% @calendar.employees.each do |employee| %>
     <tr>
       <td>
-        <%- if can?(:access_to_event, employee) %>
+        <% if can?(:access_to_event, employee) %>
           <%= link_to new_event_path(event: { employee_id: employee.id }) do %>
             <ion-icon name="add-circle-outline" class="icon is-medium has-text-success"></ion-icon>
           <%- end %>
@@ -34,50 +34,50 @@
       </td>
         <% @calendar.days_status(employee).each do |day, value| %>
           <% case value[:state] %>
-          <% when 'work' %>
-            <td class="work">
-              <% if employee.account == current_account %>
-                <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db)) %>
-              <% else %>
-                <p><%= day.strftime('%d') %></p>
-              <% end %>
-            </td>
-          <% when 'holiday' %>
-            <td class="holiday">
-              <% if employee.account == current_account %>
-                <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db))%>
-              <% else %>
-                <p><%= day.strftime('%d') %></p>
-              <% end %>
-            </td>
-          <% when 'fullday_event' %>
-            <td class="fulldayevent">
-              <% if can?(:access_to_event, employee) %>
-                <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
-              <% else %>
-                <p><%= day.strftime('%d') %></p>
-              <% end %>
-            </td>
-          <% when 'first_half_of_day' %>
-            <td class="firsthalf">
-              <% if can?(:access_to_event, employee) %>
-                <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
-              <% else %>
-                <p><%= day.strftime('%d') %></p>
-              <% end %>
-            </td>
-          <% when 'second_half_of_day' %>
-            <td class="secondhalf">
-              <% if can?(:access_to_event, employee) %>
-                <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
-              <% else %>
-                <p><%= day.strftime('%d') %></p>
-              <% end %>
-            </td>
-          <% when 'state_holiday' %>
-            <td class="stateholiday">
-              <%= link_to day.strftime('%d'), holidays_path %>
-            </td>
+            <% when 'work' %>
+              <td class="work">
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), event: { employee_id: employee.id }) %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'holiday' %>
+              <td class="holiday">
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), new_event_path(start_period: day.to_s(:db), event: { employee_id: employee.id })%>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'fullday_event' %>
+              <td class="fulldayevent">
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'first_half_of_day' %>
+              <td class="firsthalf">
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'second_half_of_day' %>
+              <td class="secondhalf">
+                <% if can?(:access_to_event, employee) %>
+                  <%= link_to day.strftime('%d'), employee_events_path(employee_id: employee, day: day ), title: value[:title] %>
+                <% else %>
+                  <p><%= day.strftime('%d') %></p>
+                <% end %>
+              </td>
+            <% when 'state_holiday' %>
+              <td class="stateholiday">
+                <%= link_to day.strftime('%d'), holidays_path %>
+              </td>
           <% end %>
         <% end %>
       </tr>
