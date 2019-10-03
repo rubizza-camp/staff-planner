@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :accounts, except: %i[new create index]
   resources :companies, except: :index do
     collection do
+      get :invites
       post :switch
     end
   end

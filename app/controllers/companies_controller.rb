@@ -56,6 +56,10 @@ class CompaniesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def invites
+
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

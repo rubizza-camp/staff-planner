@@ -20,7 +20,6 @@ class EmployeesController < ApplicationController
   def create
     @employee = @company.employees.build(employee_params)
     @employee.account = Account.find_by(email: params.dig(:employee, :email))
-
     if @employee.save
       redirect_to company_path(@company.id)
     else
@@ -58,6 +57,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:position, :start_day, :role)
+    params.require(:employee).permit(:position, :start_day, :role, :email)
   end
 end
