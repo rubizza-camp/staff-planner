@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     if result.success?
       redirect_to calendar_path
     else
+      @event = result.value
       render :new
     end
   end
