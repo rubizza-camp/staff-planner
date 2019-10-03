@@ -26,8 +26,7 @@ module Events
 
     def result(rule, event)
       if Events::AllowanceService.can_create?(rule, event) && event.save
-        EventMailer.send_email(company, event, current_account)
-                   .deliver_now
+        EventMailer.send_email(company, event, current_account).deliver_later
         Result::Success.new(event)
       else
         Result::Failure.new(event)
