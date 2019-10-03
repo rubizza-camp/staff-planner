@@ -16,7 +16,7 @@ module Events
     private
 
     def determine_from_to(params)
-      return from_to_from_day(params[:day]) if params[:day].present?
+      return from_to_from_day(params[:day].to_date) if params[:day].present?
 
       if params[:start_period].present? && params[:end_period].present?
         return from_to_from_period(params[:start_period], params[:end_period])

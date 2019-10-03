@@ -15,6 +15,7 @@ module Events
     def call
       event = company.events.build(create_params)
       event.employee = employee
+      event.valid?
       return Result::Failure.new(event) unless create_params[:rule_id]
 
       rule = Rule.find(create_params[:rule_id])
@@ -36,7 +37,7 @@ module Events
     private
 
     def create_params
-      return unless params[:event]
+      return {} unless params[:event]
 
       params.require(:event).permit(
         :start_period, :end_period, :reason, :employee_id, :company_id, :rule_id
