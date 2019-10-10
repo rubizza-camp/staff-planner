@@ -18,9 +18,9 @@ class EmployeesController < ApplicationController
   def edit; end
 
   def create
-    @employee = @company.employees.build(employee_params)
-    @employee.account = Account.find_by(email: params.dig(:employee, :email))
-    if @employee.save
+    result = Employees::Create.new.call(employee_params, @company)
+    @employee = result.value
+    if result.success?
       redirect_to company_path(@company.id)
     else
       render :new

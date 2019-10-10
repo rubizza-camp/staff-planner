@@ -56,9 +56,7 @@ class CompaniesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def invites
-
-  end
+  def invites; end
 
   private
 
