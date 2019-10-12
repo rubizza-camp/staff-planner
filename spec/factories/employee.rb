@@ -8,5 +8,6 @@ FactoryBot.define do
     position { 'Boss' }
     is_enabled { true }
     role { 'owner' }
+    email { 'any_email@any_domain' }
   end
 end
