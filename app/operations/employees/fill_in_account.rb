@@ -3,10 +3,7 @@
 module Employees
   class FillInAccount
     def call(account)
-      Employee.where(email: account.email).each do |employee|
-        employee.account = account
-        employee.save
-      end
+      Employee.where(email: account.email).update_all(account_id: account.id)
     end
   end
 end

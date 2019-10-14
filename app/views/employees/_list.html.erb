@@ -7,7 +7,7 @@
     <th> Activated </th>
     <th colspan="3"> Actions </th>
   </thead>
-  <% company.employees.joins(:account).eager_load(:account).each do |employee| %>
+  <% @employees.each do |employee| %>
     <tbody>
       <tr>
         <td><%= link_to employee.account.name, employee_path(id: employee.id) %></td>

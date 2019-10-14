@@ -9,7 +9,7 @@
     <th> Activated </th>
     <th colspan="3"> Actions </th>
   </thead>
-  <% @company.employees.where(account_id: nil).eager_load(:account).each do |employee| %>
+  <% @invites.each do |employee| %>
     <tbody>
       <tr>
         <td><%= link_to employee.email, employee_path(id: employee.id) %></td>

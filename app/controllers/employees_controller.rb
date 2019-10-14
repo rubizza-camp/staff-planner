@@ -19,10 +19,10 @@ class EmployeesController < ApplicationController
 
   def create
     result = Employees::Create.new.call(employee_params, @company)
-    @employee = result.value
     if result.success?
       redirect_to company_path(@company.id)
     else
+      @employee = result.value
       render :new
     end
   end

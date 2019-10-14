@@ -5,7 +5,9 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
 
   # GET /companies/1
-  def show; end
+  def show
+    @employees = @company.employees.joins(:account).eager_load(:account)
+  end
 
   # GET /companies/new
   def new
@@ -56,7 +58,9 @@ class CompaniesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def invites; end
+  def invites
+    @invites = @company.employees.where(account_id: nil).eager_load(:account)
+  end
 
   private
 
