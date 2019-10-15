@@ -6,8 +6,6 @@ RSpec.describe Employees::Create do
   let(:account) { create(:account) }
 
   describe '#call' do
-
-
     context 'with valid params' do
       let(:company) { create(:company) }
       let(:invite_user_mailer) { double InviteUserMailer }
@@ -18,8 +16,8 @@ RSpec.describe Employees::Create do
 
       it 'creates employee and send email' do
         expect(invite_user_mailer).to receive(:deliver_later)
-        expect { described_class.new.call(
-          {
+        expect {
+          described_class.new.call( {
             is_enabled: true,
             position: 'any position',
             start_day: '2019-02-02',
@@ -32,8 +30,8 @@ RSpec.describe Employees::Create do
 
       it 'creates employee and not send email' do
         expect(invite_user_mailer).not_to receive(:deliver_later)
-        expect { described_class.new.call(
-          {
+        expect {
+          described_class.new.call( {
             is_enabled: true,
             position: 'any position',
             start_day: '2019-02-02',
