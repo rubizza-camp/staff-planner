@@ -60,19 +60,6 @@ RSpec.describe Employee, type: :model do
     expect(employee.errors.messages).to include(:start_day)
   end
 
-  it 'is invalid without account_id' do
-    company = Company.new(name: 'Company')
-    expect(company.save).to be_truthy
-
-    employee = Employee.new(start_day: '2019-04-08',
-                            position: 'Boss',
-                            is_enabled: true,
-                            company_id: company.id,
-                            role: 'owner')
-    expect(employee).to be_invalid
-    expect(employee.errors.messages).to include(:account)
-  end
-
   it 'is invalid without company_id' do
     account = Account.new(name: 'Simone',
                           surname: 'Simeone',

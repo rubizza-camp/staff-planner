@@ -34,7 +34,7 @@ class Ability
   end
 
   def access_to_events_owner(account)
-    companies = account.companies.where(employees: { role: 'owner' })
+    companies = account.companies.where(employees: { role: 'owner' }).includes(:employees)
     return if companies.empty?
 
     can %i[accept decline index], Event, company_id: companies.map(&:id), state: 'pending'

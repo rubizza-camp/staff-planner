@@ -20,6 +20,7 @@ module Companies
     def employees
       @employees ||= company
                      .employees
+                     .where.not(account: nil)
                      .includes(:account)
                      .order(['accounts.id=? DESC, accounts.name', current_account_id])
     end

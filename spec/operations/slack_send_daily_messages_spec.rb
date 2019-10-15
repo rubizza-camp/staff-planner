@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Companies::Create do
-  let(:slack_notifier) { double('Slack::Notifier', ping: 'message') }
+  let(:slack_notifier) { double('Slack::Notifier') }
   let(:event) { create(:event) }
 
   before do

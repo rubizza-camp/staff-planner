@@ -9,6 +9,7 @@
   <div class="tabs">
     <ul>
       <%= active_link_to 'Employees', @company, class_active: 'is-active', wrap_tag: :li %>
+      <%= active_link_to 'Invites', invites_companies_path, class_active: 'is-active', wrap_tag: :li %>
       <%= active_link_to 'Slack notifications', link_to_slack_notification(@company), class_active: 'is-active', wrap_tag: :li %>
       <%= active_link_to 'Rules', rules_path, active: :exclusive, class_active: 'is-active', wrap_tag: :li %>
       <%= active_link_to 'Working Days', working_days_path, active: :exclusive, class_active: 'is-active', wrap_tag: :li %>

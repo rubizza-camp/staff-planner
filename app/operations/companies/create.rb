@@ -4,6 +4,8 @@ module Companies
   class Create
     def call(company_params, current_account_id)
       company = Company.new(company_params)
+      return Result::Failure.new(company) unless current_account_id
+
       ActiveRecord::Base.transaction do
         company.save!
         create_employee(current_account_id, company)
