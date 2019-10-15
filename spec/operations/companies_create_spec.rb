@@ -13,7 +13,7 @@ RSpec.describe Companies::Create do
       it 'creates company, employee and working days' do
         expect { call }.to change { Employee.count }.by(1)
                                                     .and change { Company.count }.by(1)
-                                                    .and change { WorkingDay.count }.by(5)
+                                                                                 .and change { WorkingDay.count }.by(5)
       end
     end
 
