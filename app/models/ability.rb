@@ -28,8 +28,8 @@ class Ability
     return if employee_ids.empty?
 
     end_day_today = Date.today.to_datetime.change(hour: Event::END_DAY)
-    events_ids = account.events.where('start_period >= ?', end_day_today).ids
-    can %i[edit update], Event, id: events_ids
+    event_ids = account.events.where('start_period >= ?', end_day_today).ids
+    can %i[edit update], Event, id: event_ids
     can %i[new create], Event
     can %i[index], Event, employee_id: employee_ids
     can :access_to_event, Employee, id: employee_ids
@@ -39,11 +39,11 @@ class Ability
     companies = account.companies.where(employees: { role: 'owner' }).includes(:employees)
     return if companies.empty?
 
-    companie_ids = companies.map(&:id)
-    can :accept, Event, company_id: companie_ids, state: %w[pending declined]
-    can :decline, Event, company_id: companie_ids, state: %w[pending accepted]
-    can %i[edit update index], Event, company_id: companie_ids
-    can :index, Event, company_id: companie_ids
+    company_ids = companies.map(&:id)
+    can :accept, Event, company_id: company_ids, state: %w[pending declined]
+    can :decline, Event, company_id: company_ids, state: %w[pending accepted]
+    can %i[edit update index], Event, company_id: company_ids
+    can :index, Event, company_id: company_ids
     can :access_to_event, Employee, id: companies.flat_map(&:employee_ids)
   end
 end

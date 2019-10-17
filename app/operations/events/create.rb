@@ -18,7 +18,7 @@ module Events
       event.valid?
       return Result::Failure.new(event) unless create_params[:rule_id]
 
-      rule = Rule.find(create_params[:rule_id])
+      rule = event.rule
       event.accept if rule.auto_confirm
       approved_event = Events::ValidatePeriod.new(event, params).call
       result(rule, approved_event.value)
@@ -26,13 +26,12 @@ module Events
     # rubocop: enable Metrics/AbcSize
 
     def result(rule, event)
-      if Events::AllowanceService.can_create?(rule, event)
-        event.save
-        EventMailer.send_email(company, event, current_account).deliver_later
-        Result::Success.new(event)
-      else
-        Result::Failure.new(event)
-      end
+      return Result::Failure.new(event) unless Events::AllowanceService.can_create?(rule, event)
+
+      return Result::Failure.new(event) unless event.save
+
+      EventMailer.send_email(company, event, current_account).deliver_later
+      Result::Success.new(event)
     end
 
     private

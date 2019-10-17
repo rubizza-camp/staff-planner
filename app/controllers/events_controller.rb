@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: %i[edit update destroy show]
-  before_action :rules, only: %i[new edit]
+  before_action :rules, only: %i[new edit create update]
   before_action :authenticate_account!
   load_and_authorize_resource :company
   load_and_authorize_resource through: :company, except: :create
@@ -26,7 +26,6 @@ class EventsController < ApplicationController
       redirect_to calendar_path
     else
       @event = result.value
-      rules
       render :new
     end
   end
@@ -36,7 +35,6 @@ class EventsController < ApplicationController
     if result.success?
       redirect_to calendar_path
     else
-      rules
       render :edit
     end
   end

@@ -28,15 +28,9 @@ RSpec.describe Events::Update do
         allow(EventMailer).to receive(:send_email).and_return(event_mailer)
       end
 
-      it 'owner update event' do
-        expect(event_mailer).not_to receive(:deliver_later)
-        Events::Update.new(event, account, params, company).call('owner')
-        expect(Event.first.reason).to eq('new reason')
-      end
-
-      it 'not owner update event' do
+      it 'update event' do
         expect(event_mailer).to receive(:deliver_later)
-        Events::Update.new(event, account, params, company).call('not owner')
+        Events::Update.new(event, account, params, company).call('any role')
         expect(Event.first.reason).to eq('new reason')
       end
     end
