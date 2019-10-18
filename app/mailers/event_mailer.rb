@@ -6,6 +6,7 @@ class EventMailer < ApplicationMailer
 
   def send_email(event, current_account)
     return if event.nil?
+
     company = event.company
     return if company.nil?
     return if current_account.nil?

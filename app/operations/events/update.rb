@@ -8,7 +8,6 @@ module Events
       @current_account = current_account
     end
 
-    # rubocop: disable Metrics/AbcSize
     def call(event, params)
       event.attributes = update_params(params)
       event.valid?
@@ -19,7 +18,6 @@ module Events
 
       result(event.rule, validate_result.value)
     end
-    # rubocop: enable Metrics/AbcSize
 
     def result(rule, event)
       return Result::Failure.new(event) unless Events::AllowanceService.can_create?(rule, event)
