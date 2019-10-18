@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :employees, except: :index do
     resources :events, only: :index
   end
-  resources :events, except: :index do
+  resources :events, except: %i[destroy index] do
     patch :accept
     patch :decline
   end

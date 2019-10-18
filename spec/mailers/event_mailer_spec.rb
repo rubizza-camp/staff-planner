@@ -15,7 +15,7 @@ RSpec.describe EventMailer do
 
   context 'without params' do
     it 'should not proceed if params nil' do
-      EventMailer.send_email(nil, nil, nil).deliver_now
+      EventMailer.send_email(nil, nil).deliver_now
       expect(ActionMailer::Base.deliveries.count).to eq(0)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe EventMailer do
     let!(:employee) { create(:employee, company: company, account: account) }
 
     it 'should send an email' do
-      EventMailer.send_email(company, event, account).deliver_now
+      EventMailer.send_email(event, account).deliver_now
       expect(ActionMailer::Base.deliveries.count).to eq(1)
       expect(ActionMailer::Base.deliveries.first.to.first).to eq(account.email)
     end

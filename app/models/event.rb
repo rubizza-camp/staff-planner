@@ -26,11 +26,15 @@ class Event < ApplicationRecord
     state :accepted, :declined
 
     event :accept do
-      transitions from: :pending, to: :accepted
+      transitions from: %i[pending declined], to: :accepted
     end
 
     event :decline do
-      transitions from: :pending, to: :declined
+      transitions from: %i[pending accepted], to: :declined
+    end
+
+    event :to_pending do
+      transitions from: %i[accepted declined], to: :pending
     end
   end
 end

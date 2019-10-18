@@ -14,9 +14,15 @@
         <td><%= employee.position %></td>
         <td><%= employee.start_day %></td>
         <td><%= employee.is_enabled %></td>
-        <td><%= link_to 'Show', employee_path(id: employee.id), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Edit', edit_employee_path(id: employee.id), class: :"button is-small is-info" %></td>
-        <td><%= link_to 'Destroy', employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+        <% if can?(:show, employee) %>
+          <td><%= link_to 'Show', employee_path(id: employee.id), class: :"button is-small is-info" %></td>
+        <% end %>
+        <% if can?(:edit, employee) %>
+          <td><%= link_to 'Edit', edit_employee_path(id: employee.id), class: :"button is-small is-info" %></td>
+        <% end %>
+        <% if can?(:destroy, employee) %>
+          <td><%= link_to 'Destroy', employee_path(id: employee.id), method: :delete, data: { confirm: 'Are you sure?' }, class: :"button is-small is-danger" %></td>
+        <% end %>
       </tr>
     </tbody>
   <% end %>

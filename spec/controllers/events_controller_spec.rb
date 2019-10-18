@@ -9,6 +9,7 @@ RSpec.describe EventsController, type: :controller do
   let(:event) { create(:event, company: company, employee: employee) }
   let(:account) { create(:account) }
   let!(:employee) { create(:employee, company: company, account: account) }
+  let!(:rule) { create(:rule, company: company) }
 
   before(:each) do
     sign_in account
@@ -23,7 +24,7 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'GET #new' do
     it 'returns a success response' do
-      get :new, params: { rule_id: event.rule.id }
+      get :new, params: { start_period: Date.today }
       expect(response).to be_successful
     end
   end
@@ -38,19 +39,24 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Event' do
-        expect(Event.count).eql?(1)
+        post :create, params: { event: { start_day: Date.today,
+                                         first_period: 'Morning',
+                                         end_day: Date.today,
+                                         second_period: 'End of day',
+                                         rule_id: rule.id,
+                                         reason: 'any reason',
+                                         employee_id: employee.id } }
+        expect(Event.count).to be(1)
       end
-    end
-
-    before :each do
-      allow_any_instance_of(Events::Create).to receive(:call)
-        .and_return(Result::Failure.new(Event.create))
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { rule_id: event.rule.id, event: { employee_id: event.employee.id } }
+        post :create, params: { rule_id: rule.id,
+                                start_period: Date.today,
+                                event: { employee_id: employee.id } }
         expect(response).to be_successful
+        expect(Event.count).to be(0)
       end
     end
   end
