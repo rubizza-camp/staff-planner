@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
-    result = Events::Create.new(current_account, params, @company, employee).call
+    result = Events::Create.new(current_account).call(employee, params)
     if result.success?
       redirect_to calendar_path
     else
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    result = Events::Update.new(@event, current_account, params, @company).call(@account_employee.role)
+    result = Events::Update.new(current_account).call(@event, params)
     if result.success?
       redirect_to calendar_path
     else

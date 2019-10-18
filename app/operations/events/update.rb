@@ -2,27 +2,22 @@
 
 module Events
   class Update
-    attr_reader :params, :company, :current_account, :event
+    attr_reader :current_account
 
-    def initialize(event, current_account, params, company)
-      @params = params
-      @company = company
+    def initialize(current_account)
       @current_account = current_account
-      @event = event
     end
 
     # rubocop: disable Metrics/AbcSize
-    def call(role)
-      event.attributes = update_params
+    def call(event, params)
+      event.attributes = update_params(params)
       event.valid?
-      rule = event.rule
-      if rule.auto_confirm
-        event.accept
-      elsif role != 'owner' && !event.pending?
-        event.to_pending
-      end
-      approved_event = Events::ValidatePeriod.new(event, params).call
-      result(rule, approved_event.value)
+      event.to_pending
+      event.accept if event.rule.auto_confirm
+      validate_result = Events::ValidatePeriod.new(event, params).call
+      return Result::Failure.new(event) unless validate_result.success?
+
+      result(event.rule, validate_result.value)
     end
     # rubocop: enable Metrics/AbcSize
 
@@ -31,17 +26,17 @@ module Events
 
       return Result::Failure.new(event) unless event.save
 
-      EventMailer.send_email(company, event, current_account).deliver_later
+      EventMailer.send_email(event, current_account).deliver_later
       Result::Success.new(event)
     end
 
     private
 
-    def update_params
+    def update_params(params)
       return {} unless params[:event]
 
       params.require(:event).permit(
-        :start_period, :end_period, :reason, :employee_id, :company_id, :rule_id
+        :start_period, :end_period, :reason, :rule_id
       )
     end
   end

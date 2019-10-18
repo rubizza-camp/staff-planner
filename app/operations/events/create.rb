@@ -2,26 +2,24 @@
 
 module Events
   class Create
-    attr_reader :params, :company, :current_account, :employee
+    attr_reader :current_account
 
-    def initialize(current_account, params, company, employee)
-      @params = params
-      @company = company
+    def initialize(current_account)
       @current_account = current_account
-      @employee = employee
     end
 
     # rubocop: disable Metrics/AbcSize
-    def call
-      event = company.events.build(create_params)
-      event.employee = employee
+    def call(employee, params)
+      event = employee.events.build(create_params(params))
+      event.company = employee.company
       event.valid?
-      return Result::Failure.new(event) unless create_params[:rule_id]
+      return Result::Failure.new(event) unless create_params(params)[:rule_id]
 
-      rule = event.rule
-      event.accept if rule.auto_confirm
-      approved_event = Events::ValidatePeriod.new(event, params).call
-      result(rule, approved_event.value)
+      event.accept if event.rule.auto_confirm
+      validate_result = Events::ValidatePeriod.new(event, params).call
+      return Result::Failure.new(event) unless validate_result.success?
+
+      result(event.rule, validate_result.value)
     end
     # rubocop: enable Metrics/AbcSize
 
@@ -30,13 +28,13 @@ module Events
 
       return Result::Failure.new(event) unless event.save
 
-      EventMailer.send_email(company, event, current_account).deliver_later
+      EventMailer.send_email(event, current_account).deliver_later
       Result::Success.new(event)
     end
 
     private
 
-    def create_params
+    def create_params(params)
       return {} unless params[:event]
 
       params.require(:event).permit(

@@ -17,7 +17,7 @@ RSpec.describe Events::Create do
       let(:rule) { create(:rule, company: company) }
       let(:event_mailer) { double EventMailer }
 
-      subject(:call) { Events::Create.new(account, params, company, employee).call }
+      subject(:call) { Events::Create.new(account).call(employee, params) }
 
       before do
         allow(EventMailer).to receive(:send_email).and_return(event_mailer)
@@ -38,7 +38,7 @@ RSpec.describe Events::Create do
       end
       let(:rule) { create(:rule, company: company) }
 
-      subject(:call) { Events::Create.new(account, params, company, employee).call }
+      subject(:call) { Events::Create.new(account).call(employee, params) }
 
       it 'not creates event' do
         expect { call }.to change { Event.count }.by(0)
@@ -55,7 +55,7 @@ RSpec.describe Events::Create do
       end
       let(:rule) { create(:rule, company: company) }
 
-      subject(:call) { Events::Create.new(account, params, company, employee).call }
+      subject(:call) { Events::Create.new(account).call(employee, params) }
 
       it 'not creates event' do
         expect { call }.to change { Event.count }.by(0)

@@ -4,9 +4,10 @@ class EventMailer < ApplicationMailer
   default from: 'staffplanner24@gmail.com'
   layout 'mailer'
 
-  def send_email(company, event, current_account)
-    return if company.nil?
+  def send_email(event, current_account)
     return if event.nil?
+    company = event.company
+    return if company.nil?
     return if current_account.nil?
 
     @params = create_email_params(company, event, current_account)

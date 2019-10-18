@@ -30,7 +30,7 @@ RSpec.describe Events::Update do
 
       it 'update event' do
         expect(event_mailer).to receive(:deliver_later)
-        Events::Update.new(event, account, params, company).call('any role')
+        Events::Update.new(account).call(event, params)
         expect(Event.first.reason).to eq('new reason')
       end
     end
@@ -60,7 +60,7 @@ RSpec.describe Events::Update do
 
       it 'not change event' do
         expect(event_mailer).not_to receive(:deliver_later)
-        Events::Update.new(event, account, params, company).call('not owner')
+        Events::Update.new(account).call(event, params)
         expect(Event.first.reason).to eq('old reason')
       end
     end
