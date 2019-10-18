@@ -38,7 +38,7 @@ module Events
       return {} unless params[:event]
 
       params.require(:event).permit(
-        :start_period, :end_period, :reason, :employee_id, :company_id, :rule_id
+        :start_period, :end_period, :reason, :employee_id, :rule_id
       )
     end
   end

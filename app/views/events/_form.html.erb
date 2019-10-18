@@ -3,11 +3,7 @@
     <div class="column">
       <div class="field">
         <%= form.label :start_day, class: 'label' %>
-        <% if params[:start_period] %>
-          <%= form.date_field :start_day, class: :input, value: params[:start_period] %>
-        <% else %>
-          <%= form.date_field :start_day, class: :input, value: @event.start_period.to_date %>
-        <% end %>
+        <%= form.date_field :start_day, class: :input, value: params[:start_period] || @event.start_period.to_date %>
       </div>
       <div class="select period">
         <%= form.select :first_period, options_for_select(['Morning', 'Afternoon'], (@event.start_period&.hour == Event::HALF_DAY)? 'Afternoon' : 'Morning'), class: :input %>
@@ -16,14 +12,10 @@
     <div class="column">
       <div class="field">
         <%= form.label :end_day, class: 'label' %>
-        <% if params[:start_period] %>
-          <%= form.date_field :end_day, class: :input, value: params[:start_period] %>
-        <% else %>
-          <%= form.date_field :end_day, class: :input, value: @event.end_period.to_date %>
-        <% end %>
+        <%= form.date_field :end_day, class: :input, value: params[:start_period] || @event.end_period.to_date %>
       </div>
       <div class="select period">
-        <%= form.select :second_period, options_for_select(['Afternoon', 'End of day'], (@event.end_period&.hour == Event::HALF_DAY)? 'Afternoon' : 'End of day'), class: :input %>
+        <%= form.select :second_period, options_for_select(['Afternoon', 'End of day'], (@event.end_period&.hour == Event::HALF_DAY) ? 'Afternoon' : 'End of day'), class: :input %>
       </div>
     </div>
   </div>

@@ -19,8 +19,10 @@
       <td><%= @employee.account.email %></td>
       <td><%= @employee.created_at %></td>
       <td><%= @employee.is_enabled %></td>
-      <% if can?(:destroy, @employee) %>
+      <% if can?(:edit, @employee) %>
         <td><%= link_to 'Edit', edit_employee_path(id: @employee.id), class: "button is-small is-info" %></td>
+      <% end %>
+      <% if can?(:destroy, @employee) %>
         <td><%= link_to 'Destroy', employee_path(id: @employee.id), method: :delete, class: "button is-small is-danger" %></td>
       <% end %>
     </tr>

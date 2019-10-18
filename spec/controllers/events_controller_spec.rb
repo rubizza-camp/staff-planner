@@ -39,16 +39,24 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Event' do
-        # expect(Event.count).to be(1)
+        post :create, params: { event: { start_day: Date.today,
+                                         first_period: 'Morning',
+                                         end_day: Date.today,
+                                         second_period: 'End of day',
+                                         rule_id: rule.id,
+                                         reason: 'any reason',
+                                         employee_id: employee.id } }
+        expect(Event.count).to be(1)
       end
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { rule_id: event.rule.id,
+        post :create, params: { rule_id: rule.id,
                                 start_period: Date.today,
-                                event: { employee_id: event.employee.id } }
+                                event: { employee_id: employee.id } }
         expect(response).to be_successful
+        expect(Event.count).to be(0)
       end
     end
   end
