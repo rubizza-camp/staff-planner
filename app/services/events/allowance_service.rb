@@ -2,10 +2,10 @@
 
 module Events
   class AllowanceService
-    def self.can_create?(rule, event)
+    def self.can_create?(event)
       event_range = receive_event_range(event)
       remaining_days = Events::RemainingDaysService.new
-                                                   .call(event.employee, rule)
+                                                   .call(event.employee, event.rule)
       if event_range.first.strftime('%Y-%m').eql?(
         event_range.last.strftime('%Y-%m')
       )

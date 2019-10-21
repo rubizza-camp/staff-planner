@@ -10,10 +10,12 @@ RSpec.describe Events::Update do
       let(:company) { create(:company) }
       let(:employee) { create(:employee, company: company, account: account) }
       let(:params) do
-        ActionController::Parameters.new(event: { rule_id: rule.id,
-                                                  start_day: Date.today,
-                                                  end_day: Date.today,
-                                                  reason: 'new reason' })
+        { start_period: Date.today.to_datetime.change(hour: Event::START_DAY),
+          end_period: Date.today.to_datetime.change(hour: Event::END_DAY),
+          rule_id: rule.id,
+          reason: 'new reason',
+          employee_id: employee.id,
+          company_id: company.id }
       end
       let(:event) do
         create(:event, company: company,
@@ -39,10 +41,12 @@ RSpec.describe Events::Update do
       let(:company) { create(:company) }
       let(:employee) { create(:employee, company: company, account: account) }
       let(:params) do
-        ActionController::Parameters.new(event: { rule_id: rule.id,
-                                                  start_day: Date.today,
-                                                  end_day: Date.today + rule.allowance_days + 1,
-                                                  reason: 'new reason' })
+        { start_period: Date.today.to_datetime.change(hour: Event::START_DAY),
+          end_period: (Date.today + rule.allowance_days + 1).to_datetime.change(hour: Event::END_DAY),
+          rule_id: rule.id,
+          reason: 'new reason',
+          employee_id: employee.id,
+          company_id: company.id }
       end
       let(:event) do
         create(:event, company: company,

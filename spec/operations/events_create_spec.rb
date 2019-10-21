@@ -10,14 +10,18 @@ RSpec.describe Events::Create do
       let(:company) { create(:company) }
       let(:employee) { create(:employee, company: company, account: account) }
       let(:params) do
-        ActionController::Parameters.new(event: { rule_id: rule.id,
-                                                  start_day: Date.today,
-                                                  end_day: Date.today })
+        { start_period: Date.today.to_datetime.change(hour: Event::START_DAY),
+          end_period: Date.today.to_datetime.change(hour: Event::END_DAY),
+          rule_id: rule.id,
+          reason: 'any reason',
+          employee_id: employee.id,
+          company_id: company.id }
       end
+
       let(:rule) { create(:rule, company: company) }
       let(:event_mailer) { double EventMailer }
 
-      subject(:call) { Events::Create.new(account).call(employee, params) }
+      subject(:call) { Events::Create.new(account).call(params) }
 
       before do
         allow(EventMailer).to receive(:send_email).and_return(event_mailer)
@@ -33,12 +37,15 @@ RSpec.describe Events::Create do
       let(:company) { create(:company) }
       let(:employee) { create(:employee, company: company, account: account) }
       let(:params) do
-        ActionController::Parameters.new(event: { start_day: Date.today,
-                                                  end_day: Date.today })
+        { start_period: Date.today.to_datetime.change(hour: Event::START_DAY),
+          end_period: Date.today.to_datetime.change(hour: Event::END_DAY),
+          rule_id: rule.id,
+          reason: 'any reason',
+          company_id: company.id }
       end
       let(:rule) { create(:rule, company: company) }
 
-      subject(:call) { Events::Create.new(account).call(employee, params) }
+      subject(:call) { Events::Create.new(account).call(params) }
 
       it 'not creates event' do
         expect { call }.to change { Event.count }.by(0)
@@ -49,13 +56,16 @@ RSpec.describe Events::Create do
       let(:company) { create(:company) }
       let(:employee) { create(:employee, company: company, account: account) }
       let(:params) do
-        ActionController::Parameters.new(event: { rule_id: rule.id,
-                                                  start_day: Date.today,
-                                                  end_day: Date.today + rule.allowance_days + 1 })
+        { start_period: Date.today.to_datetime.change(hour: Event::START_DAY),
+          end_period: (Date.today + rule.allowance_days + 1).to_datetime.change(hour: Event::END_DAY),
+          rule_id: rule.id,
+          reason: 'any reason',
+          employee_id: employee.id,
+          company_id: company.id }
       end
       let(:rule) { create(:rule, company: company) }
 
-      subject(:call) { Events::Create.new(account).call(employee, params) }
+      subject(:call) { Events::Create.new(account).call(params) }
 
       it 'not creates event' do
         expect { call }.to change { Event.count }.by(0)

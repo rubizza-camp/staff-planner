@@ -21,22 +21,18 @@ class EventsController < ApplicationController
   def edit; end
 
   def create
-    result = Events::Create.new(current_account).call(employee, params)
-    if result.success?
-      redirect_to calendar_path
-    else
-      @event = result.value
-      render :new
-    end
+    result = Events::Create.new(current_account).call(create_event_params)
+    return redirect_to calendar_path if result.success?
+
+    @event = result.value
+    render :new
   end
 
   def update
-    result = Events::Update.new(current_account).call(@event, params)
-    if result.success?
-      redirect_to calendar_path
-    else
-      render :edit
-    end
+    result = Events::Update.new(current_account).call(@event, update_event_params)
+    return redirect_to calendar_path if result.success?
+
+    render :edit
   end
 
   def accept
@@ -71,6 +67,15 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:employee_id)
+    params.require(:event).permit(:reason, :employee_id, :rule_id)
+  end
+
+  def create_event_params
+    event_params.merge(Events::DeterminePeriod.new(params.require(:event)).call)
+                .merge(company_id: @company.id)
+  end
+
+  def update_event_params
+    event_params.merge(Events::DeterminePeriod.new(params.require(:event)).call)
   end
 end

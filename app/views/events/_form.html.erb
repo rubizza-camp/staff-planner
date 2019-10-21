@@ -6,7 +6,7 @@
         <%= form.date_field :start_day, class: :input, value: params[:start_period] || @event.start_period.to_date %>
       </div>
       <div class="select period">
-        <%= form.select :first_period, options_for_select(['Morning', 'Afternoon'], (@event.start_period&.hour == Event::HALF_DAY)? 'Afternoon' : 'Morning'), class: :input %>
+        <%= form.select :first_period, options_for_select(['Morning', 'Afternoon'], (@event.start_period&.hour == Event::HALF_DAY) ? 'Afternoon' : 'Morning'), class: :input %>
       </div>
     </div>
     <div class="column">
