@@ -8,18 +8,13 @@ module Events
       @current_account = current_account
     end
 
-    def call(employee, params)
-      event = employee.events.build(params)
-      event.company = employee.company
+    def call(params)
+      event = Event.new(params)
       return Result::Failure.new(event) unless event.valid?
 
+      return Result::Failure.new(event) unless Events::AllowanceService.can_create?(event)
+
       event.accept if event.rule.auto_confirm
-      result(event.rule, validate_result.value)
-    end
-
-    def result(rule, event)
-      return Result::Failure.new(event) unless Events::AllowanceService.can_create?(rule, event)
-
       return Result::Failure.new(event) unless event.save
 
       EventMailer.send_email(event, current_account).deliver_later

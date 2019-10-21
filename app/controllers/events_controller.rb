@@ -15,15 +15,13 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    byebug
     @event = @rules.first&.events&.build(employee: employee)
   end
 
   def edit; end
 
   def create
-    byebug
-    result = Events::Create.new(current_account).call(employee, my_event_params)
+    result = Events::Create.new(current_account).call(create_event_params)
     return redirect_to calendar_path if result.success?
 
     @event = result.value
@@ -31,12 +29,10 @@ class EventsController < ApplicationController
   end
 
   def update
-    result = Events::Update.new(current_account).call(@event, params)
-    if result.success?
-      redirect_to calendar_path
-    else
-      render :edit
-    end
+    result = Events::Update.new(current_account).call(@event, update_event_params)
+    return redirect_to calendar_path if result.success?
+
+    render :edit
   end
 
   def accept
@@ -71,12 +67,15 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    return {} unless params[:event]
-    byebug
-    params.require(:event)#.permit(:start_day, :end_day, :first_period, :second_period, :reason, :employee_id, :rule_id)
-    byebug
-    #period_params = Events::Determine_period.new(params).call
-    #return Result::Failure.new unless validate_result.success?
-    # .merge(....value)
+    params.require(:event).permit(:reason, :employee_id, :rule_id)
+  end
+
+  def create_event_params
+    event_params.merge(Events::DeterminePeriod.new(params.require(:event)).call)
+                .merge(company_id: @company.id)
+  end
+
+  def update_event_params
+    event_params.merge(Events::DeterminePeriod.new(params.require(:event)).call)
   end
 end

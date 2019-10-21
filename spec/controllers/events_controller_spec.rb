@@ -52,9 +52,12 @@ RSpec.describe EventsController, type: :controller do
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { rule_id: rule.id,
-                                start_period: Date.today,
-                                event: { employee_id: employee.id } }
+        post :create, params: { event: { start_day: Date.today,
+                                         first_period: 'Morning',
+                                         end_day: Date.today,
+                                         second_period: 'End of day',
+                                         employee_id: employee.id,
+                                         state: 'wrong state' } }
         expect(response).to be_successful
         expect(Event.count).to be(0)
       end
@@ -63,17 +66,15 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        { reason: 'Holidaaaays' }
-      end
-
-      before :each do
-        allow_any_instance_of(Events::Update).to receive(:call)
-          .and_return(Result::Success.new(event))
-      end
-
       it 'updates the requested account' do
-        put :update, params: { id: event.id, event: new_attributes }
+        put :update, params: { event: { start_day: Date.today,
+                                        first_period: 'Morning',
+                                        end_day: Date.today,
+                                        second_period: 'End of day',
+                                        rule_id: rule.id,
+                                        reason: 'Holidaaaays',
+                                        employee_id: employee.id },
+                               id: event.id }
         event.reload
         expect(event.reason).eql?('Holidaaaays')
       end
