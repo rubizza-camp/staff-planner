@@ -10,7 +10,7 @@ module Events
     end
 
     def events
-      @events ||= @employee.events.range(from, to).accessible_by(current_ability)
+      @events ||= @employee.events.accessible_by(current_ability).range(from, to)
     end
 
     private
@@ -18,7 +18,7 @@ module Events
     def determine_from_to(params)
       return from_to_from_day(params[:day].to_date) if params[:day].present?
 
-      if params[:start_period].present? && params[:end_period].present?
+      if params[:start_period].present? || params[:end_period].present?
         return from_to_from_period(params[:start_period], params[:end_period])
       end
 
@@ -29,12 +29,19 @@ module Events
       [day.beginning_of_day, day.end_of_day]
     end
 
-    def from_to_from_period(_start_period, _end_period)
-      [params[:start_period], params[:end_period]]
+    def from_to_from_period(start_period, end_period)
+      start_period = - Float::INFINITY unless start_period.present?
+
+      if end_period.present?
+        end_period = end_period.to_date.end_of_day
+      else
+        end_period = Float::INFINITY unless end_period.present?
+      end
+      [start_period, end_period]
     end
 
     def from_to_default
-      [Date.today, Date.today + 1.month]
+      [Date.today.beginning_of_day, (Date.today + 1.month).end_of_day]
     end
   end
 end

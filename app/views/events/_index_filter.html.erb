@@ -1,20 +1,20 @@
 <div class="columns is-desktop">
   <div class="column is-narrow">
-    <%= form_with(url: path, local: true, method: :get) do %>
+    <%= form_with(url: path, local: true, method: :get, id: 'events_form') do %>
       <div id="period">
         <div class="field">
           <%= label_tag :employee_id %>
-          <%= select_tag :employee, options_from_collection_for_select(@company.employees, :id, :position) %>
+          <%= select_tag :employee, options_from_collection_for_select(@employees, :id, :full_name, @employee.id), onchange: 'chgAction(this)' %>
         </div>
 
         <div class="field">
           <%= label_tag :start_period %>
-          <%= date_field_tag :start_period, class: :input %>
+          <%= date_field_tag :start_period, params[:start_period], class: :input %>
         </div>
 
         <div class="field">
           <%= label_tag :end_period %>
-          <%= date_field_tag :end_period, class: :input %>
+          <%= date_field_tag :end_period, params[:end_period], class: :input %>
         </div>
 
         <div class="actions">
@@ -24,3 +24,11 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  function chgAction(select)
+  {
+    var selectedValue = select.options[select.selectedIndex].value;
+      document.getElementById('events_form').action = '/employees/' + selectedValue + '/events';
+  }
+</script>

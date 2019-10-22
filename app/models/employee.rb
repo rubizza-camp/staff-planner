@@ -10,4 +10,6 @@ class Employee < ApplicationRecord
   validates :is_enabled, presence: true
   validates :role, presence: true,
                    inclusion: { in: %w[owner employee] }
+
+  delegate :full_name, to: :account
 end
