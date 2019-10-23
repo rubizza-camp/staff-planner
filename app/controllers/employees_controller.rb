@@ -9,8 +9,7 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @events_presenter = Events::IndexPresenter.new(@employee, current_ability, params)
-    @employees = Companies::EmployeesPresenter.new.call(@company, current_ability)
+    @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
   end
 
   def new

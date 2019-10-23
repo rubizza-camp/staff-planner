@@ -10,7 +10,6 @@ class EventsController < ApplicationController
   def index
     @employee = Employee.find(params[:employee_id])
     @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
-    @employees = Companies::EmployeesPresenter.new.call(@company, current_ability)
   end
 
   def show; end

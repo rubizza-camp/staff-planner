@@ -13,6 +13,13 @@ module Events
       @events ||= @employee.events.accessible_by(current_ability).range(from, to)
     end
 
+    def employees
+      employee.company.employees
+              .where.not(account: nil)
+              .includes(:account)
+              .accessible_by(current_ability, :show)
+    end
+
     private
 
     def determine_from_to(params)
@@ -31,12 +38,11 @@ module Events
 
     def from_to_from_period(start_period, end_period)
       start_period = - Float::INFINITY unless start_period.present?
-
-      if end_period.present?
-        end_period = end_period.to_date.end_of_day
-      else
-        end_period = Float::INFINITY unless end_period.present?
-      end
+      end_period = if end_period.present?
+                     end_period.to_date.end_of_day
+                   else
+                     Float::INFINITY
+                   end
       [start_period, end_period]
     end
 
