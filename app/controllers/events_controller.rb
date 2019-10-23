@@ -10,11 +10,7 @@ class EventsController < ApplicationController
   def index
     @employee = Employee.find(params[:employee_id])
     @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
-    @employees = if @account_employee.role == 'owner'
-                   @company.employees.where.not(account: nil).includes(:account)
-                 else
-                   [@account_employee]
-                 end
+    @employees = Companies::EmployeesPresenter.new.call(@company, current_ability)
   end
 
   def show; end

@@ -8,15 +8,9 @@ class EmployeesController < ApplicationController
   load_and_authorize_resource through: :company
 
   def show
-    @events_presenter = Events::IndexPresenter.new(@employee, current_ability, params)
-
     @employee = Employee.find(params[:id])
-    @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
-    @employees = if @account_employee.role == 'owner'
-                   @company.employees.where.not(account: nil).includes(:account)
-                 else
-                   [@account_employee]
-                 end
+    @events_presenter = Events::IndexPresenter.new(@employee, current_ability, params)
+    @employees = Companies::EmployeesPresenter.new.call(@company, current_ability)
   end
 
   def new
