@@ -4,7 +4,7 @@
       <div id="period">
         <div class="field">
           <%= label_tag :employee_id %>
-          <%= select_tag :employee, options_from_collection_for_select(@presenter.employees, :id, :full_name, @employee.id), onchange: 'chgAction(this)' %>
+          <%= select_tag :employee, options_from_collection_for_select(employees, :id, :full_name, @employee.id), onchange: 'changeAction(this)' %>
         </div>
 
         <div class="field">
