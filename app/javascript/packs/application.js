@@ -18,3 +18,4 @@ require('@rails/ujs').start();
 require('../src/application.scss');
 require('../src/layout.css');
 require('../src/button_close.js');
+require('../src/events.js');

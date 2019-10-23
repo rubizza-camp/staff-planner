@@ -24,11 +24,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-  function chgAction(select)
-  {
-    var selectedValue = select.options[select.selectedIndex].value;
-      document.getElementById('events_form').action = '/employees/' + selectedValue + '/events';
-  }
-</script>
