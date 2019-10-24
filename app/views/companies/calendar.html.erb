@@ -22,7 +22,7 @@
     <tr>
       <td>
         <% if can?(:access_to_event, employee) %>
-          <%= link_to new_event_path(event: { employee_id: employee.id }, start_period: Date.today) do %>
+          <%= link_to new_event_path(event: { employee_id: employee.id }) do %>
             <ion-icon name="add-circle-outline" class="icon is-medium has-text-success"></ion-icon>
           <%- end %>
         <%- end %>

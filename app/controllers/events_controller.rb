@@ -15,7 +15,8 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @event = @rules.first&.events&.build(employee: employee)
+    @event = Event.new(employee: employee, rule: @rules.first)
+    params[:start_period] ||= Date.today
   end
 
   def edit; end

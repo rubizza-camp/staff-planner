@@ -55,7 +55,7 @@ class CompaniesController < ApplicationController
 
   def switch
     session[:current_company_id] = @company&.id
-    redirect_back(fallback_location: root_path)
+    smart_redirect
   end
 
   def invites
@@ -67,5 +67,15 @@ class CompaniesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def smart_redirect
+    uri = URI(request.referrer.to_s)
+
+    if uri.path =~ /\d/ || uri.query =~ /\d/
+      redirect_to(root_path)
+    else
+      redirect_back(fallback_location: calendar_path)
+    end
   end
 end

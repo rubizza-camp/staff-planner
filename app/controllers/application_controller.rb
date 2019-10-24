@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   def current_company
     company_id = params[:company_id] || session[:current_company_id]
     @company = current_account.companies.find_by(id: company_id)
-
     @company ||= current_account.companies.first
     session[:current_company_id] = @company.id if @company
   end
