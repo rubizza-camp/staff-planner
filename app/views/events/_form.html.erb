@@ -36,6 +36,6 @@
     <%= form.hidden_field :employee_id %>
   </div>
   <div class="buttons">
-    <%= form.submit(@event.new_record? ? 'New' : 'Edit', class: 'button is-small is-success') %>
+    <%= form.submit(@event.new_record? ? 'Create' : 'Edit', class: 'button is-small is-success') %>
   </div>
 <% end %>
