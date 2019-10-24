@@ -1,4 +1,4 @@
-<%= form_with model: @event, method: @event.new_record?? 'post' : 'patch', local: true do |form| %>
+<%= form_with model: @event, local: true do |form| %>
   <div id="newevent" class="columns">
     <div class="column">
       <div class="field">
@@ -36,10 +36,6 @@
     <%= form.hidden_field :employee_id %>
   </div>
   <div class="buttons">
-    <% if @event.new_record? %>
-      <%= form.button type: :submit, class: "button is-normal is-success" %>
-    <% else %>
-      <%= form.submit 'Edit', class: 'button is-small is-success' %>
-    <% end %>
+    <%= form.submit(@event.new_record? ? 'New' : 'Edit', class: 'button is-small is-success') %>
   </div>
 <% end %>
