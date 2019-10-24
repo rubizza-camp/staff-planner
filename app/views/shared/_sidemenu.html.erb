@@ -9,7 +9,7 @@
       <p class="menu-label">Company</p>
       <ul class="menu-list">
         <li><%= active_link_to 'Calendar', calendar_path, active: :exclusive %></li>
-        <li><%= active_link_to 'Create New Event', new_event_path(event: { employee_id: @account_employee.id }), active: :exclusive %></li>
+        <li><%= active_link_to 'Create New Event', new_event_path(start_period: Date.today), active: :exclusive %></li>
         <li><%= active_link_to 'Company info', company_path(@company), active: :exclusive %></li>
       </ul>
     <% end %>
