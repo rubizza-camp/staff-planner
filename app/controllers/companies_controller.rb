@@ -58,16 +58,6 @@ class CompaniesController < ApplicationController
     smart_redirect
   end
 
-  def smart_redirect
-    uri = URI(request.referrer.to_s)
-
-    if uri.path =~ /\d/ || uri.query =~ /\d/
-      redirect_to(root_path)
-    else
-      redirect_back(fallback_location: calendar_path)
-    end
-  end
-
   def invites
     @invites = @company.employees.where(account_id: nil).eager_load(:account)
   end
@@ -77,5 +67,15 @@ class CompaniesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def smart_redirect
+    uri = URI(request.referrer.to_s)
+
+    if uri.path =~ /\d/ || uri.query =~ /\d/
+      redirect_to(root_path)
+    else
+      redirect_back(fallback_location: calendar_path)
+    end
   end
 end
