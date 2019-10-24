@@ -10,7 +10,7 @@ class Employee < ApplicationRecord
   validates :is_enabled, presence: true
   validates :role, presence: true,
                    inclusion: { in: %w[owner employee] }
-  validates :account, uniqueness: { scope: :account_id, message: 'already added' }
+  validates :email, uniqueness: { scope: :company_id, message: 'already added' }
 
   delegate :full_name, to: :account
 end

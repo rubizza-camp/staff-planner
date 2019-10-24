@@ -37,7 +37,7 @@
   </div>
   <div class="buttons">
     <% if @event.new_record? %>
-      <%= form.button type: :submit, name: :company_id, value: params[:company_id], class: "button is-normal is-success" %>
+      <%= form.button type: :submit, class: "button is-normal is-success" %>
     <% else %>
       <%= form.submit 'Edit', class: 'button is-small is-success' %>
     <% end %>

@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe EmployeesController do
   render_views
 
-  let(:company)        { FactoryBot.create(:company) }
+  let(:company)        { create(:company) }
   let(:account_owner)  { employee_owner.account }
-  let(:employee_owner) { FactoryBot.create(:employee, company: company) }
+  let(:employee_owner) { create(:employee, company: company) }
 
-  let(:account)  { FactoryBot.create(:account, email: '222@mail.ru') }
-  let(:employee) { FactoryBot.create(:employee, company: company, account: account) }
+  let(:account)  { create(:account, email: '222@mail.ru') }
+  let(:employee) { create(:employee, company: company, account: account, email: 'any@mail') }
 
   before(:each) do
     sign_in account_owner

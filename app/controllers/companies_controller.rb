@@ -55,7 +55,7 @@ class CompaniesController < ApplicationController
 
   def switch
     session[:current_company_id] = @company&.id
-    redirect_back(fallback_location: root_path)
+    redirect_to root_path
   end
 
   def invites
