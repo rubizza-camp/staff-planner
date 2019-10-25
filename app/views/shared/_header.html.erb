@@ -4,30 +4,30 @@
       <img src="/staff_planner.png" alt="logo" width="112" height="28" />
     </a>
   </div>
-  <%- if current_account %>
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <%= link_to current_account.name, account_path(current_account) %>
-    </div>
-
-    <%- if @company&.persisted? %>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link"><%= @company.name %></a>
-
-        <div class="navbar-dropdown">
-          <%- @account_companies.each do |account_company| -%>
-            <%= link_to switch_companies_path(company_id: account_company.id), method: 'post', class: 'navbar-item' do %>
-              <%= account_company.name %>
-              About
-            <%- end %>
-          <%- end %>
-          <%= link_to 'New company', new_company_path, class: 'navbar-item' -%>
-        <% end %>
+  <% if current_account %>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <%= link_to current_account.name, account_path(current_account) %>
       </div>
-    <%- else %>
-      <a class="navbar-item">
-        You haven't yet company
-      </a>
-    <%- end %>
-  </div>
+      <% if @company&.persisted? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"><%= @company.name %></a>
+
+          <div class="navbar-dropdown">
+            <% @account_companies.each do |account_company| %>
+              <%= link_to switch_companies_path(company_id: account_company.id), method: 'post', class: 'navbar-item' do %>
+                <%= account_company.name %>
+                About
+              <% end %>
+            <% end %>
+            <%= link_to 'New company', new_company_path, class: 'navbar-item' %>
+          </div>
+        </div>
+      <% else %>
+        <a class="navbar-item">
+          You haven't yet company
+        </a>
+      <% end %>
+    </div>
+  <% end %>
 </nav>

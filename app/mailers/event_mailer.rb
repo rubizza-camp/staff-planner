@@ -30,7 +30,7 @@ class EventMailer < ApplicationMailer
   end
 
   def link_to_events(company, event)
-    employee_events_url(
+    events_url(
       company_id: company.id,
       employee_id: event.employee_id,
       day: event.start_period

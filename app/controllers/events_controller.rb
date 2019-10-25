@@ -8,8 +8,7 @@ class EventsController < ApplicationController
   load_and_authorize_resource through: :company, except: :create
 
   def index
-    @employee = Employee.find(params[:employee_id])
-    @presenter = Events::IndexPresenter.new(@employee, current_ability, params)
+    @presenter = Events::IndexPresenter.new(@company, current_ability, params)
   end
 
   def show; end
