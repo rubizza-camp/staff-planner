@@ -1,6 +1,6 @@
 <%= render 'companies/header' %>
 
-<%= render 'events/index_filter', path: employee_events_path, employees: @presenter.employees %>
+<%= render 'events/index_filter', path: events_path, employees: @presenter.employees %>
 <%= render 'events/list', events: @presenter.events %>
 <br>
 <%= link_to 'Back to calendar', calendar_path, class: :"button is-small is-info" %>

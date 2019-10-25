@@ -18,10 +18,8 @@ Rails.application.routes.draw do
       post :switch
     end
   end
-  resources :employees, except: :index do
-    resources :events, only: :index
-  end
-  resources :events, except: %i[destroy index] do
+  resources :employees, except: :index
+  resources :events, except: %i[destroy] do
     patch :accept
     patch :decline
   end

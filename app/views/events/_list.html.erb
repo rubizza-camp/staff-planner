@@ -18,7 +18,7 @@
         <td><%= event.end_period.strftime('%c') %></td>
         <td><%= event.rule.name %></td>
         <td><p><%= event.state %></p></td>
-        <td><%= Events::RemainingDaysService.new.call(@employee, event.rule) %></td>
+        <td><%= Events::RemainingDaysService.new.call(event.employee, event.rule) %></td>
         <td>
           <div class="buttons">
             <% if can?(:accept, event) %>

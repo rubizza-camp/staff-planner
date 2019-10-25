@@ -8,8 +8,7 @@ class EmployeesController < ApplicationController
   load_and_authorize_resource through: :company
 
   def show
-    @employee = Employee.find(params[:id])
-    @events_presenter = Events::IndexPresenter.new(@employee, current_ability, params)
+    @events_presenter = Events::IndexPresenter.new(@company, current_ability, params.merge(employee_id: params[:id]))
   end
 
   def new
