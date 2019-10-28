@@ -1,7 +1,9 @@
 <h1>
   <%= @company.name %>
-  <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
-    <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
+  <% if can?(:delete, @company) %>
+    <%= link_to company_url(@company), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <ion-icon name="ios-trash" md="md-trash" z-index="0"></ion-icon>
+    <% end %>
   <% end %>
 </h1>
 
