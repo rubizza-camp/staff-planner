@@ -4,7 +4,7 @@ services:
     build: .
     command: tail -f /dev/null
     env_file:
-      - postgresql.env
+      - backend.env
     volumes:
       - ./:/app
     ports:
@@ -13,7 +13,10 @@ services:
       - database
     links:
       - database:database
+      - redis:redis
   database:
     image: postgres
     env_file:
-      - postgresql.env
+      - backend.env
+  redis:
+    image: redis

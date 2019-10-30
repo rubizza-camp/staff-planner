@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: 'companies#calendar', as: :calendar
   default_url_options host: 'test.host'
 
+  mount Sidekiq::Web => '/sidekiq'
+
   devise_for :accounts, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
 
   devise_scope :account do
