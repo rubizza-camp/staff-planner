@@ -50,25 +50,25 @@
                 <% end %>
               </td>
             <% when 'fullday_event' %>
-              <td class="fulldayevent">
+              <td class="fulldayevent" style="background-color: <%= value[:rule][0].color %>" >
                 <% if can?(:access_to_event, employee) %>
-                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day ), title: value[:title] %>
+                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day ), title: value[:rule][0].name %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
               </td>
             <% when 'first_half_of_day' %>
-              <td class="firsthalf">
+              <td class="firsthalf" style="background-color: <%= value[:rule].color %>">
                 <% if can?(:access_to_event, employee) %>
-                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day), title: value[:title] %>
+                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day), title: value[:rule].name %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>
               </td>
             <% when 'second_half_of_day' %>
-              <td class="secondhalf">
+              <td class="secondhalf" style="background-color: <%= value[:rule].color %>">
                 <% if can?(:access_to_event, employee) %>
-                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day), title: value[:title] %>
+                  <%= link_to day.strftime('%d'), events_path(employee_id: employee, start_period: day, end_period: day), title: value[:rule].name %>
                 <% else %>
                   <p><%= day.strftime('%d') %></p>
                 <% end %>

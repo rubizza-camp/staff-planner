@@ -21,6 +21,10 @@
     </div>
   </div>
   <div class="field">
+    <%= form.label :color, class: 'label' %>
+    <%= form.color_field :color %>
+  </div>
+  <div class="field">
     <%= form.label :is_enabled, class: 'checkbox' %>
     <%= form.check_box :is_enabled %>
   </div>
