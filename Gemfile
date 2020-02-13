@@ -35,9 +35,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Links
 gem 'active_link_to'
 
-# A ruby gem for bulma Modern CSS framework based on Flexbox
-gem 'bulma', '~> 0.1.0'
-
 gem 'erb_lint', require: false
 gem 'oj'
 gem 'rspec', '~> 3.8'

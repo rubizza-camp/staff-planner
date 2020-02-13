@@ -72,7 +72,7 @@ a.active {
 }
 
 #calendar {
-	margin-top:50px
+	margin-top:5px
 }
 
 #calendar th, #calendar td {
@@ -104,4 +104,9 @@ td.holiday {
 
 td.secondhalf {
 	font-size:14px;
+}
+
+.color-legend {
+	border-style: hidden;
+	background-color:whitesmoke;
 }

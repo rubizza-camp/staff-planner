@@ -67,7 +67,6 @@ GEM
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
-    bulma (0.1.0)
     byebug (11.0.1)
     cancancan (3.0.1)
     capybara (3.28.0)
@@ -340,7 +339,6 @@ DEPENDENCIES
   active_link_to
   active_storage-postgresql
   bootsnap (>= 1.1.0)
-  bulma (~> 0.1.0)
   cancancan
   capybara (>= 2.15)
   countries
