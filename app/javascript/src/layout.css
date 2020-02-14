@@ -72,7 +72,7 @@ a.active {
 }
 
 #calendar {
-	margin-top:50px
+	margin-top:5px
 }
 
 #calendar th, #calendar td {
@@ -102,22 +102,11 @@ td.holiday {
 	background-color:lightgray;
 }
 
-td.fulldayevent {
-	background-color:#44c9b3;
-}
-
-td.firsthalf {
-	background-color:#82F8E4;
-}
-
 td.secondhalf {
 	font-size:14px;
 }
 
-td.stateholiday {
-	background-color: lightpink
-}
-
-td.work {
-	background-color:transparent;
+.color-legend {
+	border-style: hidden;
+	background-color:whitesmoke;
 }

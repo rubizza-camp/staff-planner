@@ -39,3 +39,4 @@ yarn-debug.log*
 /config/secrets.yml
 
 /backend.env
+.env

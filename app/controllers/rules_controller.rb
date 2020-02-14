@@ -65,7 +65,8 @@ class RulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
-    params.require(:rule).permit(:name, :allowance_days, :period, :is_enabled, :is_holiday, :auto_confirm, :is_enabled)
+    params.require(:rule).permit(:name, :allowance_days, :period, :is_enabled, :is_holiday,
+                                 :auto_confirm, :is_enabled, :color)
   end
 
   def rules

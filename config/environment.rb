@@ -7,11 +7,11 @@ require_relative 'application'
 Rails.application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  user_name: 'staffplanner24@gmail.com',
-  password: Rails.application.secrets.email_password,
-  domain: 'mydomain.com',
-  address: 'smtp.gmail.com',
-  port: 587,
+  user_name: ENV['SMTP_USERNAME'],
+  password: ENV['SMTP_PASSWORD'],
+  domain: ENV['SMTP_DOMAIN'],
+  address: ENV['SMTP_ADDRESS'],
+  port: ENV['SMTP_PORT'],
   authentication: :plain,
   enable_starttls_auto: true
 }
